@@ -2,7 +2,7 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
-    name: 'Dashboard',
+    name: 'Acceuil',
     url: '/dashboard',
     icon: 'icon-speedometer',
     badge: {
@@ -12,24 +12,28 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
-    name: 'Theme'
+    name: 'Mes services'
   },
   {
-    name: 'Colors',
+    name: 'Réserver rendez-vous',
     url: '/theme/colors',
     icon: 'icon-drop'
   },
   {
-    name: 'Typography',
+  name: 'Modifier rendez-vous',
     url: '/theme/typography',
     icon: 'icon-pencil'
   },
   {
+    name: 'Mon Planning',
+    url: '/theme/typography',
+    icon: 'icon-pencil'
+  }, {
     title: true,
-    name: 'Components'
+    name: 'Statistiques'
   },
   {
-    name: 'Base',
+    name: 'Les établissements',
     url: '/base',
     icon: 'icon-puzzle',
     children: [
@@ -42,72 +46,21 @@ export const navItems: INavData[] = [
         name: 'Carousels',
         url: '/base/carousels',
         icon: 'icon-puzzle'
-      },
-      {
-        name: 'Collapses',
-        url: '/base/collapses',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Forms',
-        url: '/base/forms',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Navbars',
-        url: '/base/navbars',
-        icon: 'icon-puzzle'
-
-      },
-      {
-        name: 'Pagination',
-        url: '/base/paginations',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Popovers',
-        url: '/base/popovers',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Progress',
-        url: '/base/progress',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Switches',
-        url: '/base/switches',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tables',
-        url: '/base/tables',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tabs',
-        url: '/base/tabs',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tooltips',
-        url: '/base/tooltips',
-        icon: 'icon-puzzle'
       }
     ]
   },
   {
-    name: 'Buttons',
+    name: 'Personnes',
     url: '/buttons',
     icon: 'icon-cursor',
     children: [
       {
-        name: 'Buttons',
+        name: 'Personnel',
         url: '/buttons/buttons',
         icon: 'icon-cursor'
       },
       {
-        name: 'Dropdowns',
+        name: 'Resident',
         url: '/buttons/dropdowns',
         icon: 'icon-cursor'
       },
@@ -232,20 +185,5 @@ export const navItems: INavData[] = [
       text: 'NEW'
     },
     attributes: { disabled: true },
-  },
-  {
-    name: 'Download CoreUI',
-    url: 'http://coreui.io/angular/',
-    icon: 'icon-cloud-download',
-    class: 'mt-auto',
-    variant: 'success',
-    attributes: { target: '_blank', rel: 'noopener' }
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'http://coreui.io/pro/angular/',
-    icon: 'icon-layers',
-    variant: 'danger',
-    attributes: { target: '_blank', rel: 'noopener' }
   }
 ];

@@ -13,19 +13,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
+
 import { AppComponent } from './app.component';
 
 // Import containers
-import { DefaultLayoutComponent } from './containers';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
-const APP_CONTAINERS = [
-  DefaultLayoutComponent
-];
 
 import {
   AppAsideModule,
@@ -42,6 +39,21 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
+import { CardComponent } from './components/card/card.component';
+import { DeadlineListComponent } from './components/deadline-list/deadline-list.component';
+import { DeadlineItemComponent } from './components/deadline-list/deadline-item/deadline-item.component';
+import { MessageListComponent } from './components/message-list/message-list.component';
+import { MessageItemComponent } from './components/message-list/message-item/message-item.component';
+import { SettingListComponent } from './components/setting-list/setting-list.component';
+import { SettingItemComponent } from './components/setting-list/setting-item/setting-item.component';
+import { TableComponent } from './components/table/table.component';
+import { TableItemComponent } from './components/table/table-item/table-item.component';
+import {MatTableModule} from '@angular/material/table';
+import {FormsModule} from '@angular/forms';
+import {DashboardRoutingModule} from './views/dashboard/dashboard-routing.module';
+import {ButtonsModule} from 'ngx-bootstrap/buttons';
+import {DashboardComponent} from './views/dashboard/dashboard.component';
+import {DefaultLayoutComponent} from "./containers/default-layout/default-layout.component";
 
 @NgModule({
   imports: [
@@ -59,22 +71,32 @@ import { ChartsModule } from 'ng2-charts';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
+    MatTableModule,
+    FormsModule,
+    DashboardRoutingModule,
+    ChartsModule,
+    BsDropdownModule,
+    ButtonsModule.forRoot(),
   ],
   declarations: [
     AppComponent,
-    ...APP_CONTAINERS,
+    DefaultLayoutComponent,
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DeadlineListComponent,
+    DeadlineItemComponent,
+    MessageListComponent,
+    MessageItemComponent,
+    SettingListComponent,
+    SettingItemComponent,
+    TableComponent,
+    TableItemComponent,
+    DashboardComponent,
+    CardComponent
   ],
-  providers: [
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
-    },
-    IconSetService,
-  ],
-  bootstrap: [ AppComponent ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

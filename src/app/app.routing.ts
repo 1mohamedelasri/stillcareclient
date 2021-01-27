@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
-import { DefaultLayoutComponent } from './containers';
 
 import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
-import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import {TableComponent} from './components/table/table.component';
+import {CardComponent} from './components/card/card.component';
+import {LoginComponent} from './views/login/login.component';
+import {DashboardComponent} from './views/dashboard/dashboard.component';
+import {DefaultLayoutComponent} from "./containers/default-layout/default-layout.component";
 
 export const routes: Routes = [
   {
@@ -24,7 +26,7 @@ export const routes: Routes = [
   },
   {
     path: '500',
-    component: P500Component,
+    component: TableComponent,
     data: {
       title: 'Page 500'
     }
@@ -32,6 +34,13 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
+  },
+  {
+    path: 'card',
+    component: CardComponent,
     data: {
       title: 'Login Page'
     }
@@ -51,36 +60,8 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'base',
-        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
-      },
-      {
-        path: 'buttons',
-        loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)
-      },
-      {
-        path: 'charts',
-        loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
-      },
-      {
         path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
-      {
-        path: 'icons',
-        loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
-      },
-      {
-        path: 'notifications',
-        loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
-      },
-      {
-        path: 'theme',
-        loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
-      },
-      {
-        path: 'widgets',
-        loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+        component: DashboardComponent
       }
     ]
   },
