@@ -83,3 +83,12 @@ export const routes: Routes = [
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
+  },
+  { path: '**', component: P404Component }
+];
+
+@NgModule({
+  imports: [ RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }) ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule {}
