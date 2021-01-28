@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IEtablissement} from '../../interfaces/Etablissement';
+import {IEtablissement} from '../../common/interfaces/Etablissement';
 
 @Component({
   selector: 'app-etablissement-list',

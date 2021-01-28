@@ -1,189 +1,75 @@
 import { INavData } from '@coreui/angular';
 
-export const navItems: INavData[] = [
-  {
-    name: 'Acceuil',
-    url: '/dashboard',
-    icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
-  },
-  {
-    title: true,
-    name: 'Mes services'
-  },
-  {
-    name: 'Réserver rendez-vous',
-    url: '/theme/colors',
-    icon: 'icon-drop'
-  },
-  {
-  name: 'Modifier rendez-vous',
-    url: '/theme/typography',
-    icon: 'icon-pencil'
-  },
-  {
-    name: 'Mon Planning',
-    url: '/theme/typography',
-    icon: 'icon-pencil'
-  }, {
-    title: true,
-    name: 'Statistiques'
-  },
-  {
-    name: 'Les établissements',
-    url: '/etablissement',
-    icon: 'icon-puzzle',
+
+export const personnelNavItems: INavData[] = [
+  {name: 'Acceuil', url: '/personnel/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
+  {title: true, name: 'Mes services'},
+  {name: 'Gérer résidents', url: '/personnel/residents', icon: 'icon-puzzle',
     children: [
-      {
-        name: 'Liste',
-        url: '/etablissement/liste',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Statistique',
-        url: '/etablissement/Statistique',
-        icon: 'icon-puzzle'
-      }
+      {name: 'Déclarer résident', url: '/personnel/residents/declarer', icon: 'icon-puzzle'},
+      {name: 'Déclarer un changement', url: '/personnel/residents/changer', icon: 'icon-puzzle'},
+      {name: 'Gérer contactes', url: '/personnel/residents/contacte', icon: 'icon-puzzle'}
     ]
   },
-  {
-    name: 'Personnes',
-    url: '/buttons',
-    icon: 'icon-cursor',
+  {name: 'Calendrier', url: '/personnel/calendrier', icon: 'icon-cursor',
     children: [
-      {
-        name: 'Personnel',
-        url: '/Personnes/Personnel',
-        icon: 'icon-cursor'
-      },
-      {
-        name: 'Resident',
-        url: '/buttons/dropdowns',
-        icon: 'icon-cursor'
-      },
-      {
-        name: 'Brand Buttons',
-        url: '/buttons/brand-buttons',
-        icon: 'icon-cursor'
-      }
+      {name: 'déclarer créneaux', url: '/personnel/calendrier/declarer', icon: 'icon-cursor'},
+      {name: 'consulter créneaux', url: '/personnel/calendrier/consulter', icon: 'icon-cursor'},
     ]
   },
-  {
-    name: 'Charts',
-    url: '/charts',
-    icon: 'icon-pie-chart'
-  },
-  {
-    name: 'Icons',
-    url: '/icons',
-    icon: 'icon-star',
+  {name: 'Gérer rendez-vous', url: '/rendezvous', icon: 'icon-star',
     children: [
-      {
-        name: 'CoreUI Icons',
-        url: '/icons/coreui-icons',
-        icon: 'icon-star',
-        badge: {
-          variant: 'success',
-          text: 'NEW'
-        }
-      },
-      {
-        name: 'Flags',
-        url: '/icons/flags',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Font Awesome',
-        url: '/icons/font-awesome',
-        icon: 'icon-star',
-        badge: {
-          variant: 'secondary',
-          text: '4.7'
-        }
-      },
-      {
-        name: 'Simple Line Icons',
-        url: '/icons/simple-line-icons',
-        icon: 'icon-star'
-      }
+      // tslint:disable-next-line:max-line-length
+      {name: 'Réservations des familles', url: '/personnel/rendezvous/familles', icon: 'icon-star', badge: {variant: 'success', text: 'NEW'}},
+      {name: 'Deplacer rendez-vous', url: '/personnel/rendezvous/deplacer', icon: 'icon-star'},
+      {name: 'Annuler rendez-vous', url: '/personnel/rendezvous/annuler', icon: 'icon-star', badge: {variant: 'secondary', text: '4.7'}},
+      {name: 'Reporter rendez-vous', url: '/personnel/rendezvous/reporter', icon: 'icon-star'},
+      {name: 'Details rendez-vous', url: '/personnel/rendezvous/details', icon: 'icon-star'}
+    ]
+  }
+];
+
+export const DirectionNavItems: INavData[] = [
+  {name: 'Acceuil', url: '/direction/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
+  {title: true, name: 'Mes services'},
+  {name: 'Espace de résidents', url: '/direction/residents', icon: 'icon-puzzle',
+    children: [
+      {name: 'Créer résident', url: '/direction/residents/créer', icon: 'icon-puzzle'},
+      {name: 'Affecter résident', url: '/direction/residents/affecter', icon: 'icon-puzzle'},
+      {name: 'Déclarer changement', url: '/direction/residents/changement', icon: 'icon-puzzle'}
     ]
   },
-  {
-    name: 'Notifications',
-    url: '/notifications',
-    icon: 'icon-bell',
+  {name: 'Calendrier', url: '/direction/calendrier', icon: 'icon-cursor',
     children: [
-      {
-        name: 'Alerts',
-        url: '/notifications/alerts',
-        icon: 'icon-bell'
-      },
-      {
-        name: 'Badges',
-        url: '/notifications/badges',
-        icon: 'icon-bell'
-      },
-      {
-        name: 'Modals',
-        url: '/notifications/modals',
-        icon: 'icon-bell'
-      }
+      {name: 'déclarer créneaux', url: '/direction/calendrier/declarer', icon: 'icon-cursor'},
+      {name: 'consulter créneaux', url: '/direction/calendrier/consulter', icon: 'icon-cursor'},
     ]
   },
-  {
-    name: 'Widgets',
-    url: '/widgets',
-    icon: 'icon-calculator',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
-  },
-  {
-    divider: true
-  },
-  {
-    title: true,
-    name: 'Extras',
-  },
-  {
-    name: 'Pages',
-    url: '/pages',
-    icon: 'icon-star',
+  {name: 'Gérer unitées', url: '/direction/unite', icon: 'icon-star',
     children: [
-      {
-        name: 'Login',
-        url: '/login',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Register',
-        url: '/register',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 404',
-        url: '/404',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 500',
-        url: '/500',
-        icon: 'icon-star'
-      }
+      {name: 'Création dunité', url: '/direction/unite/creer', icon: 'icon-star', badge: {variant: 'success', text: 'NEW'}},
+      {name: 'Modification  unité', url: '/direction/unite/modifier', icon: 'icon-star'},
+      {name: 'Suppression unité', url: '/direction/unite/supprimer', icon: 'icon-star', badge: {variant: 'secondary', text: '4.7'}},
+      {name: 'Reporter rendez-vous', url: '/direction/unite/reporter', icon: 'icon-star'},
+      {name: 'affecter personnel', url: '/direction/unite/affecter', icon: 'icon-star'}
+    ]
+  }
+];
+
+export const ContactNavItems: INavData[] = [
+  {name: 'Acceuil', url: '/contact/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
+  {title: true, name: 'Espace de résidents'},
+  {name: 'Calendrier', url: '/contact/calendrier', icon: 'icon-cursor',
+    children: [
+      {name: 'consulter créneaux', url: '/contact/calendrier/consulter', icon: 'icon-cursor'},
+      {name: 'Réserver un rendez-vous', url: '/contact/calendrier/consulter', icon: 'icon-cursor'},
     ]
   },
-  {
-    name: 'Disabled',
-    url: '/dashboard',
-    icon: 'icon-ban',
-    badge: {
-      variant: 'secondary',
-      text: 'NEW'
-    },
-    attributes: { disabled: true },
+  {name: 'Gérer rendez-vous', url: '/contact/rendezvous', icon: 'icon-star',
+    children: [
+      {name: 'Déclarer une absence', url: '/contact/rendezvous/absence', icon: 'icon-star', badge: {variant: 'success', text: 'NEW'}},
+      {name: 'Annuler rendez-vous', url: '/contact/rendezvous/annuler', icon: 'icon-star', badge: {variant: 'secondary', text: '4.7'}},
+      {name: 'Annuler une réservation ', url: '/contact/rendezvous/reservation', icon: 'icon-star'},
+    ]
   }
 ];

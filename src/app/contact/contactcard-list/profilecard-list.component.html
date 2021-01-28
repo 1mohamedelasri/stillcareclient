@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-12 col-md-4" *ngFor="let profile of profiles; let i = index; let l = last">
+    <app-profilecard
+      [profile]="profile"
+      [ngClass]="{ 'mb-0': l, 'mb-md-0': (i + 2) === profiles.length || (i + 3) === profiles.length }"
+    ></app-profilecard>
+  </div>
+</div>

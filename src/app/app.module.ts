@@ -39,15 +39,15 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
-import { CardComponent } from './components/card/card.component';
-import { DeadlineListComponent } from './components/deadline-list/deadline-list.component';
-import { DeadlineItemComponent } from './components/deadline-list/deadline-item/deadline-item.component';
-import { MessageListComponent } from './components/message-list/message-list.component';
-import { MessageItemComponent } from './components/message-list/message-item/message-item.component';
-import { SettingListComponent } from './components/setting-list/setting-list.component';
-import { SettingItemComponent } from './components/setting-list/setting-item/setting-item.component';
-import { TableComponent } from './components/table/table.component';
-import { TableItemComponent } from './components/table/table-item/table-item.component';
+import { CardComponent } from './common/components/card/card.component';
+import { DeadlineListComponent } from './common/components/deadline-list/deadline-list.component';
+import { DeadlineItemComponent } from './common/components/deadline-list/deadline-item/deadline-item.component';
+import { MessageListComponent } from './common/components/message-list/message-list.component';
+import { MessageItemComponent } from './common/components/message-list/message-item/message-item.component';
+import { SettingListComponent } from './common/components/setting-list/setting-list.component';
+import { SettingItemComponent } from './common/components/setting-list/setting-item/setting-item.component';
+import { TableComponent } from './common/components/table/table.component';
+import { TableItemComponent } from './common/components/table/table-item/table-item.component';
 import {MatTableModule} from '@angular/material/table';
 import {FormsModule} from '@angular/forms';
 import {DashboardRoutingModule} from './views/dashboard/dashboard-routing.module';
@@ -55,10 +55,11 @@ import {ButtonsModule} from 'ngx-bootstrap/buttons';
 import {DashboardComponent} from './views/dashboard/dashboard.component';
 import {DefaultLayoutComponent} from "./containers/default-layout/default-layout.component";
 import {PaginationModule} from "ngx-bootstrap/pagination";
-import { ProfilecardComponent } from './components/profilecard-list/profilecard/profilecard.component';
-import { ProfilecardListComponent } from './components/profilecard-list/profilecard-list.component';
-import { EtablissementComponent } from './components/etablissement-list/etablissement/etablissement.component';
-import { EtablissementListComponent } from './components/etablissement-list/etablissement-list.component';
+import { ProfilecardComponent } from './common/profilecard-list/profilecard/profilecard.component';
+import { ProfilecardListComponent } from './common/profilecard-list/profilecard-list.component';
+import { EtablissementComponent } from './direction/etablissement-list/etablissement/etablissement.component';
+import { EtablissementListComponent } from './direction/etablissement-list/etablissement-list.component';
+import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.component';
 
 @NgModule({
   imports: [
@@ -104,7 +105,8 @@ import { EtablissementListComponent } from './components/etablissement-list/etab
     ProfilecardComponent,
     ProfilecardListComponent,
     EtablissementComponent,
-    EtablissementListComponent
+    EtablissementListComponent,
+    NotyetimplComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
