@@ -16,7 +16,7 @@ import {EtablissementListComponent} from './direction/etablissement-list/etablis
 import {NotyetimplComponent} from './common/components/notyetimpl/notyetimpl.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'direction', pathMatch: 'full'},
   {path: '404', component: P404Component, data: {title: 'Page 404'}},
   {path: '500', component: TableComponent, data: {title: 'Page 500'}},
   {path: 'login', component: LoginComponent, data: {title: 'Login Page'}},
@@ -33,17 +33,17 @@ export const routes: Routes = [
   },
   {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home'},
     children: [
-      {path: 'direction/dashboard', component: DashboardComponent},
-      {path: 'direction/residents/créer', component: NotyetimplComponent},
-      {path: 'direction/residents/affecter', component: NotyetimplComponent},
-      {path: 'direction/residents/changement', component: NotyetimplComponent},
-      {path: 'direction/calendrier/declarer', component: NotyetimplComponent},
-      {path: 'direction/calendrier/consulter', component: NotyetimplComponent},
-      {path: 'direction/unite/creer', component: NotyetimplComponent},
-      {path: 'direction/unite/modifier', component: NotyetimplComponent},
-      {path: 'direction/unite/supprimer', component: NotyetimplComponent},
-      {path: 'direction/unite/reporter', component: NotyetimplComponent},
-      {path: 'direction/unite/affecter', component: NotyetimplComponent}
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'residents/créer', component: NotyetimplComponent},
+      {path: 'residents/affecter', component: NotyetimplComponent},
+      {path: 'residents/changement', component: NotyetimplComponent},
+      {path: 'calendrier/declarer', component: NotyetimplComponent},
+      {path: 'calendrier/consulter', component: NotyetimplComponent},
+      {path: 'unite/creer', component: NotyetimplComponent},
+      {path: 'unite/modifier', component: NotyetimplComponent},
+      {path: 'unite/supprimer', component: NotyetimplComponent},
+      {path: 'unite/reporter', component: NotyetimplComponent},
+      {path: 'unite/affecter', component: NotyetimplComponent}
     ]
   },
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},

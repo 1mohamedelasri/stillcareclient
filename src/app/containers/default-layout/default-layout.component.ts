@@ -9,7 +9,7 @@ import { ContactNavItems } from '../../_nav';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = ContactNavItems;
+  public navItems = DirectionNavItems;
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
