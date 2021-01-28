@@ -3,7 +3,9 @@ import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
 @Component({
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
+  selector: 'app-dashboard',
+  styleUrls: ['./table.component.scss']
 })
 export class DashboardComponent implements OnInit {
 

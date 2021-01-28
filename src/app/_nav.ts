@@ -34,17 +34,17 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Les établissements',
-    url: '/base',
+    url: '/etablissement',
     icon: 'icon-puzzle',
     children: [
       {
-        name: 'Cards',
-        url: '/base/cards',
+        name: 'Liste',
+        url: '/etablissement/liste',
         icon: 'icon-puzzle'
       },
       {
-        name: 'Carousels',
-        url: '/base/carousels',
+        name: 'Statistique',
+        url: '/etablissement/Statistique',
         icon: 'icon-puzzle'
       }
     ]
@@ -56,7 +56,7 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Personnel',
-        url: '/buttons/buttons',
+        url: '/Personnes/Personnel',
         icon: 'icon-cursor'
       },
       {

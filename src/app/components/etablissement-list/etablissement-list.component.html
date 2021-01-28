@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-12 col-md-4" *ngFor="let dep of etablissements; let l = last; let i = index">
+    <app-etablissement
+      class="department"
+      [etablissement]="dep"
+      [ngClass]="{ 'mb-0': l, 'mb-md-0': (i === (etablissements.length - 2)) || (i === (etablissements.length - 3)) }"
+    >
+      <h3 class="h4 mt-0">{{ dep.title }}</h3>
+
+      <div class="team d-flex align-items-center mb-4">
+        <strong class="mr-3">Team:</strong>
+        <app-profilecard [profile]="doc"  *ngFor="let doc of dep.personnels"></app-profilecard>
+        <button></button>
+      </div>
+
+      <p>{{ dep.desc }}</p>
+
+      <div class="button-box pb-2">
+        <a href="#">More</a>
+      </div>
+    </app-etablissement>
+  </div>
+</div>
+

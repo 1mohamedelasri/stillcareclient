@@ -54,6 +54,11 @@ import {DashboardRoutingModule} from './views/dashboard/dashboard-routing.module
 import {ButtonsModule} from 'ngx-bootstrap/buttons';
 import {DashboardComponent} from './views/dashboard/dashboard.component';
 import {DefaultLayoutComponent} from "./containers/default-layout/default-layout.component";
+import {PaginationModule} from "ngx-bootstrap/pagination";
+import { ProfilecardComponent } from './components/profilecard-list/profilecard/profilecard.component';
+import { ProfilecardListComponent } from './components/profilecard-list/profilecard-list.component';
+import { EtablissementComponent } from './components/etablissement-list/etablissement/etablissement.component';
+import { EtablissementListComponent } from './components/etablissement-list/etablissement-list.component';
 
 @NgModule({
   imports: [
@@ -77,6 +82,7 @@ import {DefaultLayoutComponent} from "./containers/default-layout/default-layout
     ChartsModule,
     BsDropdownModule,
     ButtonsModule.forRoot(),
+    PaginationModule,
   ],
   declarations: [
     AppComponent,
@@ -94,7 +100,11 @@ import {DefaultLayoutComponent} from "./containers/default-layout/default-layout
     TableComponent,
     TableItemComponent,
     DashboardComponent,
-    CardComponent
+    CardComponent,
+    ProfilecardComponent,
+    ProfilecardListComponent,
+    EtablissementComponent,
+    EtablissementListComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

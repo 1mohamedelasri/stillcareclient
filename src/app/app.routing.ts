@@ -10,6 +10,9 @@ import {CardComponent} from './components/card/card.component';
 import {LoginComponent} from './views/login/login.component';
 import {DashboardComponent} from './views/dashboard/dashboard.component';
 import {DefaultLayoutComponent} from "./containers/default-layout/default-layout.component";
+import {ProfilecardComponent} from "./components/profilecard-list/profilecard/profilecard.component";
+import {ProfilecardListComponent} from "./components/profilecard-list/profilecard-list.component";
+import {EtablissementListComponent} from "./components/etablissement-list/etablissement-list.component";
 
 export const routes: Routes = [
   {
@@ -62,7 +65,14 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
-      }
+      },      {
+        path: 'Personnes/Personnel',
+        component: ProfilecardListComponent
+      },
+      {
+        path: 'etablissement/liste',
+        component: EtablissementListComponent
+      },
     ]
   },
   { path: '**', component: P404Component }
