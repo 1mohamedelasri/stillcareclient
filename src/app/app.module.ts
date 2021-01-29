@@ -53,13 +53,15 @@ import {FormsModule} from '@angular/forms';
 import {DashboardRoutingModule} from './views/dashboard/dashboard-routing.module';
 import {ButtonsModule} from 'ngx-bootstrap/buttons';
 import {DashboardComponent} from './views/dashboard/dashboard.component';
-import {DefaultLayoutComponent} from "./containers/default-layout/default-layout.component";
-import {PaginationModule} from "ngx-bootstrap/pagination";
+import {DefaultLayoutComponent} from './containers/default-layout/default-layout.component';
+import {PaginationModule} from 'ngx-bootstrap/pagination';
 import { ProfilecardComponent } from './common/profilecard-list/profilecard/profilecard.component';
 import { ProfilecardListComponent } from './common/profilecard-list/profilecard-list.component';
 import { EtablissementComponent } from './direction/etablissement-list/etablissement/etablissement.component';
 import { EtablissementListComponent } from './direction/etablissement-list/etablissement-list.component';
 import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.component';
+import{ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { AgendaComponent } from './common/components/agenda/agenda.component';
 
 @NgModule({
   imports: [
@@ -84,6 +86,8 @@ import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.c
     BsDropdownModule,
     ButtonsModule.forRoot(),
     PaginationModule,
+    ScheduleModule,
+    RecurrenceEditorModule
   ],
   declarations: [
     AppComponent,
@@ -106,9 +110,10 @@ import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.c
     ProfilecardListComponent,
     EtablissementComponent,
     EtablissementListComponent,
-    NotyetimplComponent
+    NotyetimplComponent,
+    AgendaComponent
   ],
-  providers: [],
+  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

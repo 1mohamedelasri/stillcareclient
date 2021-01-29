@@ -14,6 +14,7 @@ import {ProfilecardComponent} from './common/profilecard-list/profilecard/profil
 import {ProfilecardListComponent} from './common/profilecard-list/profilecard-list.component';
 import {EtablissementListComponent} from './direction/etablissement-list/etablissement-list.component';
 import {NotyetimplComponent} from './common/components/notyetimpl/notyetimpl.component';
+import {AgendaComponent} from './common/components/agenda/agenda.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'direction', pathMatch: 'full'},
@@ -37,8 +38,8 @@ export const routes: Routes = [
       {path: 'residents/créer', component: NotyetimplComponent},
       {path: 'residents/affecter', component: NotyetimplComponent},
       {path: 'residents/changement', component: NotyetimplComponent},
-      {path: 'calendrier/declarer', component: NotyetimplComponent},
-      {path: 'calendrier/consulter', component: NotyetimplComponent},
+      {path: 'calendrier/declarer', component: AgendaComponent},
+      {path: 'calendrier/consulter', component: AgendaComponent},
       {path: 'unite/creer', component: NotyetimplComponent},
       {path: 'unite/modifier', component: NotyetimplComponent},
       {path: 'unite/supprimer', component: NotyetimplComponent},
