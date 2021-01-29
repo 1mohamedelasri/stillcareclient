@@ -64,6 +64,7 @@ import { CreateResidentComponent } from './direction/create-resident/create-resi
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
+import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
 
 @NgModule({
   imports: [
@@ -114,7 +115,8 @@ import { AffecterResidentComponent } from './direction/affecter-resident/affecte
     EtablissementListComponent,
     NotyetimplComponent,
     CreateResidentComponent,
-    AffecterResidentComponent
+    AffecterResidentComponent,
+    ConsulterResidentComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

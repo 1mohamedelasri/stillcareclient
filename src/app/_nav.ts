@@ -36,7 +36,8 @@ export const DirectionNavItems: INavData[] = [
     children: [
       {name: 'Créer résident', url: '/direction/residents/créer', icon: 'icon-puzzle'},
       {name: 'Affecter résident', url: '/direction/residents/affecter', icon: 'icon-puzzle'},
-      {name: 'Déclarer changement', url: '/direction/residents/changement', icon: 'icon-puzzle'}
+      {name: 'Déclarer changement', url: '/direction/residents/changement', icon: 'icon-puzzle'},
+      {name: 'Consulter les residents', url: '/direction/residents/consulter', icon: 'icon-puzzle'}
     ]
   },
   {name: 'Calendrier', url: '/direction/calendrier', icon: 'icon-cursor',

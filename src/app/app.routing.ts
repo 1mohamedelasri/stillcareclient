@@ -16,6 +16,7 @@ import {EtablissementListComponent} from './direction/etablissement-list/etablis
 import {NotyetimplComponent} from './common/components/notyetimpl/notyetimpl.component';
 import {CreateResidentComponent} from './direction/create-resident/create-resident.component';
 import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
+import {ConsulterResidentComponent} from "./direction/consulter-resident/consulter-resident.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: 'direction', pathMatch: 'full'},
@@ -39,6 +40,7 @@ export const routes: Routes = [
       {path: 'residents/créer', component: CreateResidentComponent},
       {path: 'residents/affecter', component: AffecterResidentComponent},
       {path: 'residents/changement', component: NotyetimplComponent},
+      {path: 'residents/consulter', component: ConsulterResidentComponent},
       {path: 'calendrier/declarer', component: NotyetimplComponent},
       {path: 'calendrier/consulter', component: NotyetimplComponent},
       {path: 'unite/creer', component: NotyetimplComponent},
