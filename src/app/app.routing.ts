@@ -14,6 +14,8 @@ import {ProfilecardComponent} from './common/profilecard-list/profilecard/profil
 import {ProfilecardListComponent} from './common/profilecard-list/profilecard-list.component';
 import {EtablissementListComponent} from './direction/etablissement-list/etablissement-list.component';
 import {NotyetimplComponent} from './common/components/notyetimpl/notyetimpl.component';
+import {CreateResidentComponent} from './direction/create-resident/create-resident.component';
+import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'direction', pathMatch: 'full'},
@@ -34,8 +36,8 @@ export const routes: Routes = [
   {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home'},
     children: [
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'residents/créer', component: NotyetimplComponent},
-      {path: 'residents/affecter', component: NotyetimplComponent},
+      {path: 'residents/créer', component: CreateResidentComponent},
+      {path: 'residents/affecter', component: AffecterResidentComponent},
       {path: 'residents/changement', component: NotyetimplComponent},
       {path: 'calendrier/declarer', component: NotyetimplComponent},
       {path: 'calendrier/consulter', component: NotyetimplComponent},

@@ -60,6 +60,10 @@ import { ProfilecardListComponent } from './common/profilecard-list/profilecard-
 import { EtablissementComponent } from './direction/etablissement-list/etablissement/etablissement.component';
 import { EtablissementListComponent } from './direction/etablissement-list/etablissement-list.component';
 import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.component';
+import { CreateResidentComponent } from './direction/create-resident/create-resident.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
 
 @NgModule({
   imports: [
@@ -84,6 +88,8 @@ import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.c
     BsDropdownModule,
     ButtonsModule.forRoot(),
     PaginationModule,
+    MatInputModule,
+    MatSelectModule
   ],
   declarations: [
     AppComponent,
@@ -106,7 +112,9 @@ import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.c
     ProfilecardListComponent,
     EtablissementComponent,
     EtablissementListComponent,
-    NotyetimplComponent
+    NotyetimplComponent,
+    CreateResidentComponent,
+    AffecterResidentComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
