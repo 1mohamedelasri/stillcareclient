@@ -1,0 +1,51 @@
+
+<h1>Consulter liste des résidents</h1>
+<table>
+  <tr>
+    <td>
+      <mat-form-field>
+        <mat-label>Choisir une unité :</mat-label>
+        <mat-select [formControl]="unites" multiple [(value)]="selectedUnite" >
+          <mat-option *ngFor="let unite of uniteList" [value]="unite">{{unite}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+
+    <td>
+      <button (click)="choisirUnite()" > Rechercher</button>
+    </td>
+  </tr>
+</table>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Nom Column -->
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef> Nom </th>
+    <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+  </ng-container>
+
+  <!-- Prenom Column -->
+  <ng-container matColumnDef="prenom">
+    <th mat-header-cell *matHeaderCellDef> Prénom </th>
+    <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+  </ng-container>
+
+  <!-- dateNaissance Column -->
+  <ng-container matColumnDef="dateNaissance">
+    <th mat-header-cell *matHeaderCellDef> Date de naissance </th>
+    <td mat-cell *matCellDef="let element"> {{element.dateNaissance}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+<!--  <ng-container matColumnDef="unite">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Unité </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.unite}} </td>-->
+<!--  </ng-container>-->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+

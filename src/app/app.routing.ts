@@ -18,6 +18,9 @@ import { UnitListComponent } from './direction/unit-list/unit-list.component';
 import { UnitCreateComponent } from './direction/unit-create/unit-create.component';
 import { UnitComponent } from './direction/unit/unit.component';
 import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
+import {CreateResidentComponent} from './direction/create-resident/create-resident.component';
+import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
+import {ConsulterResidentComponent} from "./direction/consulter-resident/consulter-resident.component";
 
 
 export const routes: Routes = [
@@ -39,9 +42,10 @@ export const routes: Routes = [
   {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home'},
     children: [
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'residents/créer', component: NotyetimplComponent},
-      {path: 'residents/affecter', component: NotyetimplComponent},
+      {path: 'residents/créer', component: CreateResidentComponent},
+      {path: 'residents/affecter', component: AffecterResidentComponent},
       {path: 'residents/changement', component: NotyetimplComponent},
+      {path: 'residents/consulter', component: ConsulterResidentComponent},
       {path: 'calendrier/declarer', component: NotyetimplComponent},
       {path: 'calendrier/consulter', component: NotyetimplComponent},
       {path: 'unites', component: UnitListComponent},

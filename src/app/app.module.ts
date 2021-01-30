@@ -65,6 +65,11 @@ import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { UnitCreateComponent } from './direction/unit-create/unit-create.component';
 import { UnitComponent } from './direction/unit/unit.component';
+import { CreateResidentComponent } from './direction/create-resident/create-resident.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
+import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
 
 @NgModule({
   imports: [
@@ -91,6 +96,9 @@ import { UnitComponent } from './direction/unit/unit.component';
     PaginationModule,
     CommonModule,
     MatDialogModule
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -118,6 +126,9 @@ import { UnitComponent } from './direction/unit/unit.component';
     UnitCreateComponent,
     UnitListComponent,
     DeleteUnitPopupComponent
+    CreateResidentComponent,
+    AffecterResidentComponent,
+    ConsulterResidentComponent
   ],
   providers: [
     {
