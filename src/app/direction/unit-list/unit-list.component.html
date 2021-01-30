@@ -1,0 +1,27 @@
+<div class="header">
+  <h1>Unités</h1>
+  <button type="button" class="btn btn-primary" (click)="goToUnitCreation()">Créer unité</button>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-4" style="padding: 5px" *ngFor="let unite of unites">
+
+    <div class="unite-card" (click)="goToUnit(unite.id)">
+      <div class="unite-card-header">
+        <h3 class="h4 mt-0">{{ unite.name }}</h3>
+
+        <p>{{unite.status}}</p>
+      </div>
+
+      <p>{{unite.desc}}</p>
+
+      <strong class="mr-3">Notre équipe:</strong>
+
+      <div class="team d-flex align-items-center mb-4">
+        <div *ngFor="let personnel of unite.personnels">
+          <img class="profile-img" src="{{personnel.img}}"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

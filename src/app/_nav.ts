@@ -45,14 +45,8 @@ export const DirectionNavItems: INavData[] = [
       {name: 'consulter créneaux', url: '/direction/calendrier/consulter', icon: 'icon-cursor'},
     ]
   },
-  {name: 'Gérer unitées', url: '/direction/unite', icon: 'icon-star',
-    children: [
-      {name: 'Création dunité', url: '/direction/unite/creer', icon: 'icon-star', badge: {variant: 'success', text: 'NEW'}},
-      {name: 'Modification  unité', url: '/direction/unite/modifier', icon: 'icon-star'},
-      {name: 'Suppression unité', url: '/direction/unite/supprimer', icon: 'icon-star', badge: {variant: 'secondary', text: '4.7'}},
-      {name: 'Reporter rendez-vous', url: '/direction/unite/reporter', icon: 'icon-star'},
-      {name: 'affecter personnel', url: '/direction/unite/affecter', icon: 'icon-star'}
-    ]
+  {
+    name: 'Gérer unités', url: '/direction/unites', icon: 'icon-star'
   }
 ];
 
