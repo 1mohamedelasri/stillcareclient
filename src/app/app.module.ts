@@ -49,12 +49,12 @@ import { SettingItemComponent } from './common/components/setting-list/setting-i
 import { TableComponent } from './common/components/table/table.component';
 import { TableItemComponent } from './common/components/table/table-item/table-item.component';
 import { MatTableModule } from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardRoutingModule } from './views/dashboard/dashboard-routing.module';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
-import { DefaultLayoutComponent } from "./containers/default-layout/default-layout.component";
-import { PaginationModule } from "ngx-bootstrap/pagination";
+import { DefaultLayoutComponent } from './containers/default-layout/default-layout.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ProfilecardComponent } from './common/profilecard-list/profilecard/profilecard.component';
 import { ProfilecardListComponent } from './common/profilecard-list/profilecard-list.component';
 import { EtablissementComponent } from './direction/etablissement-list/etablissement/etablissement.component';
@@ -70,7 +70,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
-import{ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import {ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './common/components/agenda/agenda.component';
 
 @NgModule({
@@ -97,7 +97,7 @@ import { AgendaComponent } from './common/components/agenda/agenda.component';
     ButtonsModule.forRoot(),
     PaginationModule,
     CommonModule,
-    MatDialogModule
+    MatDialogModule,
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
@@ -135,13 +135,10 @@ import { AgendaComponent } from './common/components/agenda/agenda.component';
     ConsulterResidentComponent,
     AgendaComponent
   ],
-  providers: [
-    {
-      provide: MatDialogRef,
-      useValue: {}
-    }
-  ],
-  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService],
+  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
+    provide: MatDialogRef,
+    useValue: {}
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

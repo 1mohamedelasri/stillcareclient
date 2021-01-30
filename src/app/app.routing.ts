@@ -20,7 +20,7 @@ import { UnitComponent } from './direction/unit/unit.component';
 import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
 import {CreateResidentComponent} from './direction/create-resident/create-resident.component';
 import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
-import {ConsulterResidentComponent} from "./direction/consulter-resident/consulter-resident.component";
+import {ConsulterResidentComponent} from './direction/consulter-resident/consulter-resident.component';
 import {AgendaComponent} from './common/components/agenda/agenda.component';
 
 
@@ -49,7 +49,7 @@ export const routes: Routes = [
       {path: 'unites', component: UnitListComponent},
       {path: 'unites/creer', component: UnitCreateComponent},
       {path: 'unites/consulter', component: UnitComponent},
-      {path: 'unites/modifier', component: UnitCreateComponent}
+      {path: 'unites/modifier', component: UnitCreateComponent},
       {path: 'calendrier/declarer', component: AgendaComponent},
       {path: 'calendrier/consulter', component: AgendaComponent},
       {path: 'residents/consulter', component: ConsulterResidentComponent},
