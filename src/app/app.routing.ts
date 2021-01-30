@@ -14,6 +14,11 @@ import {ProfilecardComponent} from './common/profilecard-list/profilecard/profil
 import {ProfilecardListComponent} from './common/profilecard-list/profilecard-list.component';
 import {EtablissementListComponent} from './direction/etablissement-list/etablissement-list.component';
 import {NotyetimplComponent} from './common/components/notyetimpl/notyetimpl.component';
+import { UnitListComponent } from './direction/unit-list/unit-list.component';
+import { UnitCreateComponent } from './direction/unit-create/unit-create.component';
+import { UnitComponent } from './direction/unit/unit.component';
+import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
+
 
 export const routes: Routes = [
   {path: '', redirectTo: 'direction', pathMatch: 'full'},
@@ -39,11 +44,10 @@ export const routes: Routes = [
       {path: 'residents/changement', component: NotyetimplComponent},
       {path: 'calendrier/declarer', component: NotyetimplComponent},
       {path: 'calendrier/consulter', component: NotyetimplComponent},
-      {path: 'unite/creer', component: NotyetimplComponent},
-      {path: 'unite/modifier', component: NotyetimplComponent},
-      {path: 'unite/supprimer', component: NotyetimplComponent},
-      {path: 'unite/reporter', component: NotyetimplComponent},
-      {path: 'unite/affecter', component: NotyetimplComponent}
+      {path: 'unites', component: UnitListComponent},
+      {path: 'unites/creer', component: UnitCreateComponent},
+      {path: 'unites/consulter', component: UnitComponent},
+      {path: 'unites/modifier', component: UnitCreateComponent}
     ]
   },
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},

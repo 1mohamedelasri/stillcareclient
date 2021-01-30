@@ -1,0 +1,10 @@
+<div class="delete-popup">
+  <div mat-dialog-content>
+    <h1 mat-dialog-title>Supprimer l'unité</h1>
+    <p>Êtes vous sûr de vouloir supprimer l'unité <b>{{unite.name}}</b> ?</p>
+  </div>
+  <div class="modal-buttons" mat-dialog-actions>
+    <button mat-button class="cancelbtn" (click)="onNoClick()">Annuler</button>
+    <button mat-button class="deletebtn" (click)="onConfirm()" cdkFocusInitial>Supprimer</button>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+strong{
+  font-size: larger;
+  margin-bottom: 10px;
+}
+.input{
+  border-radius: 20px;
+  border:1px solid rgb(200, 200, 200);
+  background: #f4f2f3;
+  padding: 15px;
+  width: 100%;
+
+  &:focus {
+    outline: 0px;
+    border: 1px solid #20a8d8;
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  }
+}
+
+.unit{
+  padding: 5%;
+  width : 50%;
+  margin-right: auto;
+  margin-left: auto;
+}

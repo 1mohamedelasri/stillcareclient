@@ -1,0 +1,23 @@
+<form class="unit">
+  <h1>{{ unit.id=="-1" ? "Nouvelle unité" : "Modifier unité"}}</h1>
+
+  <strong>Nom : </strong> <br>
+  <input class="input" [value]="unit.name">
+  <br><br>
+
+  <strong>Etat :</strong> <br>
+  <select class="input" [value]="unit.status">
+    <option value="ouverte">Ouverte</option>
+    <option value="fermee">Fermée</option>
+    <option value="dejour">De jour</option>
+    <option value="COVID">Contagieuse COVID</option>
+  </select>
+  <br><br>
+
+  <strong>Déscription :</strong> <br>
+  <textarea class="input" rows="3" [value]="unit.desc"></textarea>
+  <br><br>
+
+  <button type="button" class="btn btn-primary btn-block">Valider</button>
+
+</form>

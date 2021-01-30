@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -48,18 +48,23 @@ import { SettingListComponent } from './common/components/setting-list/setting-l
 import { SettingItemComponent } from './common/components/setting-list/setting-item/setting-item.component';
 import { TableComponent } from './common/components/table/table.component';
 import { TableItemComponent } from './common/components/table/table-item/table-item.component';
-import {MatTableModule} from '@angular/material/table';
-import {FormsModule} from '@angular/forms';
-import {DashboardRoutingModule} from './views/dashboard/dashboard-routing.module';
-import {ButtonsModule} from 'ngx-bootstrap/buttons';
-import {DashboardComponent} from './views/dashboard/dashboard.component';
-import {DefaultLayoutComponent} from "./containers/default-layout/default-layout.component";
-import {PaginationModule} from "ngx-bootstrap/pagination";
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { DashboardRoutingModule } from './views/dashboard/dashboard-routing.module';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { DefaultLayoutComponent } from "./containers/default-layout/default-layout.component";
+import { PaginationModule } from "ngx-bootstrap/pagination";
 import { ProfilecardComponent } from './common/profilecard-list/profilecard/profilecard.component';
 import { ProfilecardListComponent } from './common/profilecard-list/profilecard-list.component';
 import { EtablissementComponent } from './direction/etablissement-list/etablissement/etablissement.component';
 import { EtablissementListComponent } from './direction/etablissement-list/etablissement-list.component';
 import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.component';
+import { UnitListComponent } from './direction/unit-list/unit-list.component';
+import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { UnitCreateComponent } from './direction/unit-create/unit-create.component';
+import { UnitComponent } from './direction/unit/unit.component';
 
 @NgModule({
   imports: [
@@ -84,6 +89,8 @@ import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.c
     BsDropdownModule,
     ButtonsModule.forRoot(),
     PaginationModule,
+    CommonModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -106,9 +113,18 @@ import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.c
     ProfilecardListComponent,
     EtablissementComponent,
     EtablissementListComponent,
-    NotyetimplComponent
+    NotyetimplComponent,
+    UnitComponent,
+    UnitCreateComponent,
+    UnitListComponent,
+    DeleteUnitPopupComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
