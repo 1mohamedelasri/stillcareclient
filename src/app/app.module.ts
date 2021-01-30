@@ -49,7 +49,7 @@ import { SettingItemComponent } from './common/components/setting-list/setting-i
 import { TableComponent } from './common/components/table/table.component';
 import { TableItemComponent } from './common/components/table/table-item/table-item.component';
 import {MatTableModule} from '@angular/material/table';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DashboardRoutingModule} from './views/dashboard/dashboard-routing.module';
 import {ButtonsModule} from 'ngx-bootstrap/buttons';
 import {DashboardComponent} from './views/dashboard/dashboard.component';
@@ -90,7 +90,8 @@ import { ConsulterResidentComponent } from './direction/consulter-resident/consu
     ButtonsModule.forRoot(),
     PaginationModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,

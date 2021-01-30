@@ -2,28 +2,16 @@
   <h1>Affecter un résident </h1>
   <label>Choisir un résident :</label>
   <br>
-  <select class = "myInput">
-    <option value="0" disabled selected>Liste des résidents</option>
-    <option value="id1" >Résident1</option>
-    <option value="id2" >Résident2</option>
-    <option value="id3" >Résident3</option>
-    <option value="id4" >Résident4</option>
-    <option value="id5" >Résident5</option>
-    <option value="id6" >Résident6</option>
-  </select>
+  <mat-select [formControl]="residents" class = "myInput" [(value)]="selectedResident">
+    <mat-option *ngFor="let resident of residentList" [value]="resident" >{{resident}} </mat-option>
+  </mat-select>
   <br><br>
   <label>Choisir une unité :</label>
   <br>
-  <select class = "myInput">
-    <option value="0" disabled selected>Liste des unités</option>
-    <option value="id1" >Unité1</option>
-    <option value="id2" >Unité2</option>
-    <option value="id3" >Unité3</option>
-    <option value="id4" >Unité4</option>
-    <option value="id5" >Unité5</option>
-    <option value="id6" >Unité6</option>
-  </select>
+  <mat-select [formControl]="unites" class = "myInput" [(value)]="selectedUnite">
+    <mat-option *ngFor="let unite of uniteList" [value]="unite" >{{unite}}</mat-option>
+  </mat-select>
   <br><br>
-  <button>Affecter résident à l'unité</button>
+  <button (click)="affecterResident()">Affecter résident à l'unité</button>
 
 </form>
