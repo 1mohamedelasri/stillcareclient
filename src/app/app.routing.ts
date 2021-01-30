@@ -21,6 +21,7 @@ import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/
 import {CreateResidentComponent} from './direction/create-resident/create-resident.component';
 import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
 import {ConsulterResidentComponent} from "./direction/consulter-resident/consulter-resident.component";
+import {AgendaComponent} from './common/components/agenda/agenda.component';
 
 
 export const routes: Routes = [
@@ -45,13 +46,13 @@ export const routes: Routes = [
       {path: 'residents/créer', component: CreateResidentComponent},
       {path: 'residents/affecter', component: AffecterResidentComponent},
       {path: 'residents/changement', component: NotyetimplComponent},
-      {path: 'residents/consulter', component: ConsulterResidentComponent},
-      {path: 'calendrier/declarer', component: NotyetimplComponent},
-      {path: 'calendrier/consulter', component: NotyetimplComponent},
       {path: 'unites', component: UnitListComponent},
       {path: 'unites/creer', component: UnitCreateComponent},
       {path: 'unites/consulter', component: UnitComponent},
       {path: 'unites/modifier', component: UnitCreateComponent}
+      {path: 'calendrier/declarer', component: AgendaComponent},
+      {path: 'calendrier/consulter', component: AgendaComponent},
+      {path: 'residents/consulter', component: ConsulterResidentComponent},
     ]
   },
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},

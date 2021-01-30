@@ -70,6 +70,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
+import{ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { AgendaComponent } from './common/components/agenda/agenda.component';
 
 @NgModule({
   imports: [
@@ -98,7 +100,9 @@ import { ConsulterResidentComponent } from './direction/consulter-resident/consu
     MatDialogModule
     MatInputModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScheduleModule,
+    RecurrenceEditorModule,
   ],
   declarations: [
     AppComponent,
@@ -125,10 +129,11 @@ import { ConsulterResidentComponent } from './direction/consulter-resident/consu
     UnitComponent,
     UnitCreateComponent,
     UnitListComponent,
-    DeleteUnitPopupComponent
+    DeleteUnitPopupComponent,
     CreateResidentComponent,
     AffecterResidentComponent,
-    ConsulterResidentComponent
+    ConsulterResidentComponent,
+    AgendaComponent
   ],
   providers: [
     {
@@ -136,6 +141,7 @@ import { ConsulterResidentComponent } from './direction/consulter-resident/consu
       useValue: {}
     }
   ],
+  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
