@@ -14,12 +14,15 @@ export class AffecterResidentComponent implements OnInit {
   residentList: string[] = ['Resident1', 'Resident2', 'Resident3', 'Resident4', 'Resident5', 'Resident6', 'Resident7', '...'];
   selectedResident: string;
   selectedUnite: string;
+  personnelList: string[] = ['Personnel1', 'Personnel2', 'Personnel3', 'Personnel4', 'Personnel5'];
+  selectedPersonnel: string;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
   affecterResident() {
-    console.log('Résident : ' + this.selectedResident + '\n Unité affectée : ' + this.selectedUnite);
+    console.log('Résident : ' + this.selectedResident + '\n Unité affectée : ' + this.selectedUnite + '\n Responsable : ' + this.selectedPersonnel);
   }
 }

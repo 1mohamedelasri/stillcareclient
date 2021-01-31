@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DateInput, MomentInputObject} from 'ngx-bootstrap/chronos/test/chain';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-create-resident',
@@ -18,7 +18,12 @@ export class CreateResidentComponent implements OnInit {
 
   // Ajouter un resident dans la base de données
   ajouterResident(nom: string, prenom: string, dateNaissance: string): void {
-    console.log('Nom : ' + nom + '\n Prenom : ' + prenom + '\n Date de naissance : ' + dateNaissance + '\n Statut : ' + this.selectedStatut);
+    if(nom === '' || prenom === '' || dateNaissance === '' || this.selectedStatut === '0'){
+      console.log('a field is missing');
+    }else{
+      // tslint:disable-next-line:max-line-length
+      console.log('Nom : ' + nom + '\n Prenom : ' + prenom + '\n Date de naissance : ' + dateNaissance + '\n Statut : ' + this.selectedStatut);
+    }
   }
 
 }

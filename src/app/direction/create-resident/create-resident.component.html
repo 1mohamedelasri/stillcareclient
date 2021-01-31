@@ -1,23 +1,24 @@
-<form class="myForm" (submit)="ajouterResident(nom.value,prenom.value,dateNaissance.value)">
+<form class="myForm" (submit)="ajouterResident(nom.value, prenom.value,dateNaissance.value)">
   <h1>Ajouter un résident</h1>
-  <label>Nom :</label> <br>
+  <label>Nom :</label>
   <input matInput class="myInput" #nom>
   <br><br>
 
-  <label>Prénom :</label> <br>
+  <label>Prénom :</label>
   <input matInput class="myInput" #prenom>
   <br><br>
 
-  <label>Date de naissance :</label> <br>
+  <label>Date de naissance :</label>
   <input type="date" matInput class="myInput" #dateNaissance>
   <br><br>
 
   <label>Statut :</label> <br>
   <mat-select class = "myInput" [formControl]="statuts" [(value)]="selectedStatut">
+    <mat-option selected disabled value="0">Statut</mat-option>
     <mat-option *ngFor="let statut of statutList" [value]="statut">{{statut}}</mat-option>
   </mat-select>
 
-  <br><br>
-  <button type="submit">Ajouter résident</button>
+  <br><br><br>
+  <button type="submit" class="btn-primary">Ajouter résident</button>
 
 </form>
