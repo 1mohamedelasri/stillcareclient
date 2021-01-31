@@ -72,6 +72,9 @@ import { AffecterResidentComponent } from './direction/affecter-resident/affecte
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
 import {ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './common/components/agenda/agenda.component';
+import { AjouterPersonnelComponent } from './personnel/ajouter-personnel/ajouter-personnel.component';
+import { ModifierPersonnelComponent } from './personnel/modifier-personnel/modifier-personnel.component';
+import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
 
 @NgModule({
   imports: [
@@ -133,7 +136,10 @@ import { AgendaComponent } from './common/components/agenda/agenda.component';
     CreateResidentComponent,
     AffecterResidentComponent,
     ConsulterResidentComponent,
-    AgendaComponent
+    AgendaComponent,
+    AjouterPersonnelComponent,
+    ModifierPersonnelComponent,
+    ConsulterListePersonnelComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,

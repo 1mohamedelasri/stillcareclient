@@ -23,6 +23,7 @@ export class AffecterResidentComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   affecterResident() {
+    // tslint:disable-next-line:max-line-length
     console.log('Résident : ' + this.selectedResident + '\n Unité affectée : ' + this.selectedUnite + '\n Responsable : ' + this.selectedPersonnel);
   }
 }

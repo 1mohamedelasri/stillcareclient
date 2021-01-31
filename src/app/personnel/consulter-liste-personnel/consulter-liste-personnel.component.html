@@ -1,0 +1,36 @@
+
+<h1>Consulter la liste des personnels</h1>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Nom Column -->
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef> Nom </th>
+    <td mat-cell *matCellDef="let personnel"> {{personnel.nom}} </td>
+  </ng-container>
+
+  <!-- Prenom Column -->
+  <ng-container matColumnDef="prenom">
+    <th mat-header-cell *matHeaderCellDef> Prénom </th>
+    <td mat-cell *matCellDef="let personnel"> {{personnel.prenom}} </td>
+  </ng-container>
+
+  <!-- mail Column -->
+  <ng-container matColumnDef="mail">
+    <th mat-header-cell *matHeaderCellDef> Adresse mail </th>
+    <td mat-cell *matCellDef="let personnel"> {{personnel.mail}} </td>
+  </ng-container>
+
+  <!-- mail Column -->
+  <ng-container matColumnDef="nTel">
+    <th mat-header-cell *matHeaderCellDef> Téléphone </th>
+    <td mat-cell *matCellDef="let personnel"> {{personnel.nTel}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+
+
