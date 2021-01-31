@@ -74,6 +74,9 @@ import {ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWee
 import { AgendaComponent } from './common/components/agenda/agenda.component';
 import { ContactLoginComponent } from './views/contact-login/contact-login.component';
 import {InputsModule} from "angular-bootstrap-md";
+import { AjouterPersonnelComponent } from './personnel/ajouter-personnel/ajouter-personnel.component';
+import { ModifierPersonnelComponent } from './personnel/modifier-personnel/modifier-personnel.component';
+import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
 
 
 @NgModule({
@@ -137,8 +140,11 @@ import {InputsModule} from "angular-bootstrap-md";
     CreateResidentComponent,
     AffecterResidentComponent,
     ConsulterResidentComponent,
-    AgendaComponent,
     ContactLoginComponent
+    AgendaComponent,
+    AjouterPersonnelComponent,
+    ModifierPersonnelComponent,
+    ConsulterListePersonnelComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,

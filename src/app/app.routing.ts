@@ -23,6 +23,9 @@ import {AffecterResidentComponent} from './direction/affecter-resident/affecter-
 import {ConsulterResidentComponent} from './direction/consulter-resident/consulter-resident.component';
 import {AgendaComponent} from './common/components/agenda/agenda.component';
 import {ContactLoginComponent} from "./views/contact-login/contact-login.component";
+import {AjouterPersonnelComponent} from './personnel/ajouter-personnel/ajouter-personnel.component';
+import {ConsulterListePersonnelComponent} from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
+import {ModifierPersonnelComponent} from './personnel/modifier-personnel/modifier-personnel.component';
 
 
 export const routes: Routes = [
@@ -54,6 +57,9 @@ export const routes: Routes = [
       {path: 'calendrier/declarer', component: AgendaComponent},
       {path: 'calendrier/consulter', component: AgendaComponent},
       {path: 'residents/consulter', component: ConsulterResidentComponent}
+      {path: 'personnels/créer', component: AjouterPersonnelComponent},
+      {path: 'personnels/affecter', component: ModifierPersonnelComponent},
+      {path: 'personnels/list', component: ConsulterListePersonnelComponent}
     ]
   }, {path: 'loginContact', component: ContactLoginComponent},
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},
