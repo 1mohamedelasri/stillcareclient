@@ -22,6 +22,7 @@ import {CreateResidentComponent} from './direction/create-resident/create-reside
 import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
 import {ConsulterResidentComponent} from './direction/consulter-resident/consulter-resident.component';
 import {AgendaComponent} from './common/components/agenda/agenda.component';
+import {ContactLoginComponent} from "./views/contact-login/contact-login.component";
 
 
 export const routes: Routes = [
@@ -52,9 +53,9 @@ export const routes: Routes = [
       {path: 'unites/modifier', component: UnitCreateComponent},
       {path: 'calendrier/declarer', component: AgendaComponent},
       {path: 'calendrier/consulter', component: AgendaComponent},
-      {path: 'residents/consulter', component: ConsulterResidentComponent},
+      {path: 'residents/consulter', component: ConsulterResidentComponent}
     ]
-  },
+  }, {path: 'loginContact', component: ContactLoginComponent},
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},
     children: [
       {path: 'contact/dashboard', component: DashboardComponent},

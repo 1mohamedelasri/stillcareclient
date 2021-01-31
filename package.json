@@ -32,6 +32,7 @@
     "@schematics/angular": "^11.1.2",
     "@syncfusion/ej2-angular-schedule": "^18.4.39",
     "@syncfusion/ej2-material-theme": "^18.4.39",
+    "angular-bootstrap-md": "^10.1.1",
     "angular-icons": "^1.0.11",
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
