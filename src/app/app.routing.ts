@@ -53,6 +53,9 @@ export const routes: Routes = [
       {path: 'calendrier/declarer', component: AgendaComponent},
       {path: 'calendrier/consulter', component: AgendaComponent},
       {path: 'residents/consulter', component: ConsulterResidentComponent},
+      {path: 'personnels/créer', component: NotyetimplComponent},
+      {path: 'personnels/affecter', component: NotyetimplComponent},
+      {path: 'personnels/list', component: NotyetimplComponent}
     ]
   },
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},

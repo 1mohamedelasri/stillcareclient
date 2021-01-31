@@ -38,15 +38,15 @@ export class AgendaComponent implements OnInit {
     console.log(typeof e.data[0]);
     if (e.requestType === 'eventChanged') {
       console.log('changed id: ' + e.changedRecords[0].Id + ' value:');
-      console.log( this.eventObject.dataSource);
+      console.log( e.changedRecords);
     }
     if (e.requestType === 'eventCreated') {
       console.log(' new value: ');
-      console.log( e.data[0]);
+      console.log( e.addedRecords);
     }
     if (e.requestType === 'eventRemoved') {
       console.log(' deleted id: ' + e.deletedRecords[0].Id);
-      console.log( e.data[0]);
+      console.log( e.deletedRecords);
     }
     // tslint:disable-next-line:ban-types
   }
