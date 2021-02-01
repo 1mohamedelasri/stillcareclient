@@ -25,6 +25,7 @@ import {AgendaComponent} from './common/components/agenda/agenda.component';
 import {AjouterPersonnelComponent} from './personnel/ajouter-personnel/ajouter-personnel.component';
 import {ConsulterListePersonnelComponent} from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
 import {ModifierPersonnelComponent} from './personnel/modifier-personnel/modifier-personnel.component';
+import {ChangerUniteComponent} from './direction/changer-unite/changer-unite.component';
 
 
 export const routes: Routes = [
@@ -48,7 +49,7 @@ export const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/créer', component: CreateResidentComponent},
       {path: 'residents/affecter', component: AffecterResidentComponent},
-      {path: 'residents/changement', component: NotyetimplComponent},
+      {path: 'residents/changement', component: ChangerUniteComponent},
       {path: 'unites', component: UnitListComponent},
       {path: 'unites/creer', component: UnitCreateComponent},
       {path: 'unites/consulter', component: UnitComponent},

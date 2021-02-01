@@ -1,0 +1,20 @@
+<form class="myForm">
+  <h1>Changer l'unité d'un résident </h1>
+  <label>Choisir un résident :</label>
+  <mat-select [formControl]="residents" class = "myInput" [(value)]="selectedResident">
+    <mat-option *ngFor="let resident of residentList" [value]="resident" >{{resident}} </mat-option>
+  </mat-select>
+  <br><br>
+  <label>Choisir la nouvelle unité :</label>
+  <mat-select [formControl]="unites" class = "myInput" [(value)]="selectedUnite">
+    <mat-option *ngFor="let unite of uniteList" [value]="unite" >{{unite}}</mat-option>
+  </mat-select>
+  <br><br>
+  <label>Choisir le nouveau responsable :</label>
+  <mat-select [formControl]="unites" class = "myInput" [(value)]="selectedPersonnel">
+    <mat-option *ngFor="let personnel of personnelList" [value]="personnel" >{{personnel}}</mat-option>
+  </mat-select>
+  <br><br><br>
+  <button (click)="changerUnite()" class="btn-primary">Affecter résident à l'unité</button>
+
+</form>

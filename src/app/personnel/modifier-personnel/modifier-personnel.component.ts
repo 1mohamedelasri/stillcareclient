@@ -9,7 +9,7 @@ import {FormControl} from '@angular/forms';
 export class ModifierPersonnelComponent implements OnInit {
 
   fonctions = new FormControl();
-  fonctionList: string[] = [ 'fonction1', 'fonction2', 'fonction3', '...' ];
+  fonctionList: string[] = [ 'Animatrice', 'Aide-soignante', 'Directeur', 'Medecin', 'Psychologue', 'Secretaire', 'Soignante' ];
   selectedFonction: string;
   constructor() { }
 

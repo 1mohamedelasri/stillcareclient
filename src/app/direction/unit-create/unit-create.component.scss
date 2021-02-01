@@ -12,7 +12,7 @@ strong{
   &:focus {
     outline: 0px;
     border: 1px solid #20a8d8;
-    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
   }
 }
 
@@ -21,4 +21,8 @@ strong{
   width : 50%;
   margin-right: auto;
   margin-left: auto;
+}
+
+button{
+  border-radius: 30px;
 }

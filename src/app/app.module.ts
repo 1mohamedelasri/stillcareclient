@@ -75,6 +75,7 @@ import { AgendaComponent } from './common/components/agenda/agenda.component';
 import { AjouterPersonnelComponent } from './personnel/ajouter-personnel/ajouter-personnel.component';
 import { ModifierPersonnelComponent } from './personnel/modifier-personnel/modifier-personnel.component';
 import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
+import { ChangerUniteComponent } from './direction/changer-unite/changer-unite.component';
 
 @NgModule({
   imports: [
@@ -139,7 +140,8 @@ import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-pe
     AgendaComponent,
     AjouterPersonnelComponent,
     ModifierPersonnelComponent,
-    ConsulterListePersonnelComponent
+    ConsulterListePersonnelComponent,
+    ChangerUniteComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,
