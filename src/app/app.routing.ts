@@ -7,7 +7,7 @@ import { P404Component } from './views/error/404.component';
 import { RegisterComponent } from './views/register/register.component';
 import {TableComponent} from './common/components/table/table.component';
 import {CardComponent} from './common/components/card/card.component';
-import {LoginComponent} from './views/login/login.component';
+import {PersonnelLoginComponent} from './views/personnel-login/personnel-login.component';
 import {DashboardComponent} from './views/dashboard/dashboard.component';
 import {DefaultLayoutComponent} from './containers/default-layout/default-layout.component';
 import {ProfilecardComponent} from './common/profilecard-list/profilecard/profilecard.component';
@@ -22,21 +22,25 @@ import {CreateResidentComponent} from './direction/create-resident/create-reside
 import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
 import {ConsulterResidentComponent} from './direction/consulter-resident/consulter-resident.component';
 import {AgendaComponent} from './common/components/agenda/agenda.component';
-import {ContactLoginComponent} from "./views/contact-login/contact-login.component";
+import {MainLoginComponent} from './views/main-login/main-login.component';
 import {AjouterPersonnelComponent} from './personnel/ajouter-personnel/ajouter-personnel.component';
 import {ConsulterListePersonnelComponent} from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
 import {ModifierPersonnelComponent} from './personnel/modifier-personnel/modifier-personnel.component';
+import {Role} from './sharedServices/models/Role';
+import {AuthGuard} from "./sharedServices/helpers/guard/auth.guard";
 
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'direction', pathMatch: 'full'},
+  {path: '', redirectTo: 'main-login', pathMatch: 'full'},
   {path: '404', component: P404Component, data: {title: 'Page 404'}},
   {path: '500', component: TableComponent, data: {title: 'Page 500'}},
-  {path: 'login', component: LoginComponent, data: {title: 'Login Page'}},
+  {path: 'personnel-login', component: PersonnelLoginComponent, data: {title: 'Login Page'}},
   {path: 'card', component: CardComponent, data: {title: 'Login Page'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
   {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}},
-  {path: 'personnel', component: DefaultLayoutComponent, data: {title: 'Home'},
+  {path: 'main-login', component: MainLoginComponent},
+ // {path: '**', component: P404Component },
+  {path: 'personnel', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard],
     children: [
       {path: 'personnel/dashboard', component: DashboardComponent},
       {path: 'personnel/residents/declarer', component: NotyetimplComponent},
@@ -44,7 +48,7 @@ export const routes: Routes = [
       {path: 'personnel/residents/changer', component: NotyetimplComponent},
     ]
   },
-  {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home'},
+  {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard],
     children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/créer', component: CreateResidentComponent},
@@ -56,13 +60,13 @@ export const routes: Routes = [
       {path: 'unites/modifier', component: UnitCreateComponent},
       {path: 'calendrier/declarer', component: AgendaComponent},
       {path: 'calendrier/consulter', component: AgendaComponent},
-      {path: 'residents/consulter', component: ConsulterResidentComponent}
+      {path: 'residents/consulter', component: ConsulterResidentComponent},
       {path: 'personnels/créer', component: AjouterPersonnelComponent},
       {path: 'personnels/affecter', component: ModifierPersonnelComponent},
       {path: 'personnels/list', component: ConsulterListePersonnelComponent}
     ]
-  }, {path: 'loginContact', component: ContactLoginComponent},
-  {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},
+  },
+  {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Contact},
     children: [
       {path: 'contact/dashboard', component: DashboardComponent},
       {path: 'contact/calendrier', component: NotyetimplComponent},
@@ -71,7 +75,7 @@ export const routes: Routes = [
       {path: 'contact/rendezvous/annuler', component: NotyetimplComponent},
       {path: 'contact/rendezvous/reservation', component: NotyetimplComponent}
     ]
-  },  { path: '**', component: P404Component }
+  }
 ];
 
 @NgModule({

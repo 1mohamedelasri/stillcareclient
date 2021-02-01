@@ -44,7 +44,7 @@ export const DirectionNavItems: INavData[] = [
     children: [
       {name: 'Ajouter un personnel', url: '/direction/personnels/créer', icon: 'icon-puzzle'},
       {name: 'modifier un personnel', url: '/direction/personnels/affecter', icon: 'icon-puzzle'},
-      {name: 'Consulter liste des personnels', url: '/direction/personnels/list', icon: 'icon-puzzle'}
+      {name: 'Liste des personnels', url: '/direction/personnels/list', icon: 'icon-puzzle'}
     ]
   },
   {name: 'Calendrier', url: '/direction/calendrier', icon: 'icon-cursor',

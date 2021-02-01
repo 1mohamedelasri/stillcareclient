@@ -20,7 +20,7 @@ import { AppComponent } from './app.component';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
-import { LoginComponent } from './views/login/login.component';
+import { PersonnelLoginComponent } from './views/personnel-login/personnel-login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 
@@ -72,11 +72,20 @@ import { AffecterResidentComponent } from './direction/affecter-resident/affecte
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
 import {ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './common/components/agenda/agenda.component';
-import { ContactLoginComponent } from './views/contact-login/contact-login.component';
-import {InputsModule} from "angular-bootstrap-md";
+import { MainLoginComponent } from './views/main-login/main-login.component';
+import {InputsModule} from 'angular-bootstrap-md';
 import { AjouterPersonnelComponent } from './personnel/ajouter-personnel/ajouter-personnel.component';
 import { ModifierPersonnelComponent } from './personnel/modifier-personnel/modifier-personnel.component';
 import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
+import {environment} from '../environments/environment';
+import {NgProgress, NgProgressModule} from 'ngx-progressbar';
+import {Toast, ToastrModule, ToastrService} from 'ngx-toastr';
+import {AuthService} from './sharedServices/services/auth.service';
+import {AngularFireAuth} from "@angular/fire/auth";
+import {HttpClient} from "@angular/common/http";
 
 
 @NgModule({
@@ -109,14 +118,26 @@ import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-pe
     ReactiveFormsModule,
     ScheduleModule,
     RecurrenceEditorModule,
-    InputsModule
+    InputsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
+    NgProgressModule.withConfig({
+      spinnerPosition: 'left',
+      thick: true
+    }),
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      progressAnimation: 'increasing',
+      preventDuplicates: true
+    })
   ],
   declarations: [
     AppComponent,
     DefaultLayoutComponent,
     P404Component,
     P500Component,
-    LoginComponent,
+    PersonnelLoginComponent,
     RegisterComponent,
     DeadlineListComponent,
     DeadlineItemComponent,
@@ -140,13 +161,13 @@ import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-pe
     CreateResidentComponent,
     AffecterResidentComponent,
     ConsulterResidentComponent,
-    ContactLoginComponent
+    MainLoginComponent,
     AgendaComponent,
     AjouterPersonnelComponent,
     ModifierPersonnelComponent,
     ConsulterListePersonnelComponent
   ],
-  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
+  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, {
     provide: MatDialogRef,
     useValue: {}
   }],

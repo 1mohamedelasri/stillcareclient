@@ -8,8 +8,7 @@
 
               <div class="card-body">
                 <div class="card-title">
-                  <h2>Sign in with social account</h2>
-
+                  <h2>Connecter votre compte de réseau social</h2>
                 </div>
 
                 <!--Twitter-->
@@ -17,9 +16,9 @@
                   <span class="fa fa-twitter"></span> Sign in with Twitter
                 </a>
                 <!--Twitter-->
-                <a class="btn btn-block btn-social btn-google-plus">
-                  <span class="fa fa-google"></span> Sign in with Google
-                </a>
+                <button (click)="LoginWithGoogle()"  class="btn btn-block btn-social btn-google-plus">
+                  <span class="fa fa-google" ></span> Sign in with Google
+                </button>
 
                 <a class="btn btn-block btn-social btn-facebook">
                   <span class="fa fa-facebook"></span> Sign in with Facbook
@@ -33,6 +32,7 @@
                   <h2>StillCare! keep in touch with your parents</h2>
                   <img src="/assets/img/brand/homecare.svg" alt="image" width="50%" height="50%">
                 </div>
+                <button type="button" class="btn btn-primary active mt-3" routerLink="/personnel-login"> Se connecter comme personnel</button>
               </div>
             </div>
           </div>
