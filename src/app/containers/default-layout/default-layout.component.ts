@@ -15,7 +15,9 @@ export class DefaultLayoutComponent {
   constructor(private auth: AuthService, private route: ActivatedRoute) {
     this.route
       .data
-      .subscribe(v => this.set(v.role));
+      .subscribe(v => {
+        this.set(v.role);
+      });
 /*
     const role: Role = this.route.snapshot.params.role;
     console.log(role);

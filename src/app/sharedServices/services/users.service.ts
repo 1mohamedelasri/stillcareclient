@@ -8,16 +8,6 @@ import {Observable, throwError} from 'rxjs';
 export class UsersService {
 
   constructor(private http: HttpClient) { }
-/*
-  async updateUser(key: string, value: any): Promise<void> {
-    return new Promise<any>((resolve, reject) => {
-      this.http.child(key).update(value)
-        .then(res => {
-          resolve(res);
-        }, err => reject(err));
-    });
-  }*/
-
   /*
   // Typed response
   getProducts(): Observable<any> {

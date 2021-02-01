@@ -84,8 +84,8 @@ import {environment} from '../environments/environment';
 import {NgProgress, NgProgressModule} from 'ngx-progressbar';
 import {Toast, ToastrModule, ToastrService} from 'ngx-toastr';
 import {AuthService} from './sharedServices/services/auth.service';
-import {AngularFireAuth} from "@angular/fire/auth";
-import {HttpClient} from "@angular/common/http";
+import {AngularFireAuth} from '@angular/fire/auth';
+import {HttpClient} from '@angular/common/http';
 
 
 @NgModule({

@@ -27,20 +27,23 @@ import {AjouterPersonnelComponent} from './personnel/ajouter-personnel/ajouter-p
 import {ConsulterListePersonnelComponent} from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
 import {ModifierPersonnelComponent} from './personnel/modifier-personnel/modifier-personnel.component';
 import {Role} from './sharedServices/models/Role';
-import {AuthGuard} from "./sharedServices/helpers/guard/auth.guard";
-
+import {AuthGuard} from './sharedServices/helpers/guard/auth.guard';
+import {DirectionGuard} from './sharedServices/helpers/guard/direction.guard';
+import {ContactGuard} from "./sharedServices/helpers/guard/contact.guard";
+import {PersonnelGuard} from "./sharedServices/helpers/guard/personnel.guard";
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'main-login', pathMatch: 'full'},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '404', component: P404Component, data: {title: 'Page 404'}},
   {path: '500', component: TableComponent, data: {title: 'Page 500'}},
   {path: 'personnel-login', component: PersonnelLoginComponent, data: {title: 'Login Page'}},
   {path: 'card', component: CardComponent, data: {title: 'Login Page'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
-  {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}},
+  {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard, DirectionGuard]},
   {path: 'main-login', component: MainLoginComponent},
- // {path: '**', component: P404Component },
-  {path: 'personnel', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard],
+  {path: 'personnel', component: DefaultLayoutComponent,
+    data: {title: 'Home', role: Role.Personnel},
+    canActivate: [AuthGuard, PersonnelGuard],
     children: [
       {path: 'personnel/dashboard', component: DashboardComponent},
       {path: 'personnel/residents/declarer', component: NotyetimplComponent},
@@ -48,7 +51,8 @@ export const routes: Routes = [
       {path: 'personnel/residents/changer', component: NotyetimplComponent},
     ]
   },
-  {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard],
+  // tslint:disable-next-line:max-line-length
+  {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard, DirectionGuard],
     children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/créer', component: CreateResidentComponent},
@@ -66,7 +70,7 @@ export const routes: Routes = [
       {path: 'personnels/list', component: ConsulterListePersonnelComponent}
     ]
   },
-  {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Contact},
+  {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Contact}, canActivate: [AuthGuard, ContactGuard],
     children: [
       {path: 'contact/dashboard', component: DashboardComponent},
       {path: 'contact/calendrier', component: NotyetimplComponent},
@@ -75,7 +79,8 @@ export const routes: Routes = [
       {path: 'contact/rendezvous/annuler', component: NotyetimplComponent},
       {path: 'contact/rendezvous/reservation', component: NotyetimplComponent}
     ]
-  }
+  },
+  {path: '**', component: P404Component }
 ];
 
 @NgModule({

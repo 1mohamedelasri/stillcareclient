@@ -34,7 +34,7 @@ export class AuthService {
                   public ngProgress: NgProgress
   ) {
     this.RegisterLoginStatusLocally();
-
+    this.RegisterRoleLocally();
 
     this.afAuth.user.subscribe(async (user) => {
 
@@ -45,6 +45,12 @@ export class AuthService {
       }
     });
     this.isLoggedInObs.subscribe(isLogged => localStorage?.setItem('isLogged', JSON.stringify(isLogged)));
+    this.currentRoleObs.subscribe(currentRole => localStorage?.setItem('currentRole', JSON.stringify(currentRole)));
+
+    this.currentRoleObs.subscribe(e => {
+      console.log('CURRENT ROLE');
+      console.log(e);
+    });
 
   }
 
@@ -56,11 +62,19 @@ export class AuthService {
     }
   }
 
+  RegisterRoleLocally(): void{
+    const log = localStorage.getItem('currentRole');
+    if (log) {
+      const currentRole = JSON.parse(log);
+      this.currentRole.next(currentRole);
+    }
+  }
+
   getUserObject(): IFirebaseAccount{
     return this.currentFirebaseAccount.value;
   }
 
-  isUserLogged(): boolean {
+  isAuthenticated(): boolean {
     return this.isLogged.getValue();
   }
 
@@ -97,8 +111,18 @@ export class AuthService {
   AuthLogin(provider): Promise<any>{
     return this.afAuth.signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['direction']);
         this.currentRole.next(Role.Contact);
+        this.isLogged.next(true);
+        this.router.navigate(['/contact']);
       });
   }
+
+  SignInWithAccount(): void {
+    this.currentRole.next(Role.Personnel);
+    this.isLogged.next(true);
+    console.log('TRYING TO GET PERSONNEL');
+    this.router.navigate(['personnel']);
+  }
 }
+
+

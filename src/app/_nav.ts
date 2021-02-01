@@ -3,7 +3,7 @@ import { INavData } from '@coreui/angular';
 
 export const personnelNavItems: INavData[] = [
   {name: 'Acceuil', url: '/personnel/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
-  {title: true, name: 'Mes services'},
+  {title: true, name: 'Espace personnel'},
   {name: 'Gérer résidents', url: '/personnel/residents', icon: 'icon-puzzle',
     children: [
       {name: 'Déclarer résident', url: '/personnel/residents/declarer', icon: 'icon-puzzle'},
@@ -31,7 +31,7 @@ export const personnelNavItems: INavData[] = [
 
 export const DirectionNavItems: INavData[] = [
   {name: 'Acceuil', url: '/direction/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
-  {title: true, name: 'Mes services'},
+  {title: true, name: 'Espace direction'},
   {name: 'Espace de résidents', url: '/direction/residents', icon: 'icon-puzzle',
     children: [
       {name: 'Créer résident', url: '/direction/residents/créer', icon: 'icon-puzzle'},
@@ -60,7 +60,7 @@ export const DirectionNavItems: INavData[] = [
 
 export const ContactNavItems: INavData[] = [
   {name: 'Acceuil', url: '/contact/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
-  {title: true, name: 'Espace de résidents'},
+  {title: true, name: 'Espace de contacts'},
   {name: 'Calendrier', url: '/contact/calendrier', icon: 'icon-cursor',
     children: [
       {name: 'consulter créneaux', url: '/contact/calendrier/consulter', icon: 'icon-cursor'},
