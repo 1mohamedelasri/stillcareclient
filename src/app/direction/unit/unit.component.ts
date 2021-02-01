@@ -1,11 +1,9 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUnit, UnitStatus } from '../../common/interfaces/Unite';
+import { IUnit, UnitStatus } from '../../common/interfaces/Unit';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteUnitPopupComponent } from '../../common/components/delete-unit-popup/delete-unit-popup.component';
 import { filter, first, switchMap } from 'rxjs/operators';
-
-
 @Component({
   selector: 'app-unit',
   templateUrl: './unit.component.html',
@@ -50,11 +48,19 @@ export class UnitComponent implements OnInit {
     this.router.navigate(['direction/unites/supprimer'], { queryParams: { id: this.unit.id } });
   }
 
-  deleteUnit(){
+  onDeleteUnitClick(){
     const dialogRef = this.dialog.open(DeleteUnitPopupComponent, {
       width: '50%',
       data: this.unit.name
     });
+  }
+
+  onAddResidentClick() {
+    this.router.navigate(['direction/unites/add-resident'], { queryParams: { id: this.unit.id } });
+  }
+  
+  onAddPersonnelClick() {
+    this.router.navigate(['direction/unites/add-personnel'], { queryParams: { id: this.unit.id } });
   }
 }
 

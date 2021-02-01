@@ -1,0 +1,18 @@
+table {
+  width: auto;
+}
+
+.mat-table {
+  overflow-x: scroll;
+}
+
+.mat-cell,
+.mat-header-cell {
+  display: table-cell;
+  padding: 0px 40px;
+  line-break: unset;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+

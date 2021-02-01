@@ -1,8 +1,19 @@
 .header{
     display:flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-button{
+button {
     min-width: 120px;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+
+    button {
+        margin: 5px;
+        height: 35px;
+    }
 }

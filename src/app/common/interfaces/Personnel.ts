@@ -7,8 +7,7 @@ export interface IPersonnel {
   login?: string;
   nom?: string;
   prenom?: string;
-  img?: string;
-}
+  img?: string;}
 export class Personnel {
   idPersonnel?: number;
   mail?: string;

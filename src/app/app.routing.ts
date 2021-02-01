@@ -15,9 +15,11 @@ import {ProfilecardListComponent} from './common/profilecard-list/profilecard-li
 import {EtablissementListComponent} from './direction/etablissement-list/etablissement-list.component';
 import {NotyetimplComponent} from './common/components/notyetimpl/notyetimpl.component';
 import { UnitListComponent } from './direction/unit-list/unit-list.component';
-import { UnitCreateComponent } from './direction/unit-create/unit-create.component';
+import { UnitCreateModifyComponent } from './direction/unit-create-modify/unit-create-modify.component';
 import { UnitComponent } from './direction/unit/unit.component';
 import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
+import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
+import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
 import {CreateResidentComponent} from './direction/create-resident/create-resident.component';
 import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
 import {ConsulterResidentComponent} from './direction/consulter-resident/consulter-resident.component';
@@ -60,17 +62,17 @@ export const routes: Routes = [
       {path: 'residents/affecter', component: AffecterResidentComponent},
       {path: 'residents/changement', component: NotyetimplComponent},
       {path: 'unites', component: UnitListComponent},
-      {path: 'unites/creer', component: UnitCreateComponent},
+      {path: 'unites/creer', component: UnitCreateModifyComponent},
       {path: 'unites/consulter', component: UnitComponent},
-      {path: 'unites/modifier', component: UnitCreateComponent},
+      {path: 'unites/modifier', component: UnitCreateModifyComponent},
+      {path: 'unites/add-resident', component: UnitAddResidentComponent},
+      {path: 'unites/add-personnel', component: UnitAddPersonnelComponent},
       {path: 'calendrier/declarer', component: AgendaComponent},
       {path: 'calendrier/consulter', component: AgendaComponent},
-      {path: 'residents/consulter', component: ConsulterResidentComponent},
       {path: 'personnels/créer', component: AjouterPersonnelComponent},
       {path: 'personnels/affecter', component: ModifierPersonnelComponent},
       {path: 'personnels/list', component: ConsulterListePersonnelComponent}
-    ]
-  },
+    ]  },
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Contact}, canActivate: [AuthGuard, ContactGuard],
     children: [
       {path: 'contact/dashboard', component: DashboardComponent},

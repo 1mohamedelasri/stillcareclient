@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { IUnit, UnitStatus } from '../../common/interfaces/Unite';
+import { IUnit, UnitStatus } from '../../common/interfaces/Unit';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 
 export class UnitListComponent {
+
   unites: IUnit[] = [
     {id: '1', name: 'Unité 1', status: UnitStatus.COVID, desc: 'The best 1 unit of the world', personnels: [{nom: 'personnel2', img: '../../../../assets/content/doctor-400-2.jpg'}, {nom: 'personnel3', img: '../../../../assets/content/doctor-400-3.jpg'}]},
     {id: '2', name: 'Unité 2', status: UnitStatus.DEJOUR, desc: 'The best 2 unit of the world', personnels: [{nom: 'personnel2', img: '../../../../assets/content/doctor-400-4.jpg'}, {nom: 'personnel3', img: '../../../../assets/content/doctor-400-2.jpg'}]},

@@ -1,0 +1,13 @@
+<button class="btn btn-primary back-button" (click)="onBackButtonClick()" >&lt; Retour</button>
+<div class="form">
+  <h1>Ajouter résidents</h1>
+
+  <select class="input" multiple="multiple">
+    <option style="margin-bottom: 10px;font-size: medium;" *ngFor="let resident of residents" [value]="resident.nom">
+      {{resident.prenom + " " + resident.nom}}
+    </option>
+  </select>
+
+  <button type="button" class="btn btn-primary btn-block" (click)="onSubmitButtonClick()">Valider</button>
+
+</div>

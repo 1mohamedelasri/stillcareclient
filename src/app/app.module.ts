@@ -49,7 +49,8 @@ import { SettingItemComponent } from './common/components/setting-list/setting-i
 import { TableComponent } from './common/components/table/table.component';
 import { TableItemComponent } from './common/components/table/table-item/table-item.component';
 import { MatTableModule } from '@angular/material/table';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './views/dashboard/dashboard-routing.module';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
@@ -63,19 +64,18 @@ import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.c
 import { UnitListComponent } from './direction/unit-list/unit-list.component';
 import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UnitCreateComponent } from './direction/unit-create/unit-create.component';
+import { UnitCreateModifyComponent } from './direction/unit-create-modify/unit-create-modify.component';
 import { UnitComponent } from './direction/unit/unit.component';
 import { CreateResidentComponent } from './direction/create-resident/create-resident.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+
+
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
-import {ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './common/components/agenda/agenda.component';
-import { MainLoginComponent } from './views/main-login/main-login.component';
-import {InputsModule} from 'angular-bootstrap-md';
-import { AjouterPersonnelComponent } from './personnel/ajouter-personnel/ajouter-personnel.component';
-import { ModifierPersonnelComponent } from './personnel/modifier-personnel/modifier-personnel.component';
 import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
@@ -154,6 +154,8 @@ import { DialogOverviewComponent } from './views/complete-account/dialog-overvie
     SettingItemComponent,
     TableComponent,
     TableItemComponent,
+    TableResidentsComponent,
+    TableResidentsItemComponent,
     DashboardComponent,
     CardComponent,
     ProfilecardComponent,
@@ -162,7 +164,7 @@ import { DialogOverviewComponent } from './views/complete-account/dialog-overvie
     EtablissementListComponent,
     NotyetimplComponent,
     UnitComponent,
-    UnitCreateComponent,
+    UnitCreateModifyComponent,
     UnitListComponent,
     DeleteUnitPopupComponent,
     CreateResidentComponent,
@@ -174,9 +176,10 @@ import { DialogOverviewComponent } from './views/complete-account/dialog-overvie
     ModifierPersonnelComponent,
     ConsulterListePersonnelComponent,
     CompleteAccountComponent,
-    DialogOverviewComponent
-  ],
-  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, {
+    DialogOverviewComponent,
+    UnitAddResidentComponent,
+    UnitAddPersonnelComponent  ],
+  providers: [ DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, {
     provide: MatDialogRef,
     useValue: {}
   }],
