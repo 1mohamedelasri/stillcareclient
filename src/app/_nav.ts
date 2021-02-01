@@ -13,8 +13,8 @@ export const personnelNavItems: INavData[] = [
   },
   {name: 'Calendrier', url: '/personnel/calendrier', icon: 'icon-cursor',
     children: [
-      {name: 'déclarer créneaux', url: '/personnel/calendrier/declarer', icon: 'icon-cursor'},
-      {name: 'consulter créneaux', url: '/personnel/calendrier/consulter', icon: 'icon-cursor'},
+      {name: 'Déclarer créneaux', url: '/personnel/calendrier/declarer', icon: 'icon-cursor'},
+      {name: 'Consulter créneaux', url: '/personnel/calendrier/consulter', icon: 'icon-cursor'},
     ]
   },
   {name: 'Gérer rendez-vous', url: '/rendezvous', icon: 'icon-star',
@@ -43,7 +43,7 @@ export const DirectionNavItems: INavData[] = [
   {name: 'Espace de Personnels', url: '/direction/personnels', icon: 'icon-puzzle',
     children: [
       {name: 'Ajouter un personnel', url: '/direction/personnels/créer', icon: 'icon-puzzle'},
-      {name: 'modifier un personnel', url: '/direction/personnels/affecter', icon: 'icon-puzzle'},
+      {name: 'Modifier un personnel', url: '/direction/personnels/affecter', icon: 'icon-puzzle'},
       {name: 'Consulter liste des personnels', url: '/direction/personnels/list', icon: 'icon-puzzle'}
     ]
   },

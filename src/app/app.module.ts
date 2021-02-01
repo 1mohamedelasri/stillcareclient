@@ -76,6 +76,9 @@ import { AjouterPersonnelComponent } from './personnel/ajouter-personnel/ajouter
 import { ModifierPersonnelComponent } from './personnel/modifier-personnel/modifier-personnel.component';
 import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
 import { ChangerUniteComponent } from './direction/changer-unite/changer-unite.component';
+import { ConsulterCreneauxComponent } from './contact/consulter-creneaux/consulter-creneaux.component';
+import { DeclarerAbsenceComponent } from './contact/declarer-absence/declarer-absence.component';
+import { AnnulerRdvComponent } from './contact/annuler-rdv/annuler-rdv.component';
 
 @NgModule({
   imports: [
@@ -141,7 +144,10 @@ import { ChangerUniteComponent } from './direction/changer-unite/changer-unite.c
     AjouterPersonnelComponent,
     ModifierPersonnelComponent,
     ConsulterListePersonnelComponent,
-    ChangerUniteComponent
+    ChangerUniteComponent,
+    ConsulterCreneauxComponent,
+    DeclarerAbsenceComponent,
+    AnnulerRdvComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,

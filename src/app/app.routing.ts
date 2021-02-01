@@ -26,6 +26,9 @@ import {AjouterPersonnelComponent} from './personnel/ajouter-personnel/ajouter-p
 import {ConsulterListePersonnelComponent} from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
 import {ModifierPersonnelComponent} from './personnel/modifier-personnel/modifier-personnel.component';
 import {ChangerUniteComponent} from './direction/changer-unite/changer-unite.component';
+import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter-creneaux.component';
+import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
+import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
 
 
 export const routes: Routes = [
@@ -64,12 +67,12 @@ export const routes: Routes = [
   },
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},
     children: [
-      {path: 'contact/dashboard', component: DashboardComponent},
-      {path: 'contact/calendrier', component: NotyetimplComponent},
-      {path: 'contact/calendrier/consulter', component: NotyetimplComponent},
-      {path: 'contact/rendezvous/absence', component: NotyetimplComponent},
-      {path: 'contact/rendezvous/annuler', component: NotyetimplComponent},
-      {path: 'contact/rendezvous/reservation', component: NotyetimplComponent}
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'calendrier', component: NotyetimplComponent},
+      {path: 'calendrier/consulter', component: ConsulterCreneauxComponent},
+      {path: 'rendezvous/absence', component: DeclarerAbsenceComponent},
+      {path: 'rendezvous/annuler', component: AnnulerRdvComponent},
+      {path: 'rendezvous/reservation', component: NotyetimplComponent} // à enlever
     ]
   },  { path: '**', component: P404Component }
 ];

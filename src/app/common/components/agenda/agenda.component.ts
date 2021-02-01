@@ -48,7 +48,6 @@ export class AgendaComponent implements OnInit {
       console.log(' deleted id: ' + e.deletedRecords[0].Id);
       console.log( e.deletedRecords);
     }
-    // tslint:disable-next-line:ban-types
   }
 
 }
