@@ -72,13 +72,18 @@ import { AffecterResidentComponent } from './direction/affecter-resident/affecte
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
 import {ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './common/components/agenda/agenda.component';
-import { AjouterPersonnelComponent } from './personnel/ajouter-personnel/ajouter-personnel.component';
-import { ModifierPersonnelComponent } from './personnel/modifier-personnel/modifier-personnel.component';
-import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
+import { AjouterPersonnelComponent } from './direction/ajouter-personnel/ajouter-personnel.component';
+import { ModifierPersonnelComponent } from './direction/modifier-personnel/modifier-personnel.component';
+import { ConsulterListePersonnelComponent } from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
 import { ChangerUniteComponent } from './direction/changer-unite/changer-unite.component';
 import { ConsulterCreneauxComponent } from './contact/consulter-creneaux/consulter-creneaux.component';
 import { DeclarerAbsenceComponent } from './contact/declarer-absence/declarer-absence.component';
 import { AnnulerRdvComponent } from './contact/annuler-rdv/annuler-rdv.component';
+import { ModifierProfileComponent } from './personnel/modifier-profile/modifier-profile.component';
+import { DeclarerResidentsComponent } from './personnel/declarer-residents/declarer-residents.component';
+import { DeclarerCreneauxComponent } from './personnel/declarer-creneaux/declarer-creneaux.component';
+import { PlanningCreneauxComponent } from './personnel/planning-creneaux/planning-creneaux.component';
+import { ChangementStatutResidentComponent } from './personnel/changement-statut-resident/changement-statut-resident.component';
 
 @NgModule({
   imports: [
@@ -147,7 +152,12 @@ import { AnnulerRdvComponent } from './contact/annuler-rdv/annuler-rdv.component
     ChangerUniteComponent,
     ConsulterCreneauxComponent,
     DeclarerAbsenceComponent,
-    AnnulerRdvComponent
+    AnnulerRdvComponent,
+    ModifierProfileComponent,
+    DeclarerResidentsComponent,
+    DeclarerCreneauxComponent,
+    PlanningCreneauxComponent,
+    ChangementStatutResidentComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,

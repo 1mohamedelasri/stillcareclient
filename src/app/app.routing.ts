@@ -22,13 +22,16 @@ import {CreateResidentComponent} from './direction/create-resident/create-reside
 import {AffecterResidentComponent} from './direction/affecter-resident/affecter-resident.component';
 import {ConsulterResidentComponent} from './direction/consulter-resident/consulter-resident.component';
 import {AgendaComponent} from './common/components/agenda/agenda.component';
-import {AjouterPersonnelComponent} from './personnel/ajouter-personnel/ajouter-personnel.component';
-import {ConsulterListePersonnelComponent} from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
-import {ModifierPersonnelComponent} from './personnel/modifier-personnel/modifier-personnel.component';
+import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
+import {ConsulterListePersonnelComponent} from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
+import {ModifierPersonnelComponent} from './direction/modifier-personnel/modifier-personnel.component';
 import {ChangerUniteComponent} from './direction/changer-unite/changer-unite.component';
 import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter-creneaux.component';
 import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
 import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
+import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-profile.component';
+import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
+import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
 
 
 export const routes: Routes = [
@@ -41,10 +44,11 @@ export const routes: Routes = [
   {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}},
   {path: 'personnel', component: DefaultLayoutComponent, data: {title: 'Home'},
     children: [
-      {path: 'personnel/dashboard', component: DashboardComponent},
-      {path: 'personnel/residents/declarer', component: NotyetimplComponent},
-      {path: 'personnel/residents/contacte', component: NotyetimplComponent},
-      {path: 'personnel/residents/changer', component: NotyetimplComponent},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'residents/declarer', component: DeclarerResidentsComponent},
+      {path: 'residents/contacte', component: NotyetimplComponent},
+      {path: 'residents/changer', component: NotyetimplComponent},
+      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent}
     ]
   },
   {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home'},
