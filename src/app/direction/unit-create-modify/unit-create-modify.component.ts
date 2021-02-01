@@ -1,16 +1,19 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUnit, UnitStatus } from '../../common/interfaces/Unit';
-import { MatDialog } from '@angular/material/dialog';
-import { DeleteUnitPopupComponent } from '../../common/components/delete-unit-popup/delete-unit-popup.component';
+
+enum Mode {
+  CREATE,
+  UPDATE
+}
 
 @Component({
-  selector: 'app-unit',
-  templateUrl: './unit.component.html',
-  styleUrls: ['./unit.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-unit-create-modify',
+  templateUrl: './unit-create-modify.component.html',
+  styleUrls: ['./unit-create-modify.component.scss']
 })
-export class UnitComponent implements OnInit {
+export class UnitCreateModifyComponent implements OnInit {
+  public unitStatus = Object.values(UnitStatus);
 
   unites: IUnit[] = [
     { id: '1', name: 'Unité 1', status: UnitStatus.COVID,   desc: "The best 1 unit of the world", personnels: [{ surname: 'personnel2', name: 'prenom1', img: '../../../../assets/content/doctor-400-2.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom1', img: '../../../../assets/content/doctor-400-3.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
@@ -25,42 +28,33 @@ export class UnitComponent implements OnInit {
   ];
 
   unit: IUnit;
+  currentMode: Mode;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private dialog: MatDialog
+    private router: Router
   ) { }
 
   ngOnInit() {
-    let id: string;
-    this.route.queryParams.subscribe(params => {
-      id = params['id'];
-    });
-    this.unit = this.unites.find(el => el.id === id);
+
+    if (this.router.url.includes('/modifier')) {
+      this.currentMode = Mode.UPDATE;
+      let id: string;
+      this.route.queryParams.subscribe(params => {
+        id = params['id'];
+      });
+      this.unit = this.unites.find(el => el.id === id);
+    } else if (this.router.url.includes('/creer')) {
+      this.currentMode = Mode.CREATE;
+      this.unit = { id: '-1', name: '', status: UnitStatus.OUVERTE, desc: "", personnels: [] };
+    }
   }
 
-  goToUnitModification() {
-    this.router.navigate(['direction/unites/modifier'], { queryParams: { id: this.unit.id } });
-  }
-
-  goToUnitDelete() {
-    this.router.navigate(['direction/unites/supprimer'], { queryParams: { id: this.unit.id } });
-  }
-
-  onDeleteUnitClick(){
-    const dialogRef = this.dialog.open(DeleteUnitPopupComponent, {
-      width: '50%',
-      data: this.unit.name
-    });
-  }
-
-  onAddResidentClick() {
-    this.router.navigate(['direction/unites/add-resident'], { queryParams: { id: this.unit.id } });
-  }
-  
-  onAddPersonnelClick() {
-    this.router.navigate(['direction/unites/add-personnel'], { queryParams: { id: this.unit.id } });
+  onBackButtonClick() {
+    if (this.currentMode === Mode.CREATE) {
+      this.router.navigate(['direction/unites']);
+    } else {
+      this.router.navigate(['direction/unites/consulter'], { queryParams: { id: this.unit.id } } );
+    }
   }
 }
-

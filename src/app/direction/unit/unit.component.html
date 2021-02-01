@@ -4,9 +4,9 @@
     <p>{{unit.status}}</p>
   </div>
   
-  <div>
+  <div class="action-buttons">
     <button type="button" class="btn btn-primary" (click)="goToUnitModification()">Modifier unité</button><br>
-    <button type="button" class="btn btn-danger" (click)="deleteUnit()">Supprimer unité</button>
+    <button type="button" class="btn btn-danger" (click)="onDeleteUnitClick()">Supprimer unité</button>
   </div>
 </div>
 
@@ -18,16 +18,16 @@
 <div class="staff">
   <div class="header">
     <h3>Notre équipe</h3>
-    <button type="button" class="btn btn-primary">Ajouter personnel</button>
+    <button type="button" class="btn btn-primary" (click)="onAddPersonnelClick()">Ajouter personnel</button>
   </div>
   <app-table></app-table>
 </div>
 <br>
 <div class="residents">
   <div class="header">
-    <h3>Notre résidents</h3>
-    <button type="button" class="btn btn-primary">Ajouter résident</button>
+    <h3>Nos résidents</h3>
+    <button type="button" class="btn btn-primary" (click)="onAddResidentClick()">Ajouter résident</button>
   </div>
-  <app-table> </app-table>
+  <app-residents-table> </app-residents-table>
 
 </div>

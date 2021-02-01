@@ -49,7 +49,7 @@ import { SettingItemComponent } from './common/components/setting-list/setting-i
 import { TableComponent } from './common/components/table/table.component';
 import { TableItemComponent } from './common/components/table/table-item/table-item.component';
 import { MatTableModule } from '@angular/material/table';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './views/dashboard/dashboard-routing.module';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
@@ -63,15 +63,19 @@ import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.c
 import { UnitListComponent } from './direction/unit-list/unit-list.component';
 import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UnitCreateComponent } from './direction/unit-create/unit-create.component';
+import { UnitCreateModifyComponent } from './direction/unit-create-modify/unit-create-modify.component';
 import { UnitComponent } from './direction/unit/unit.component';
 import { CreateResidentComponent } from './direction/create-resident/create-resident.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
-import {ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './common/components/agenda/agenda.component';
+import { TableResidentsComponent } from './common/components/table-residents/table-residents.component';
+import { TableResidentsItemComponent } from './common/components/table-residents/table-residents-item/table-residents-item.component';
+import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
+import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
 
 @NgModule({
   imports: [
@@ -119,6 +123,8 @@ import { AgendaComponent } from './common/components/agenda/agenda.component';
     SettingItemComponent,
     TableComponent,
     TableItemComponent,
+    TableResidentsComponent,
+    TableResidentsItemComponent,
     DashboardComponent,
     CardComponent,
     ProfilecardComponent,
@@ -127,13 +133,15 @@ import { AgendaComponent } from './common/components/agenda/agenda.component';
     EtablissementListComponent,
     NotyetimplComponent,
     UnitComponent,
-    UnitCreateComponent,
+    UnitCreateModifyComponent,
     UnitListComponent,
     DeleteUnitPopupComponent,
     CreateResidentComponent,
     AffecterResidentComponent,
     ConsulterResidentComponent,
-    AgendaComponent
+    AgendaComponent,
+    UnitAddResidentComponent,
+    UnitAddPersonnelComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,

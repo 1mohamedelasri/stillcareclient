@@ -1,9 +1,9 @@
 export interface IPersonnel {
+  name?: string;
+  surname?: string;
+  function?: string;
+  mail?: string;
   img?;
-  name?;
-  role?;
-  social?;
-  address?;
-  profileLink?;
+  id_unit?: string;
 }
 
