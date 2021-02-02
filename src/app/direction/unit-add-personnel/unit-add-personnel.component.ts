@@ -3,16 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IPersonnel } from '../../common/interfaces/Personnel';
 
 const PERSONNEL_DATA: IPersonnel[] = [
-  {surname: 'Nom1', name: 'Nom1',  function: 'Fonction1', mail: 'mail@mail.com'},
-  {surname: 'Nom2', name: 'Nom2',  function: 'Fonction2', mail: 'mail@mail.com'},
-  {surname: 'Nom3', name: 'Nom3',  function: 'Fonction3', mail: 'mail@mail.com'},
-  {surname: 'Nom4', name: 'Nom4',  function: 'Fonction4', mail: 'mail@mail.com'},
-  {surname: 'Nom5', name: 'Nom5',  function: 'Fonction5', mail: 'mail@mail.com'},
-  {surname: 'Nom6', name: 'Nom6',  function: 'Fonction6', mail: 'mail@mail.com'},
-  {surname: 'Nom7', name: 'Nom7',  function: 'Fonction7', mail: 'mail@mail.com'},
-  {surname: 'Nom8', name: 'Nom8',  function: 'Fonction8', mail: 'mail@mail.com'},
-  {surname: 'Nom9', name: 'Nom9',  function: 'Fonction9', mail: 'mail@mail.com'},
-  {surname: 'Nom10', name: 'Nom10', function: 'Fonction10', mail: 'mail@mail.com'}
+  { mail: 'mail1@mail.com', fonction: 'fonction1', ntel: '000000000', idEhpad: 1, login:'login1', nom: 'Nom1', prenom: 'prenom1'},
+  { mail: 'mail2@mail.com', fonction: 'fonction2', ntel: '000000000', idEhpad: 1, login:'login2', nom: 'Nom2', prenom: 'prenom2'},
+  { mail: 'mail3@mail.com', fonction: 'fonction3', ntel: '000000000', idEhpad: 1, login:'login3', nom: 'Nom3', prenom: 'prenom3'},
+  { mail: 'mail4@mail.com', fonction: 'fonction4', ntel: '000000000', idEhpad: 1, login:'login4', nom: 'Nom4', prenom: 'prenom4'},
+  { mail: 'mail5@mail.com', fonction: 'fonction1', ntel: '000000000', idEhpad: 1, login:'login5', nom: 'Nom5', prenom: 'prenom5'},
+  { mail: 'mail6@mail.com', fonction: 'fonction2', ntel: '000000000', idEhpad: 1, login:'login6', nom: 'Nom6', prenom: 'prenom6'},
+  { mail: 'mail7@mail.com', fonction: 'fonction3', ntel: '000000000', idEhpad: 1, login:'login7', nom: 'Nom7', prenom: 'prenom7'},
+  { mail: 'mail8@mail.com', fonction: 'fonction4', ntel: '000000000', idEhpad: 1, login:'login8', nom: 'Nom8', prenom: 'prenom8'},
+  { mail: 'mail9@mail.com', fonction: 'fonction1', ntel: '000000000', idEhpad: 1, login:'login9', nom: 'Nom9', prenom: 'prenom9'},
+  { mail: 'mail10@mail.com', fonction: 'fonction2', ntel: '000000000', idEhpad: 1, login:'login10', nom: 'Nom10', prenom: 'prenom10'}
 ];
 
 @Component({

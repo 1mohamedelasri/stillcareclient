@@ -49,7 +49,6 @@ import { SettingItemComponent } from './common/components/setting-list/setting-i
 import { TableComponent } from './common/components/table/table.component';
 import { TableItemComponent } from './common/components/table/table-item/table-item.component';
 import { MatTableModule } from '@angular/material/table';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './views/dashboard/dashboard-routing.module';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
@@ -66,8 +65,9 @@ import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { UnitCreateModifyComponent } from './direction/unit-create-modify/unit-create-modify.component';
 import { UnitComponent } from './direction/unit/unit.component';
+import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
+import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
 import { CreateResidentComponent } from './direction/create-resident/create-resident.component';
-
 
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -77,20 +77,25 @@ import { ConsulterResidentComponent } from './direction/consulter-resident/consu
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './common/components/agenda/agenda.component';
 import { ConsulterListePersonnelComponent } from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
-import {environment} from '../environments/environment';
-import {NgProgress, NgProgressModule} from 'ngx-progressbar';
-import {Toast, ToastrModule, ToastrService} from 'ngx-toastr';
-import {AuthService} from './sharedServices/services/auth.service';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {AccountService} from "./sharedServices/services/account.service";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { environment } from '../environments/environment';
+import { NgProgress, NgProgressModule } from 'ngx-progressbar';
+import { Toast, ToastrModule, ToastrService } from 'ngx-toastr';
+import { AuthService } from './sharedServices/services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AccountService } from "./sharedServices/services/account.service";
 import { CompleteAccountComponent } from './views/complete-account/complete-account.component';
-import {NgSelectModule} from "@ng-select/ng-select";
+import { NgSelectModule } from "@ng-select/ng-select";
 import { DialogOverviewComponent } from './views/complete-account/dialog-overview/dialog-overview.component';
-
+import { TableResidentsComponent } from './common/components/table-residents/table-residents.component';
+import { TableResidentsItemComponent } from './common/components/table-residents/table-residents-item/table-residents-item.component';
+import { MainLoginComponent } from './views/main-login/main-login.component';
+import { AjouterPersonnelComponent } from './personnel/ajouter-personnel/ajouter-personnel.component';
+import { ModifierPersonnelComponent } from './personnel/modifier-personnel/modifier-personnel.component';
+import { InputsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   imports: [
@@ -178,8 +183,8 @@ import { DialogOverviewComponent } from './views/complete-account/dialog-overvie
     CompleteAccountComponent,
     DialogOverviewComponent,
     UnitAddResidentComponent,
-    UnitAddPersonnelComponent  ],
-  providers: [ DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, {
+    UnitAddPersonnelComponent],
+  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, {
     provide: MatDialogRef,
     useValue: {}
   }],

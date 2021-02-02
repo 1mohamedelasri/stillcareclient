@@ -1,7 +1,7 @@
-export interface Iresident{
+export interface IResident{
    idResident: number;
    idPersonnel: number;
-   datenaissance: Date;
+   dateNaissance: Date;
    statut: string;
    nom: string;
    prenom: string;
@@ -10,7 +10,7 @@ export interface Iresident{
 export class Resident{
   idResident: number;
   idPersonnel: number;
-  datenaissance: Date;
+  dateNaissance: Date;
   statut: string;
   nom: string;
   prenom: string;
