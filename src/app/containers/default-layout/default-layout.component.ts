@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = DirectionNavItems;
+  public navItems = personnelNavItems;
 
   constructor(private auth: AuthService, private route: ActivatedRoute) {
     this.route

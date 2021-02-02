@@ -18,7 +18,7 @@
 
   <label>Fonction :</label> <br>
   <mat-select class = "myInput" [formControl]="fonctions" [(value)]="selectedFonction">
-    <mat-option selected disabled value="0">Fonction</mat-option>
+    <mat-option selected disabled >Fonction</mat-option>
     <mat-option *ngFor="let fonction of fonctionList" [value]="fonction">{{fonction}}</mat-option>
   </mat-select>
 

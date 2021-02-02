@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 @Component({
-  selector: 'app-affecter-resident',
-  templateUrl: './affecter-resident.component.html',
-  styleUrls: ['./affecter-resident.component.scss']
+  selector: 'app-changer-unite',
+  templateUrl: './changer-unite.component.html',
+  styleUrls: ['./changer-unite.component.scss']
 })
-export class AffecterResidentComponent implements OnInit {
+export class ChangerUniteComponent implements OnInit {
 
   unites = new FormControl();
   uniteList: string[] = ['Unité1', 'Unité2', 'Unité3', 'Unité4', 'Unité5'];
@@ -22,7 +22,7 @@ export class AffecterResidentComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  affecterResident() {
+  changerUnite() {
     if (this.selectedResident == null || this.selectedPersonnel == null || this.selectedUnite == null) {
       console.log('a field is empty');
     }else{
@@ -31,4 +31,5 @@ export class AffecterResidentComponent implements OnInit {
       console.log('Résident : ' + this.selectedResident + '\n Unité affectée : ' + this.selectedUnite + '\n Responsable : ' + this.selectedPersonnel);
     }
   }
+
 }

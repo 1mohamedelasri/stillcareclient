@@ -18,9 +18,10 @@ export class CreateResidentComponent implements OnInit {
 
   // Ajouter un resident dans la base de données
   ajouterResident(nom: string, prenom: string, dateNaissance: string): void {
-    if(nom === '' || prenom === '' || dateNaissance === '' || this.selectedStatut === '0'){
+    if(nom === '' || prenom === '' || dateNaissance === '' || this.selectedStatut == null){
       console.log('a field is missing');
     }else{
+      console.log('all fields are filled');
       // tslint:disable-next-line:max-line-length
       console.log('Nom : ' + nom + '\n Prenom : ' + prenom + '\n Date de naissance : ' + dateNaissance + '\n Statut : ' + this.selectedStatut);
     }

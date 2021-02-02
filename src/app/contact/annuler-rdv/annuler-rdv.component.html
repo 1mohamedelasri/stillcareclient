@@ -1,0 +1,21 @@
+<form class="myForm">
+  <h1> Annuler un rendez-vous </h1>
+  <label> Choisir le rendez-vous:</label>
+  <mat-select class = "mySelection" [formControl]="rdvs" [(value)]="selectedRdv">
+    <mat-option selected disabled value="0">Liste des rendez-vous</mat-option>
+    <mat-option *ngFor="let rdv of rdvList" [value]="rdv">{{rdv.id}}</mat-option>
+  </mat-select>
+  <mat-error *ngIf="selectedRdv == null && !rdvs.hasError('required')">
+    Veuillez choisir un rendez-vous de votre liste
+  </mat-error>
+  <br><br>
+  <button class='btn-danger' (click)="annulerRdv()">Annuler le rendez-vous</button>
+  <br><br>
+  <span *ngIf="selectedRdv != null">
+    Vous avez choisi le rendez-vous <i> {{selectedRdv.id}} </i> <br>
+    <b> Date début : </b>{{selectedRdv.dateDebut}} <br>
+    <b> Date fin: </b>{{selectedRdv.dateFin}} <br>
+    <b> Statut: </b> {{selectedRdv.statut}} <br>
+    <b> Etat: </b> {{selectedRdv.etat}}
+  </span>
+</form>

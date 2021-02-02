@@ -23,15 +23,22 @@ import {AffecterResidentComponent} from './direction/affecter-resident/affecter-
 import {ConsulterResidentComponent} from './direction/consulter-resident/consulter-resident.component';
 import {AgendaComponent} from './common/components/agenda/agenda.component';
 import {MainLoginComponent} from './views/main-login/main-login.component';
-import {AjouterPersonnelComponent} from './personnel/ajouter-personnel/ajouter-personnel.component';
-import {ConsulterListePersonnelComponent} from './personnel/consulter-liste-personnel/consulter-liste-personnel.component';
-import {ModifierPersonnelComponent} from './personnel/modifier-personnel/modifier-personnel.component';
 import {Role} from './sharedServices/models/Role';
 import {AuthGuard} from './sharedServices/helpers/guard/auth.guard';
 import {DirectionGuard} from './sharedServices/helpers/guard/direction.guard';
 import {ContactGuard} from "./sharedServices/helpers/guard/contact.guard";
 import {PersonnelGuard} from "./sharedServices/helpers/guard/personnel.guard";
 import {CompleteAccountComponent} from "./views/complete-account/complete-account.component";
+import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
+import {ConsulterListePersonnelComponent} from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
+import {ModifierPersonnelComponent} from './direction/modifier-personnel/modifier-personnel.component';
+import {ChangerUniteComponent} from './direction/changer-unite/changer-unite.component';
+import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter-creneaux.component';
+import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
+import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
+import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-profile.component';
+import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
+import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -46,10 +53,11 @@ export const routes: Routes = [
     data: {title: 'Home', role: Role.Personnel},
     canActivate: [AuthGuard, PersonnelGuard],
     children: [
-      {path: 'personnel/dashboard', component: DashboardComponent},
-      {path: 'personnel/residents/declarer', component: NotyetimplComponent},
-      {path: 'personnel/residents/contacte', component: NotyetimplComponent},
-      {path: 'personnel/residents/changer', component: NotyetimplComponent},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'residents/declarer', component: DeclarerResidentsComponent},
+      {path: 'residents/contacte', component: NotyetimplComponent},
+      {path: 'residents/changer', component: NotyetimplComponent},
+      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent}
     ]
   },
   // tslint:disable-next-line:max-line-length
@@ -58,7 +66,7 @@ export const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/créer', component: CreateResidentComponent},
       {path: 'residents/affecter', component: AffecterResidentComponent},
-      {path: 'residents/changement', component: NotyetimplComponent},
+      {path: 'residents/changement', component: ChangerUniteComponent},
       {path: 'unites', component: UnitListComponent},
       {path: 'unites/creer', component: UnitCreateComponent},
       {path: 'unites/consulter', component: UnitComponent},
@@ -73,12 +81,12 @@ export const routes: Routes = [
   },
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Contact}, canActivate: [AuthGuard, ContactGuard],
     children: [
-      {path: 'contact/dashboard', component: DashboardComponent},
-      {path: 'contact/calendrier', component: NotyetimplComponent},
-      {path: 'contact/calendrier/consulter', component: NotyetimplComponent},
-      {path: 'contact/rendezvous/absence', component: NotyetimplComponent},
-      {path: 'contact/rendezvous/annuler', component: NotyetimplComponent},
-      {path: 'contact/rendezvous/reservation', component: NotyetimplComponent}
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'calendrier', component: NotyetimplComponent},
+      {path: 'calendrier/consulter', component: ConsulterCreneauxComponent},
+      {path: 'rendezvous/absence', component: DeclarerAbsenceComponent},
+      {path: 'rendezvous/annuler', component: AnnulerRdvComponent},
+      {path: 'rendezvous/reservation', component: NotyetimplComponent} // à enlever
     ]
   },
   {path: '**', component: P404Component }

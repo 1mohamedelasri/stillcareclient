@@ -8,12 +8,17 @@ import {ErrorStateMatcher} from '@angular/material/core';
 })
 export class AjouterPersonnelComponent {
   fonctions = new FormControl();
-  fonctionList: string[] = [ 'fonction1', 'fonction2', 'fonction3', '...' ];
+  fonctionList: string[] = [ 'Animatrice', 'Aide-soignante', 'Directeur', 'Medecin', 'Psychologue', 'Secretaire', 'Soignante' ];
   selectedFonction: string;
 
   constructor() { }
   ajouterPersonnel(nom: string, prenom: string, mail: string, nTel: string): void {
-    // tslint:disable-next-line:max-line-length
-    console.log('Nom : ' + nom + '\nPrenom : ' + prenom + '\nMail : ' + mail + '\nnTel : ' + nTel + '\nFonciton : ' + this.selectedFonction);
+    if (nom === '' || prenom === '' || mail === '' || nTel === '' || this.selectedFonction == null){
+      console.log('please fill all fields');
+    }else{
+      console.log('all fields are filled');
+      // tslint:disable-next-line:max-line-length
+      console.log('Nom : ' + nom + '\nPrenom : ' + prenom + '\nMail : ' + mail + '\nnTel : ' + nTel + '\nFonction : ' + this.selectedFonction);
+    }
   }
 }

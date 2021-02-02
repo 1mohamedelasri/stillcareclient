@@ -27,6 +27,7 @@ export class UnitCreateComponent implements OnInit {
     private router: Router
   ) { }
 
+  // tslint:disable-next-line:typedef
   ngOnInit() {
 
     if (this.router.url.includes('/modifier')) {
