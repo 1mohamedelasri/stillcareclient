@@ -10,7 +10,9 @@
       <div class="unite-card-header">
         <h3 class="h4 mt-0">{{ unite.name }}</h3>
 
-        <p>{{unite.status}}</p>
+        <p class="covid" *ngIf="unite.status=='Contagieuse COVID'; else elseBlock">COVID</p>
+        <ng-template #elseBlock><p>{{unite.status}}</p></ng-template>
+
       </div>
 
       <p>{{unite.desc}}</p>

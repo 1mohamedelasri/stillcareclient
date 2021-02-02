@@ -1,4 +1,4 @@
-import {IPersonnel} from './Personnel';
+import {IPersonnel} from "../../direction/MockModels/Personnel";
 
 export interface IUnit {
   id:string;
