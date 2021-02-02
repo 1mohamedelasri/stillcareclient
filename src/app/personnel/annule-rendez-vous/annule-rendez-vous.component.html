@@ -1,0 +1,9 @@
+<form class="myForm">
+  <h1>Annuler un rendez-vous</h1>
+  <label>Nouveau statut : </label>
+  <mat-select [formControl]="rdvs" class = "myInput" [(value)]="selectedRdv">
+    <mat-option *ngFor="let rdv of rdvList" [value]="rdv" >{{rdv.idRdv}} {{rdv.date}}</mat-option>
+  </mat-select>
+  <br><br>
+  <button class="btn-primary" (click)="annulerRdv()">Annuler le rendez-vous</button>
+</form>

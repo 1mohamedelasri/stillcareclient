@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 export interface Contact {
   nom: string;
@@ -36,9 +36,17 @@ const CONTACTS_DATA: Contact[] = [
 export class ValiderContactComponent implements OnInit {
   displayedColumns: string[] = ['nom', 'prenom', 'mail', 'resident', 'valider'];
   dataSource = CONTACTS_DATA;
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor() {}
+  ngOnInit(): void {}
+
+  validerContact(): void{
+    console.log('Contact validé');
   }
 
+  refuserContact(): void{
+    console.log('on doit donner une raison?');
+    console.log('Contact refusé');
+
+  }
 }

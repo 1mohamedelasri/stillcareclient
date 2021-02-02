@@ -87,6 +87,9 @@ import { ChangementStatutResidentComponent } from './personnel/changement-statut
 import { ReserverRdvComponent } from './contact/reserver-rdv/reserver-rdv.component';
 import { ValiderContactComponent } from './personnel/valider-contact/valider-contact.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CreneauLibreComponent } from './personnel/creneau-libre/creneau-libre.component';
+import { AnnuleRendezVousComponent } from './personnel/annule-rendez-vous/annule-rendez-vous.component';
 
 @NgModule({
   imports: [
@@ -119,6 +122,7 @@ import {MatIconModule} from '@angular/material/icon';
     ScheduleModule,
     RecurrenceEditorModule,
     MatIconModule,
+    MatCheckboxModule,
   ],
   declarations: [
     AppComponent,
@@ -163,7 +167,9 @@ import {MatIconModule} from '@angular/material/icon';
     PlanningCreneauxComponent,
     ChangementStatutResidentComponent,
     ReserverRdvComponent,
-    ValiderContactComponent
+    ValiderContactComponent,
+    CreneauLibreComponent,
+    AnnuleRendezVousComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,
