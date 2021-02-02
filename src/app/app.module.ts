@@ -85,6 +85,8 @@ import { DeclarerCreneauxComponent } from './personnel/declarer-creneaux/declare
 import { PlanningCreneauxComponent } from './personnel/planning-creneaux/planning-creneaux.component';
 import { ChangementStatutResidentComponent } from './personnel/changement-statut-resident/changement-statut-resident.component';
 import { ReserverRdvComponent } from './contact/reserver-rdv/reserver-rdv.component';
+import { ValiderContactComponent } from './personnel/valider-contact/valider-contact.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -116,6 +118,7 @@ import { ReserverRdvComponent } from './contact/reserver-rdv/reserver-rdv.compon
     ReactiveFormsModule,
     ScheduleModule,
     RecurrenceEditorModule,
+    MatIconModule,
   ],
   declarations: [
     AppComponent,
@@ -159,7 +162,8 @@ import { ReserverRdvComponent } from './contact/reserver-rdv/reserver-rdv.compon
     DeclarerCreneauxComponent,
     PlanningCreneauxComponent,
     ChangementStatutResidentComponent,
-    ReserverRdvComponent
+    ReserverRdvComponent,
+    ValiderContactComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { personnelNavItems } from '../../_nav';
+import {PersonnelNavItems} from '../../_nav';
 import { DirectionNavItems } from '../../_nav';
 import { ContactNavItems } from '../../_nav';
 
@@ -9,7 +9,7 @@ import { ContactNavItems } from '../../_nav';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = ContactNavItems;
+  public navItems = PersonnelNavItems;
 
   // tslint:disable-next-line:typedef
   toggleMinimize(e) {
@@ -17,7 +17,7 @@ export class DefaultLayoutComponent {
   }
   // tslint:disable-next-line:typedef
   set(nb: number){
-      if (1) { this.navItems = personnelNavItems; }
+      if (1) { this.navItems = PersonnelNavItems; }
       else
       if (2) { this.navItems = DirectionNavItems; }
       else

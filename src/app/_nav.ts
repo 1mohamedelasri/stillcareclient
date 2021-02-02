@@ -1,30 +1,35 @@
 import { INavData } from '@coreui/angular';
 
 
-export const personnelNavItems: INavData[] = [
+export const PersonnelNavItems: INavData[] = [
   {name: 'Acceuil', url: '/personnel/dashboard', icon: 'icon-speedometer'},
-  {title: true, name: 'Mes services'},
-  {name: 'Gérer résidents', url: '/personnel/residents', icon: 'icon-puzzle',
+  {title: true, name: 'Espace personnel'},
+  {name: 'Gérer résidents', url: '/personnel/residents', icon: 'cil-group',
     children: [
-      {name: 'Déclarer résident', url: '/personnel/residents/declarer', icon: 'icon-puzzle'},
-      {name: 'Déclarer un changement', url: '/personnel/residents/changer', icon: 'icon-puzzle'},
-      {name: 'Gérer contactes', url: '/personnel/residents/contacte', icon: 'icon-puzzle'}
+      {name: 'Déclarer résident associé', url: '/personnel/residents/declarer', icon: 'cil-user-follow'},
+      {name: 'Déclarer un changement de statut', url: '/personnel/residents/changer', icon: 'cil-user'},
+      {name: 'Gérer contactes', url: '/personnel/residents/contacte', icon: 'cil-list'}
     ]
   },
-  {name: 'Calendrier', url: '/personnel/calendrier', icon: 'icon-cursor',
+  {name: 'Gérer contacts', url: '/personnel/condtact', icon: 'cil-group',
     children: [
-      {name: 'Déclarer créneaux', url: '/personnel/calendrier/declarer', icon: 'icon-cursor'},
-      {name: 'Consulter créneaux', url: '/personnel/calendrier/consulter', icon: 'icon-cursor'},
+    {name: 'Valider contact et rattachement', url: '/personnel/contact/valider', icon: 'cil-user'},
     ]
   },
-  {name: 'Gérer rendez-vous', url: '/rendezvous', icon: 'icon-star',
+  {name: 'Calendrier', url: '/personnel/calendrier', icon: 'cil-calendar',
+    children: [
+      {name: 'Déclarer créneaux', url: '/personnel/calendrier/declarer', icon: 'cil-calendar-check'},
+      {name: 'Planning créneaux', url: '/personnel/calendrier/consulter', icon: 'cil-calendar'},
+      {name: 'Créneaux libre', url: '/personnel/calendrier/creneau-libre', icon: 'cil-calendar'},
+    ]
+  },
+  {name: 'Gérer rendez-vous', url: '/rendezvous', icon: 'cil-folder',
     children: [
       // tslint:disable-next-line:max-line-length
-      {name: 'Réservations des familles', url: '/personnel/rendezvous/familles', icon: 'icon-star'},
-      {name: 'Deplacer rendez-vous', url: '/personnel/rendezvous/deplacer', icon: 'icon-star'},
-      {name: 'Annuler rendez-vous', url: '/personnel/rendezvous/annuler', icon: 'icon-star'},
-      {name: 'Reporter rendez-vous', url: '/personnel/rendezvous/reporter', icon: 'icon-star'},
-      {name: 'Details rendez-vous', url: '/personnel/rendezvous/details', icon: 'icon-star'}
+      {name: 'Valider/Refuser réservations des familles', url: '/personnel/rendezvous/valider-refuser', icon: 'cil-folder-open'},
+      {name: 'Annuler un rendez-vous', url: '/personnel/rendezvous/annuler', icon: 'cil-folder-open'},
+      {name: 'Deplacer un rendez-vous', url: '/personnel/rendezvous/details', icon: 'cil-folder-open'},
+      {name: 'Reporter un rendez-vous', url: '/personnel/rendezvous/reporter', icon: 'cil-folder-open'}
     ]
   }
 ];
@@ -32,7 +37,7 @@ export const personnelNavItems: INavData[] = [
 export const DirectionNavItems: INavData[] = [
   {name: 'Acceuil', url: '/direction/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
   {title: true, name: 'Espace direction'},
-  {name: 'Espace du contact', url: '/direction/residents', icon: 'cil-user',
+  {name: 'Espace du contact', url: '/direction/residents', icon: 'cil-groupr',
     children: [
       {name: 'Créer résident', url: '/direction/residents/créer', icon: 'cil-user-follow'},
       {name: 'Affecter résident', url: '/direction/residents/affecter', icon: 'cil-user'},
@@ -40,7 +45,7 @@ export const DirectionNavItems: INavData[] = [
       {name: 'Consulter les residents', url: '/direction/residents/consulter', icon: 'cil-list'}
     ]
   },
-  {name: 'Espace du Personnel', url: '/direction/personnels', icon: 'icon-puzzle',
+  {name: 'Espace du Personnel', url: '/direction/personnels', icon: 'cil-group',
     children: [
       {name: 'Ajouter un personnel', url: '/direction/personnels/créer', icon: 'cil-user-follow'},
       {name: 'Modifier un personnel', url: '/direction/personnels/affecter', icon: 'cil-user'},

@@ -1,29 +1,12 @@
-<h1> Liste des résidents </h1>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Nom Column -->
-  <ng-container matColumnDef="nom">
-    <th mat-header-cell *matHeaderCellDef> Nom </th>
-    <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
-  </ng-container>
+<form class="myForm">
+  <h1> Déclarer résident </h1>
+  <label>Choisir un résident : </label>
+  <mat-select [formControl]="residents" class = "myInput" [(value)]="selectedResident">
+    <mat-option *ngFor="let resident of residentList" [value]="resident" >{{resident.nom}} {{resident.prenom}}</mat-option>
+  </mat-select>
+  <br><br>
+  <button class='btn-primary' (click)="associerResident()">S'associer au résident choisi</button>
+  <br><br>
+  <span *ngIf="selectedResident != null && selectedResident.associe == true"> Vous avez sélectionner un resident qui est dèja associé à un autre personnel! </span>
+</form>
 
-  <!-- Prenom Column -->
-  <ng-container matColumnDef="prenom">
-    <th mat-header-cell *matHeaderCellDef> Prénom </th>
-    <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
-  </ng-container>
-
-  <!-- dateNaissance Column -->
-  <ng-container matColumnDef="dateNaissance">
-    <th mat-header-cell *matHeaderCellDef> Date de naissance </th>
-    <td mat-cell *matCellDef="let element"> {{element.dateNaissance}} </td>
-  </ng-container>
-
-  <!-- unité Column -->
-  <ng-container matColumnDef="unite">
-    <th mat-header-cell *matHeaderCellDef> Unité</th>
-    <td mat-cell *matCellDef="let element"> {{element.unite}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>

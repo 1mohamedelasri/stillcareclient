@@ -1,1 +1,18 @@
-<p>changement-statut-resident works!</p>
+<form class="myForm">
+  <h1> Changer le statut d'un résident </h1>
+  <label>Choisir un résident : </label>
+  <mat-select [formControl]="residents" class = "myInput" [(value)]="selectedResident">
+    <mat-option *ngFor="let resident of residentList" [value]="resident" >{{resident.nom}} {{resident.prenom}}</mat-option>
+  </mat-select>
+  <br><br>
+  <label>Nouveau statut : </label>
+  <mat-select [formControl]="statuts" class = "myInput" [(value)]="selectedStatut">
+    <mat-option *ngFor="let statut of statutList" [value]="statut" >{{statut}}</mat-option>
+  </mat-select>
+  <br><br>
+  <button class='btn-primary' (click)="changerStatut()" >Changer statut</button>
+  <br><br>
+  <span *ngIf="this.selectedResident != null && this.selectedStatut != null">
+    Le résident {{this.selectedResident.nom}} va avoir un nouveau statut ({{this.selectedStatut}})
+  </span>
+</form>

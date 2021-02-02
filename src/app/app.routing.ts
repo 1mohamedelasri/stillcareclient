@@ -33,6 +33,9 @@ import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-pr
 import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
 import {ReserverRdvComponent} from './contact/reserver-rdv/reserver-rdv.component';
+import {ChangementStatutResidentComponent} from './personnel/changement-statut-resident/changement-statut-resident.component';
+import {PlanningCreneauxComponent} from './personnel/planning-creneaux/planning-creneaux.component';
+import {ValiderContactComponent} from './personnel/valider-contact/valider-contact.component';
 
 
 export const routes: Routes = [
@@ -47,9 +50,15 @@ export const routes: Routes = [
     children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/declarer', component: DeclarerResidentsComponent},
-      {path: 'residents/contacte', component: NotyetimplComponent},
-      {path: 'residents/changer', component: ModifierProfileComponent},
-      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent}
+      {path: 'residents/changer', component: ChangementStatutResidentComponent},
+      {path: 'contact/valider', component: ValiderContactComponent},
+      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent},
+      {path: 'calendrier/consulter', component: PlanningCreneauxComponent},
+      {path: 'calendrier/creneau-libre', component: NotyetimplComponent},
+      {path: 'rendezvous/valider-refuser', component: NotyetimplComponent},
+      {path: 'rendezvous/annuler', component: NotyetimplComponent},
+      {path: 'rendezvous/details', component: NotyetimplComponent},
+      {path: 'rendezvous/reporter', component: NotyetimplComponent},
     ]
   },
   {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home'},
