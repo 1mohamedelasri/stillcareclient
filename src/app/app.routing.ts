@@ -47,7 +47,7 @@ export const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/declarer', component: DeclarerResidentsComponent},
       {path: 'residents/contacte', component: NotyetimplComponent},
-      {path: 'residents/changer', component: NotyetimplComponent},
+      {path: 'residents/changer', component: ModifierProfileComponent},
       {path: 'calendrier/declarer', component: DeclarerCreneauxComponent}
     ]
   },

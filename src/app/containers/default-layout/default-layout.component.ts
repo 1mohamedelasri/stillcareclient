@@ -9,12 +9,13 @@ import { ContactNavItems } from '../../_nav';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = personnelNavItems;
+  public navItems = DirectionNavItems;
 
   // tslint:disable-next-line:typedef
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
+  // tslint:disable-next-line:typedef
   set(nb: number){
       if (1) { this.navItems = personnelNavItems; }
       else
