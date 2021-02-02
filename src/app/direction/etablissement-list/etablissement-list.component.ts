@@ -8,9 +8,9 @@ import {IEtablissement} from '../../common/interfaces/Etablissement';
 })
 export class EtablissementListComponent implements OnInit {
   etablissements: IEtablissement[] = [
-    {title: 'EPAD 1 ', desc: 'AAAA NNNNND  D  D DF DF FD REEER ', img: '../../../assets/content/department-1.jpg', personnels: [{name: 'personnel1'}, {name: 'personnel2', img: '../../../../assets/content/doctor-400-1.jpg'}, {name: 'personnel3', img: '../../../../assets/content/doctor-400-1.jpg'}]},
-    {title: 'EPAD 2 ', desc: 'AAAA NNNNND  D  D DF DF FD REEER ', img: '../../../assets/content/department-1.jpg', personnels: [{name: 'personnel1'}, {name: 'personnel2', img: '../../../../assets/content/doctor-400-1.jpg'}, {name: 'personnel3', img: '../../../../assets/content/doctor-400-1.jpg'}]},
-    {title: 'EPAD 2 ', desc: 'AAAA NNNNND  D  D DF DF FD REEER ', img: '../../../assets/content/department-1.jpg', personnels: [{name: 'personnel1', img: '../../../../assets/content/doctor-400-1.jpg'}, {name: 'personnel2', img: '../../../../assets/content/doctor-400-1.jpg'}, {name: 'personnel3'}]}];
+    {title: 'EPAD 1 ', desc: 'AAAA NNNNND  D  D DF DF FD REEER ', img: '../../../assets/content/department-1.jpg', personnels: [{nom: 'personnel1'}, {nom: 'personnel2', img: '../../../../assets/content/doctor-400-1.jpg'}, {nom: 'personnel3', img: '../../../../assets/content/doctor-400-1.jpg'}]},
+    {title: 'EPAD 2 ', desc: 'AAAA NNNNND  D  D DF DF FD REEER ', img: '../../../assets/content/department-1.jpg', personnels: [{nom: 'personnel1'}, {nom: 'personnel2', img: '../../../../assets/content/doctor-400-1.jpg'}, {nom: 'personnel3', img: '../../../../assets/content/doctor-400-1.jpg'}]},
+    {title: 'EPAD 2 ', desc: 'AAAA NNNNND  D  D DF DF FD REEER ', img: '../../../assets/content/department-1.jpg', personnels: [{nom: 'personnel1', img: '../../../../assets/content/doctor-400-1.jpg'}, {nom: 'personnel2', img: '../../../../assets/content/doctor-400-1.jpg'}, {nom: 'personnel3'}]}];
 
   constructor() { }
 
