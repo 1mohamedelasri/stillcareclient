@@ -84,6 +84,7 @@ import { DeclarerResidentsComponent } from './personnel/declarer-residents/decla
 import { DeclarerCreneauxComponent } from './personnel/declarer-creneaux/declarer-creneaux.component';
 import { PlanningCreneauxComponent } from './personnel/planning-creneaux/planning-creneaux.component';
 import { ChangementStatutResidentComponent } from './personnel/changement-statut-resident/changement-statut-resident.component';
+import { ReserverRdvComponent } from './contact/reserver-rdv/reserver-rdv.component';
 
 @NgModule({
   imports: [
@@ -157,7 +158,8 @@ import { ChangementStatutResidentComponent } from './personnel/changement-statut
     DeclarerResidentsComponent,
     DeclarerCreneauxComponent,
     PlanningCreneauxComponent,
-    ChangementStatutResidentComponent
+    ChangementStatutResidentComponent,
+    ReserverRdvComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,

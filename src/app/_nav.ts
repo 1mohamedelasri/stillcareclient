@@ -31,12 +31,12 @@ export const personnelNavItems: INavData[] = [
 
 export const DirectionNavItems: INavData[] = [
   {name: 'Acceuil', url: '/direction/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
-  {title: true, name: 'Mes services'},
+  {title: true, name: 'Espace direction'},
   {name: 'Espace du contact', url: '/direction/residents', icon: 'cil-user',
     children: [
       {name: 'Créer résident', url: '/direction/residents/créer', icon: 'cil-user-follow'},
       {name: 'Affecter résident', url: '/direction/residents/affecter', icon: 'cil-user'},
-      {name: 'Déclarer changement', url: '/direction/residents/changement', icon: 'cil-user'},
+      {name: 'Déclarer changement', url: '/direction/residents/changer', icon: 'cil-user'},
       {name: 'Consulter les residents', url: '/direction/residents/consulter', icon: 'cil-list'}
     ]
   },
@@ -44,7 +44,7 @@ export const DirectionNavItems: INavData[] = [
     children: [
       {name: 'Ajouter un personnel', url: '/direction/personnels/créer', icon: 'cil-user-follow'},
       {name: 'Modifier un personnel', url: '/direction/personnels/affecter', icon: 'cil-user'},
-      {name: 'Consulter liste des personnels', url: '/direction/personnels/list', icon: 'cil-list'}
+      {name: 'Consulter liste des personnels', url: '/direction/personnels/consulter', icon: 'cil-list'}
     ]
   },
   {name: 'Calendrier', url: '/direction/calendrier', icon: 'cil-calendar',
@@ -59,19 +59,18 @@ export const DirectionNavItems: INavData[] = [
 ];
 
 export const ContactNavItems: INavData[] = [
-  {name: 'Acceuil', url: '/contact/dashboard', icon: 'icon-speedometer', badge: {variant: 'info', text: 'NEW'}},
-  {title: true, name: 'Espace de résidents'},
+  {name: 'Acceuil', url: '/contact/dashboard', icon: 'icon-speedometer'},
+  {title: true, name: 'Espace contact'},
   {name: 'Calendrier', url: '/contact/calendrier', icon: 'cil-calendar',
     children: [
       {name: 'consulter créneaux', url: '/contact/calendrier/consulter', icon: 'cil-calendar'},
-      {name: 'Réserver un rendez-vous', url: '/contact/calendrier/consulter', icon: 'cil-calendar'},
+      {name: 'Réserver un rendez-vous', url: '/contact/calendrier/reserver', icon: 'cil-calendar-check'},
     ]
   },
-  {name: 'Gérer rendez-vous', url: '/contact/rendezvous', icon: 'icon-star',
+  {name: 'Gérer rendez-vous', url: '/contact/rendezvous', icon: 'cil-folder',
     children: [
-      {name: 'Déclarer une absence', url: '/contact/rendezvous/absence', icon: 'icon-star', badge: {variant: 'success', text: 'NEW'}},
-      {name: 'Annuler rendez-vous', url: '/contact/rendezvous/annuler', icon: 'icon-star', badge: {variant: 'secondary', text: '4.7'}},
-      {name: 'Annuler une réservation ', url: '/contact/rendezvous/reservation', icon: 'icon-star'},
+      {name: 'S\'absenter ou annuler un rendez-vous', url: '/contact/rendezvous/absence-annuler', icon: 'cil-folder-open'},
+      {name: 'Annuler une réservation', url: '/contact/reservation/annuler', icon: 'cil-folder-open'},
     ]
   }
 ];

@@ -32,6 +32,7 @@ import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
 import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-profile.component';
 import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
+import {ReserverRdvComponent} from './contact/reserver-rdv/reserver-rdv.component';
 
 
 export const routes: Routes = [
@@ -56,7 +57,7 @@ export const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/créer', component: CreateResidentComponent},
       {path: 'residents/affecter', component: AffecterResidentComponent},
-      {path: 'residents/changement', component: ChangerUniteComponent},
+      {path: 'residents/changer', component: ChangerUniteComponent},
       {path: 'unites', component: UnitListComponent},
       {path: 'unites/creer', component: UnitCreateComponent},
       {path: 'unites/consulter', component: UnitComponent},
@@ -66,7 +67,7 @@ export const routes: Routes = [
       {path: 'residents/consulter', component: ConsulterResidentComponent},
       {path: 'personnels/créer', component: AjouterPersonnelComponent},
       {path: 'personnels/affecter', component: ModifierPersonnelComponent},
-      {path: 'personnels/list', component: ConsulterListePersonnelComponent}
+      {path: 'personnels/consulter', component: ConsulterListePersonnelComponent}
     ]
   },
   {path: 'contact', component: DefaultLayoutComponent, data: {title: 'Home'},
@@ -74,11 +75,11 @@ export const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'calendrier', component: NotyetimplComponent},
       {path: 'calendrier/consulter', component: ConsulterCreneauxComponent},
-      {path: 'rendezvous/absence', component: DeclarerAbsenceComponent},
-      {path: 'rendezvous/annuler', component: AnnulerRdvComponent},
-      {path: 'rendezvous/reservation', component: NotyetimplComponent} // à enlever
+      {path: 'calendrier/reserver', component: ReserverRdvComponent},
+      {path: 'rendezvous/absence-annuler', component: DeclarerAbsenceComponent},
+      {path: 'reservation/annuler', component: AnnulerRdvComponent},
     ]
-  },  { path: '**', component: P404Component }
+  }, { path: '**', component: P404Component }
 ];
 
 @NgModule({

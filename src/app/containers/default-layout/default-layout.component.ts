@@ -9,7 +9,7 @@ import { ContactNavItems } from '../../_nav';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = DirectionNavItems;
+  public navItems = ContactNavItems;
 
   // tslint:disable-next-line:typedef
   toggleMinimize(e) {

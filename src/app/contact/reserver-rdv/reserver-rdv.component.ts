@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-consulter-creneaux',
-  templateUrl: './consulter-creneaux.component.html',
-  styleUrls: ['./consulter-creneaux.component.scss']
+  selector: 'app-reserver-rdv',
+  templateUrl: './reserver-rdv.component.html',
+  styleUrls: ['./reserver-rdv.component.scss']
 })
-export class ConsulterCreneauxComponent implements OnInit {
+export class ReserverRdvComponent implements OnInit {
   eventObject: any;
 
   constructor() { }
@@ -29,4 +29,5 @@ export class ConsulterCreneauxComponent implements OnInit {
       console.log(e.deletedRecords);
     }
   }
+
 }
