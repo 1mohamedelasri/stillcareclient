@@ -85,7 +85,11 @@ import {NgProgress, NgProgressModule} from 'ngx-progressbar';
 import {Toast, ToastrModule, ToastrService} from 'ngx-toastr';
 import {AuthService} from './sharedServices/services/auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {AccountService} from "./sharedServices/services/account.service";
+import { CompleteAccountComponent } from './views/complete-account/complete-account.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import { DialogOverviewComponent } from './views/complete-account/dialog-overview/dialog-overview.component';
 
 
 @NgModule({
@@ -119,6 +123,8 @@ import {HttpClient} from '@angular/common/http';
     ScheduleModule,
     RecurrenceEditorModule,
     InputsModule,
+    NgSelectModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
@@ -130,7 +136,8 @@ import {HttpClient} from '@angular/common/http';
       timeOut: 2500,
       progressAnimation: 'increasing',
       preventDuplicates: true
-    })
+    }),
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
@@ -165,9 +172,11 @@ import {HttpClient} from '@angular/common/http';
     AgendaComponent,
     AjouterPersonnelComponent,
     ModifierPersonnelComponent,
-    ConsulterListePersonnelComponent
+    ConsulterListePersonnelComponent,
+    CompleteAccountComponent,
+    DialogOverviewComponent
   ],
-  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, {
+  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, {
     provide: MatDialogRef,
     useValue: {}
   }],

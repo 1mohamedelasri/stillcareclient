@@ -35,6 +35,9 @@ export class DefaultLayoutComponent {
       case Role.Personnel:
         this.navItems = personnelNavItems;
         break;
+      case Role.Direction:
+        this.navItems = DirectionNavItems;
+        break;
       // case Role.Direction: this.navItems = DirectionNavItems; break;
     }
   }

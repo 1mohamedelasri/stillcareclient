@@ -1,15 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {NgProgress} from 'ngx-progressbar';
 import firebase from 'firebase';
-import auth = firebase.auth;
 import {Role} from '../models/Role';
 import {IFirebaseAccount} from '../models/FirebaseAccount';
 import {IContact} from '../models/Contact';
 import {IPersonnel} from '../models/Personnel';
+import {PopupService} from './popup.service';
+import {AccountService} from './account.service';
+import {MessageType} from '../models/MessageType';
+import auth = firebase.auth;
+import {ToastrService} from 'ngx-toastr';
+import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +35,10 @@ export class AuthService {
 
   constructor(    public afAuth: AngularFireAuth, // Inject Firebase auth service
                   public router: Router,
-                  public ngProgress: NgProgress
+                  public ngProgress: NgProgress,
+                  private popupService: PopupService,
+                  private accountService: AccountService,
+                  private ts: ToastrService
   ) {
     this.RegisterLoginStatusLocally();
     this.RegisterRoleLocally();
@@ -110,18 +117,50 @@ export class AuthService {
 
   AuthLogin(provider): Promise<any>{
     return this.afAuth.signInWithPopup(provider)
-      .then((result) => {
-        this.currentRole.next(Role.Contact);
-        this.isLogged.next(true);
-        this.router.navigate(['/contact']);
+      .then(async (result) => {
+        const user = result.user;
+        const [nom, prenom] = user.displayName.split('');
+        this.accountService.getContactWithToken(user.uid).then(res => {
+          this.currentUser.next(res);
+          this.currentRole.next(Role.Contact);
+          this.isLogged.next(true);
+          this.router.navigate(['/contact']);
+        }).catch((exp) => {
+          if (exp.status === 404) {
+            this.currentUser.next({
+              firebasetoken: user.uid,
+              photo: user.photoURL,
+              mail: user.email,
+              nom,
+              prenom
+            });
+            this.ts.info('Vous devez completer votre profile');
+            this.router.navigate(['/complete-account']);
+          }
+        });
+      }).catch(ex => {
+        this.ts.error(ex?.error, 'Exception While Login');
       });
   }
 
-  SignInWithAccount(): void {
-    this.currentRole.next(Role.Personnel);
-    this.isLogged.next(true);
-    console.log('TRYING TO GET PERSONNEL');
-    this.router.navigate(['personnel']);
+  SignInWithAccount(username: string, password: string): void {
+    this.accountService.authenticatePersonnel({mail: username, password  }).then( (e: IPersonnel) => {
+      this.isLogged.next(true);
+      this.currentUser.next(e);
+
+      if (e.fonction === 'directeur'){
+        this.currentRole.next(Role.Direction);
+        this.router.navigate(['direction']);
+
+      }else {
+        this.currentRole.next(Role.Personnel);
+        this.router.navigate(['personnel']);
+      }
+      this.ts.success('Athentication Succes!', 'Athentication Succes!');
+    }).catch(ex => {
+      this.ts.error(ex?.error, 'Athentication Error!');
+      console.log(ex);
+    });
   }
 }
 

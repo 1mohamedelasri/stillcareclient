@@ -1,9 +1,9 @@
 export class IResident{
-  idResident: number;
-  idPersonnel: number;
-  datenaissance: Date;
-  statut: string;
+  idResident?: number;
+  idPersonnel?: number;
+  datenaissance?: Date;
+  statut?: string;
   nom: string;
   prenom: string;
-  idEhpad: number;
+  idEhpad?: number;
 }

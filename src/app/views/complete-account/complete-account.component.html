@@ -1,0 +1,37 @@
+
+    <div class="container">
+        <div class="col-md-8 mx-auto">
+            <div class="card p-4">
+                <form class="myForm" (submit)="null">
+                  <h1>Completer Profile</h1>
+                  <label>Nom :</label>
+                  <input matInput class="myInput" #nom>
+
+                  <label>Prénom :</label>
+                  <input matInput class="myInput" #prenom>
+
+                  <label>mail :</label>
+                  <input matInput class="myInput" #mail>
+
+                  <label> Numéro Tel :</label>
+                  <input matInput class="myInput" #numtel>
+
+                  <mat-form-field appearance="fill">
+                    <mat-label>Toppings</mat-label>
+                    <mat-select [formControl]="residents" multiple>
+                      <mat-option *ngFor="let resident of toppingList" [value]="resident">{{resident}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+
+                      <button mat-raised-button (click)="openDialog()">Pick one</button>
+
+
+
+                  <button type="submit" class="btn-primary">Valider les informations</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>

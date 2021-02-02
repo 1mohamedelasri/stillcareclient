@@ -1,2 +1,26 @@
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '~ngx-toastr/toastr.css';
+@import "~@ng-select/ng-select/themes/material.theme.css";
 
-/* You can add global styles to this file, and also import other style files */
+/* TOASTR BUGFIX */
+#toast-container > div {
+  opacity: 1;
+}
+.toast {
+  font-size: initial !important;
+  border: initial !important;
+  backdrop-filter: blur(0) !important;
+}
+.toast-success {
+  background-color: #51A351 !important;
+}
+.toast-error {
+  background-color: #BD362F !important;
+}
+.toast-info {
+  background-color: #2F96B4 !important;
+}
+.toast-warning {
+  background-color: #F89406 !important;
+}
+

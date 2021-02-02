@@ -31,14 +31,15 @@ import {AuthGuard} from './sharedServices/helpers/guard/auth.guard';
 import {DirectionGuard} from './sharedServices/helpers/guard/direction.guard';
 import {ContactGuard} from "./sharedServices/helpers/guard/contact.guard";
 import {PersonnelGuard} from "./sharedServices/helpers/guard/personnel.guard";
+import {CompleteAccountComponent} from "./views/complete-account/complete-account.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '404', component: P404Component, data: {title: 'Page 404'}},
   {path: '500', component: TableComponent, data: {title: 'Page 500'}},
   {path: 'personnel-login', component: PersonnelLoginComponent, data: {title: 'Login Page'}},
-  {path: 'card', component: CardComponent, data: {title: 'Login Page'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
+  {path: 'complete-account', component: CompleteAccountComponent, data: {title: 'Register Page'}},
   {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard, DirectionGuard]},
   {path: 'main-login', component: MainLoginComponent},
   {path: 'personnel', component: DefaultLayoutComponent,
@@ -52,7 +53,7 @@ export const routes: Routes = [
     ]
   },
   // tslint:disable-next-line:max-line-length
-  {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard, DirectionGuard],
+  {path: 'direction', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Direction}, canActivate: [AuthGuard, DirectionGuard],
     children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/créer', component: CreateResidentComponent},
