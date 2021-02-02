@@ -1,4 +1,4 @@
-<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1> -->
+<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
 <div mat-dialog-content>
   <p>Choisir un choisir </p>
   <mat-form-field>
@@ -16,3 +16,32 @@
   <button mat-button class="btn-primary"(click)="onNoClick()">Annuler</button>
   <button mat-button class="btn-primary" cdkFocusInitial>Choisir</button>
 </div>
+-->
+
+    <!-- Default form register -->
+    <form #userForm [formGroup]="childFrom" class="text-center">
+
+      <p class="h4 mb-4"> Selectionner un résident</p>
+
+      <mat-form-field>
+        <mat-label>Nom résident</mat-label>
+        <input matInput class="form-control"  value ="" formControlName="lastname"  #nom>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Prenom résident</mat-label>
+        <input matInput class="form-control"  value ="" formControlName="firstname" #prenom >
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Lien de famille</mat-label>
+        <input matInput class="form-control"  value ="" name="lienfamille" #lienFamille >
+      </mat-form-field>
+
+      <br/>
+      <!-- Sign up button -->
+      <div class="d-flex flex-row">
+      <button type="submit" class="btn-primary" (click)="Valider({nom:nom.value,prenom:prenom.value,lienFamille: lienFamille.value})"cdkFocusInitial> Ajouter</button>
+      <button type="submit" class="btn-secondary" (click)="Annuler()">Annuler</button>
+      </div>
+    </form>

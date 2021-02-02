@@ -4,7 +4,8 @@ import {Observable, throwError} from 'rxjs';
 import {config} from '../../../environments/config';
 import {catchError} from 'rxjs/operators';
 import {IPersonnel} from '../models/Personnel';
-import {IContact} from "../models/Contact";
+import {IContact} from '../models/Contact';
+import {IResidentItem} from '../models/Resident';
 
 export class Login{
   mail: string;
@@ -34,5 +35,14 @@ export class AccountService {
       }, err => reject(err));
     });
   }
+
+  async saveContactWithResident(contact: IContact, residentIds: IResidentItem[]): Promise<IContact>{
+    return new Promise<IContact>((resolve, reject) => {
+      this.http.post<IContact>(`${config.endpoint}/contacts`, {contact, residentIds}).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
 
 }

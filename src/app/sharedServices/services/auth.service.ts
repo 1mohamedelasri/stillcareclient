@@ -38,10 +38,11 @@ export class AuthService {
                   public ngProgress: NgProgress,
                   private popupService: PopupService,
                   private accountService: AccountService,
-                  private ts: ToastrService
+                  private toastrService: ToastrService
   ) {
     this.RegisterLoginStatusLocally();
     this.RegisterRoleLocally();
+    this.RegisterUserLocally();
 
     this.afAuth.user.subscribe(async (user) => {
 
@@ -53,11 +54,11 @@ export class AuthService {
     });
     this.isLoggedInObs.subscribe(isLogged => localStorage?.setItem('isLogged', JSON.stringify(isLogged)));
     this.currentRoleObs.subscribe(currentRole => localStorage?.setItem('currentRole', JSON.stringify(currentRole)));
-
     this.currentRoleObs.subscribe(e => {
       console.log('CURRENT ROLE');
       console.log(e);
     });
+    this.currentUserObs.subscribe(currentUser => localStorage?.setItem('currentRole', JSON.stringify(currentUser)));
 
   }
 
@@ -77,16 +78,23 @@ export class AuthService {
     }
   }
 
+  RegisterUserLocally(): void{
+    const log = localStorage.getItem('user');
+    if (log) {
+      const user = JSON.parse(log);
+      this.currentRole.next(user);
+    }
+  }
   getUserObject(): IFirebaseAccount{
-    return this.currentFirebaseAccount.value;
+    return this.currentFirebaseAccount?.value;
   }
 
   isAuthenticated(): boolean {
-    return this.isLogged.getValue();
+    return this.isLogged?.getValue();
   }
 
   currentUserRole(): Role {
-    return this.currentRole.getValue();
+    return this.currentRole?.getValue();
   }
 
   SignOut(): Promise<any> {
@@ -134,12 +142,12 @@ export class AuthService {
               nom,
               prenom
             });
-            this.ts.info('Vous devez completer votre profile');
+            this.toastrService.info('Vous devez completer votre profile');
             this.router.navigate(['/complete-account']);
           }
         });
       }).catch(ex => {
-        this.ts.error(ex?.error, 'Exception While Login');
+        this.toastrService.error(ex?.error, 'Exception While Login');
       });
   }
 
@@ -156,10 +164,10 @@ export class AuthService {
         this.currentRole.next(Role.Personnel);
         this.router.navigate(['personnel']);
       }
-      this.ts.success('Athentication Succes!', 'Athentication Succes!');
+      this.toastrService.success('Athentication Succes!', 'Athentication Succes!');
     }).catch(ex => {
-      this.ts.error(ex?.error, 'Athentication Error!');
-      console.log(ex);
+      this.toastrService.error(ex?.error, 'Athentication Error!');
+      console.log(ex.error);
     });
   }
 }

@@ -26,9 +26,9 @@ import {MainLoginComponent} from './views/main-login/main-login.component';
 import {Role} from './sharedServices/models/Role';
 import {AuthGuard} from './sharedServices/helpers/guard/auth.guard';
 import {DirectionGuard} from './sharedServices/helpers/guard/direction.guard';
-import {ContactGuard} from "./sharedServices/helpers/guard/contact.guard";
-import {PersonnelGuard} from "./sharedServices/helpers/guard/personnel.guard";
-import {CompleteAccountComponent} from "./views/complete-account/complete-account.component";
+import {ContactGuard} from './sharedServices/helpers/guard/contact.guard';
+import {PersonnelGuard} from './sharedServices/helpers/guard/personnel.guard';
+import {CompleteAccountComponent} from './views/complete-account/complete-account.component';
 import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
 import {ConsulterListePersonnelComponent} from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
 import {ModifierPersonnelComponent} from './direction/modifier-personnel/modifier-personnel.component';
@@ -39,10 +39,11 @@ import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
 import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-profile.component';
 import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
+import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-  {path: '404', component: P404Component, data: {title: 'Page 404'}},
+  {path: '404', component: SharewithpeopleComponent, data: {title: 'Page 404'}},
   {path: '500', component: TableComponent, data: {title: 'Page 500'}},
   {path: 'personnel-login', component: PersonnelLoginComponent, data: {title: 'Login Page'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},

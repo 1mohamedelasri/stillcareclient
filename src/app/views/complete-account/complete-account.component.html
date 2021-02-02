@@ -1,4 +1,61 @@
 
+
+
+<div *ngIf="authService.currentUserObs | async as User" class="container">
+<div class="card p-4">
+<!-- Default form register -->
+<form  [formGroup]="form" #accountform class="text-center border border-light p-5">
+
+  <p class="h4 mb-4">Compléter les informations de votre compte</p>
+
+  <div class="form-row mb-4">
+    <div class="col">
+      <!-- First name -->
+      <input  type="text"  required value="" id="RegisterFormFirstName" class="form-control" formControlName="nom"  placeholder="Nom" #nom>
+    </div>
+    <div class="col">
+      <!-- Last name -->
+      <input  type="text"  required  value="" id="RegisterFormLastName" class="form-control" formControlName="prenom"  placeholder="Prenom" #prenom>
+    </div>
+  </div>
+
+
+  <input  type="email"  formControlName="email"  value="{{User.mail}}" disabled required id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" #email>
+
+  <!-- Phone number -->
+  <input class=".myInput"  type="text"  value="" class="form-control" placeholder="Numéro téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock" formControlName="tel" #tel>
+
+  <div class="d-flex flex-row" class="icon_container">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Résidents Choisis</mat-label>
+      <mat-select [formControl]="value">
+        <mat-option *ngFor="let resident of residentList" [value]="resident.id">
+          <div style="display:flex; justify-content: space-between">
+            <span>{{resident.nom}}</span>
+            <span></span>
+            <span class="deleteYear" (click)="delete($event,resident)">
+          <mat-icon>clear</mat-icon>
+        </span>
+          </div>
+
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <span class='opendialog' (click)="openDialog()" class="material-icons">
+    add_box
+  </span>
+  </div>
+  <br/>
+  <!-- Sign up button -->
+  <button type="submit" (click)="validateInfos(User,nom.value,prenom.value,email.value,tel.value)" class="btn-primary">Valider</button>
+
+</form>
+</div>
+</div>
+<!--
     <div class="container">
         <div class="col-md-8 mx-auto">
             <div class="card p-4">
@@ -35,3 +92,4 @@
             </div>
         </div>
     </div>
+-->

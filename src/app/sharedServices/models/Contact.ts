@@ -7,4 +7,5 @@ export interface IContact{
   statutcompte?: string;
   mail?: string;
   photo?: string;
+
 }

@@ -99,6 +99,10 @@ import { DeclarerResidentsComponent } from './personnel/declarer-residents/decla
 import { DeclarerCreneauxComponent } from './personnel/declarer-creneaux/declarer-creneaux.component';
 import { PlanningCreneauxComponent } from './personnel/planning-creneaux/planning-creneaux.component';
 import { ChangementStatutResidentComponent } from './personnel/changement-statut-resident/changement-statut-resident.component';
+import {MatIconModule} from "@angular/material/icon";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import {SharewithpeopleComponent} from "./views/sharewithpeople/sharewithpeople.component";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -146,7 +150,10 @@ import { ChangementStatutResidentComponent } from './personnel/changement-statut
       progressAnimation: 'increasing',
       preventDuplicates: true
     }),
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    MatCheckboxModule
   ],
   declarations: [
     AppComponent,
@@ -192,7 +199,7 @@ import { ChangementStatutResidentComponent } from './personnel/changement-statut
     DeclarerResidentsComponent,
     DeclarerCreneauxComponent,
     PlanningCreneauxComponent,
-    ChangementStatutResidentComponent
+    ChangementStatutResidentComponent, SharewithpeopleComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, {
     provide: MatDialogRef,

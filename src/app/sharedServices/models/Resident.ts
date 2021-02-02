@@ -5,5 +5,16 @@ export class IResident{
   statut?: string;
   nom: string;
   prenom: string;
-  idEhpad?: number;
+  idUnite?: number;
 }
+
+
+export class IResidentItem{
+  id?: number;
+  nom?: string;
+  prenom?: string;
+  lienFamille: string;
+  isChecked ? = false;
+
+}
+

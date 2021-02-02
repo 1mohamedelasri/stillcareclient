@@ -3,7 +3,7 @@ export interface IPersonnel{
    mail: string;
    fonction: string;
    ntel: string;
-   idEhpad: number;
+   idEhpad?: number;
    login: string;
    password: string;
    nom: string;
