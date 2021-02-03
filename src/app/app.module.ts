@@ -48,7 +48,6 @@ import { SettingListComponent } from './common/components/setting-list/setting-l
 import { SettingItemComponent } from './common/components/setting-list/setting-item/setting-item.component';
 import { TableComponent } from './common/components/table/table.component';
 import { TableItemComponent } from './common/components/table/table-item/table-item.component';
-import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './views/dashboard/dashboard-routing.module';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
@@ -62,12 +61,9 @@ import { EtablissementListComponent } from './direction/etablissement-list/etabl
 import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.component';
 import { UnitListComponent } from './direction/unit-list/unit-list.component';
 import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { UnitCreateModifyComponent } from './direction/unit-create-modify/unit-create-modify.component';
 import { UnitComponent } from './direction/unit/unit.component';
 import { CreateResidentComponent } from './direction/create-resident/create-resident.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
@@ -101,13 +97,20 @@ import { ChangementStatutResidentComponent } from './personnel/changement-statut
 import {MatIconModule} from '@angular/material/icon';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import { TableResidentsComponent } from './common/components/table-residents/table-residents.component';
 import { TableResidentsItemComponent } from './common/components/table-residents/table-residents-item/table-residents-item.component';
 import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
 import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
 import {NgProgress, NgProgressModule} from 'ngx-progressbar';
 import {LoggerConfig, LoggerModule, NGXLogger, NgxLoggerLevel} from 'ngx-logger';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTableModule} from "@angular/material/table";
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+
 
 @NgModule({
   imports: [
@@ -158,7 +161,9 @@ import {LoggerConfig, LoggerModule, NGXLogger, NgxLoggerLevel} from 'ngx-logger'
     MatIconModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatCheckboxModule,
-    LoggerModule
+    LoggerModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     AppComponent,

@@ -9,7 +9,6 @@ export class IResident{
 }
 
 
-
 export class IResidentItem{
   id?: number;
   nom?: string;
@@ -19,3 +18,16 @@ export class IResidentItem{
 
 }
 
+export class IResidentResult {
+  content?: IResident[];
+  pageable?: any;
+  last: string;
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+  sort?: any;
+  first: boolean;
+  numberOfElements: number;
+  empty: boolean;
+}
