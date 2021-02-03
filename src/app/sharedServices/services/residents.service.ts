@@ -6,8 +6,6 @@ import {catchError} from 'rxjs/operators';
 import {IPersonnel} from '../models/Personnel';
 import {IContact} from '../models/Contact';
 import {IResident, IResidentItem} from '../models/Resident';
-import {IUnit} from "../models/Unite";
-
 export class Login{
   mail: string;
   password: string;
@@ -30,7 +28,7 @@ export class ResidentService {
 
   async saveResident(resident: IResident): Promise<IResident>{
     return new Promise<IResident>((resolve, reject) => {
-      this.http.post<IResident>(`${config.endpoint}/contacts`, {resident}).subscribe(res => {
+      this.http.post<IResident>(`${config.endpoint}/residents`, resident).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });

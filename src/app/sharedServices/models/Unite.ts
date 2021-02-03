@@ -1,10 +1,6 @@
-import {IPersonnel} from '../../direction/MockModels/Personnel';
-import {UnitStatus} from '../../common/interfaces/Unit';
-
-export interface IUnit {
-  id_unite: string;
-  id_Ehpad: string;
-  nom: UnitStatus;
+export interface IUnite {
+  idUnite: number;
+  idEhpad: number;
+  nom: string;
   etat: string;
-  personnels: IPersonnel[];
 }

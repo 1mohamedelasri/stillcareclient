@@ -1,12 +1,13 @@
 export class IResident{
   idResident?: number;
   idPersonnel?: number;
-  dateNaissance?: Date;
+  datenaissance?: any;
   statut?: string;
   nom: string;
   prenom: string;
   idUnite?: number;
 }
+
 
 
 export class IResidentItem{

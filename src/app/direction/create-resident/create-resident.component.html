@@ -1,4 +1,5 @@
-<form *ngIf="auth.currentRoleObs |  async" class="myForm" (submit)="ajouterResident(nom.value, prenom.value,dateNaissance.value)">
+<form *ngIf="auth.currentRoleObs |  async" class="myForm"
+      (submit)="ajouterResident(nom.value, prenom.value,dateNaissance.value)">
   <h1>Ajouter un résident</h1>
   <label>Nom :</label>
   <input matInput class="myInput" #nom>
@@ -13,10 +14,25 @@
   <br><br>
 
   <label>Statut :</label> <br>
-  <mat-select class = "myInput" [formControl]="statuts" [(value)]="selectedStatut">
+  <mat-select class = "myInput"  [(value)]="selectedStatut">
     <mat-option selected disabled value="0">Statut</mat-option>
-    <mat-option *ngFor="let statut of personnelService.getPersonnels(auth.getUserPesronnel()) " [value]="statut">{{statut}}</mat-option>
+    <mat-option *ngFor="let statut of statutList" [value]="statut">{{statut}}</mat-option>
   </mat-select>
+
+  <label>Statut :</label> <br>
+  <mat-select class = "myInput" [formControl]="statuts" [(value)]="selectedunite" (selectionChange)="onChangeItem()">
+    <mat-option selected disabled value="0">Statut</mat-option>
+    <mat-option *ngFor="let statut of uniteLists" [value]="statut">{{statut.nom}}</mat-option>
+  </mat-select>
+
+  <div *ngIf="selectedunite">
+  <label>Personnel :</label> <br>
+  <mat-select class = "myInput" [formControl]="personnels" [(value)]="selectedPersonnel">
+    <mat-option  *ngFor="let pers of this.personnelList" [value]="pers">{{pers.nom}}</mat-option>
+  </mat-select>
+  </div>
+
+
 
   <br><br><br>
   <button type="submit" class="btn-primary">Ajouter résident</button>

@@ -42,6 +42,7 @@ import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-pr
 import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
 import {P500Component} from './views/error/500.component';
+import {RedirectGuardGuard} from './sharedServices/helpers/guard/redirect.guard';
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '404', component: P404Component, data: {title: 'Page 404'}},
@@ -49,7 +50,7 @@ export const routes: Routes = [
   {path: 'personnel-login', component: PersonnelLoginComponent, data: {title: 'Login Page'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
   {path: 'complete-account', component: CompleteAccountComponent, data: {title: 'Register Page'}},
-  {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard, DirectionGuard]},
+  {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard, RedirectGuardGuard]},
   {path: 'main-login', component: MainLoginComponent},
   {path: 'personnel', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard, PersonnelGuard],
     children: [

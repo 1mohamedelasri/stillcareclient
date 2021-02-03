@@ -6,8 +6,6 @@ import {catchError} from 'rxjs/operators';
 import {IPersonnel} from '../models/Personnel';
 import {IContact} from '../models/Contact';
 import {IResident, IResidentItem} from '../models/Resident';
-import {IUnit} from "../models/Unite";
-
 export class Login{
   mail: string;
   password: string;
@@ -22,7 +20,15 @@ export class PersonnelService {
 
   async getPersonnels(ephad: number): Promise<IPersonnel[]> {
     return new Promise<IPersonnel[]>((resolve, reject) => {
-      this.http.get<IPersonnel[]>(`${config.endpoint}/personnels/${ephad}`).subscribe(res => {
+      this.http.get<IPersonnel[]>(`${config.endpoint}/personnels/ehpad/${ephad}`).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+  async findPersonnelByUnite(idunite: number): Promise<IPersonnel[]> {
+    return new Promise<IPersonnel[]>((resolve, reject) => {
+      this.http.get<IPersonnel[]>(`${config.endpoint}/personnels/unites/${idunite}`).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });

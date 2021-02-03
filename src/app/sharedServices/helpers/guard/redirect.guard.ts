@@ -4,7 +4,7 @@ import {Role} from '../../models/Role';
 import {AuthService} from '../../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class PersonnelGuard implements CanActivate {
+export class RedirectGuardGuard implements CanActivate {
   constructor(
     private router: Router,
     private authService: AuthService
@@ -15,6 +15,7 @@ export class PersonnelGuard implements CanActivate {
 
     const role = this.authService.currentUserRole();
 
+
     if (role) {
         if (role === Role.Contact) {
           this.router.navigate(['contact']);
@@ -24,8 +25,11 @@ export class PersonnelGuard implements CanActivate {
           this.router.navigate(['direction']);
           return false;
         }
+        if (role === Role.Personnel) {
+          this.router.navigate(['personnel']);
+          return false;
+        }
       }
-
     return true;
   }
 }
