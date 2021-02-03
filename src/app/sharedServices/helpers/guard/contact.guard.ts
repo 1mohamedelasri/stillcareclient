@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Role} from '../../models/Role';
 import {AuthService} from '../../services/auth.service';
-import {Role} from "../../models/Role";
 
 @Injectable({ providedIn: 'root' })
 export class ContactGuard implements CanActivate {
@@ -11,10 +11,6 @@ export class ContactGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (!this.authService.isAuthenticated()) {
-      this.router.navigate(['main-login']);
-      return false;
-    }
 
     const role = this.authService.currentUserRole();
     if (role) {

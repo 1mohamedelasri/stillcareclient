@@ -13,17 +13,19 @@ export class PersonnelGuard implements CanActivate {
   // tslint:disable-next-line:typedef
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    const role = this.authService.currentUserRole();
-    if (role) {
-      if (role === Role.Contact) {
-        this.router.navigate(['contact']);
-        return false;
+    this.authService.currentRoleObs.subscribe(role => {
+      if (role) {
+        if (role === Role.Contact) {
+          this.router.navigate(['contact']);
+          return false;
+        }
+        if (role === Role.Direction) {
+          this.router.navigate(['direction']);
+          return false;
+        }
       }
-      if (role === Role.Direction) {
-        this.router.navigate(['direction']);
-        return false;
-      }
-    }
+    });
+
     return true;
   }
 }

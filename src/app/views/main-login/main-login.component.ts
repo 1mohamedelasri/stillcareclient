@@ -13,8 +13,8 @@ export class MainLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  LoginWithGoogle() {
-    console.log("USEER");
+  LoginWithGoogle(): void{
+    console.log('USEER');
     this.authService.signInWithGoogle();
   }
 }

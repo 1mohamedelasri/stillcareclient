@@ -12,23 +12,19 @@ export class DirectionGuard implements CanActivate {
 
   // tslint:disable-next-line:typedef
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    /*if (route.data.roles && route.data.roles.indexOf(this.authService.currentUserRole) === -1) {
-      // role not authorised so redirect to home page
-      this.router.navigate(['/personnel-login']);
-      return false;
-    }*/
-
-    const role = this.authService.currentUserRole();
-    if (role) {
-      if (role === Role.Contact) {
-        this.router.navigate(['contact']);
-        return false;
+    this.authService.currentRoleObs.subscribe( role => {
+        if (role) {
+          if (role === Role.Contact) {
+            this.router.navigate(['contact']);
+            return false;
+          }
+          if (role === Role.Personnel) {
+            this.router.navigate(['personnel']);
+            return false;
+          }
+        }
       }
-      if (role === Role.Personnel) {
-        this.router.navigate(['personnel']);
-        return false;
-      }
-      return true;
-    }
+    );
+    return true;
   }
 }

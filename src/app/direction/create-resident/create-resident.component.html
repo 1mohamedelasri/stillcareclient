@@ -1,4 +1,4 @@
-<form class="myForm" (submit)="ajouterResident(nom.value, prenom.value,dateNaissance.value)">
+<form *ngIf="auth.currentRoleObs |  async" class="myForm" (submit)="ajouterResident(nom.value, prenom.value,dateNaissance.value)">
   <h1>Ajouter un résident</h1>
   <label>Nom :</label>
   <input matInput class="myInput" #nom>
@@ -15,7 +15,7 @@
   <label>Statut :</label> <br>
   <mat-select class = "myInput" [formControl]="statuts" [(value)]="selectedStatut">
     <mat-option selected disabled value="0">Statut</mat-option>
-    <mat-option *ngFor="let statut of statutList" [value]="statut">{{statut}}</mat-option>
+    <mat-option *ngFor="let statut of personnelService.getPersonnels(auth.getUserPesronnel()) " [value]="statut">{{statut}}</mat-option>
   </mat-select>
 
   <br><br><br>

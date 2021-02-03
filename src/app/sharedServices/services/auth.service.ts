@@ -98,6 +98,17 @@ export class AuthService {
     return this.currentUser.value;
   }
 
+  getUserContact(): any{
+    if (this.currentRole.value === Role.Contact) { return this.currentUser.value; }
+    return null;
+  }
+
+  getUserPesronnel(): any{
+    if (this.currentRole.value === Role.Direction || this.currentRole.value === Role.Personnel)
+    { return this.currentUser.value; }
+    return null;
+  }
+
   getFirebaseUser(): (IFirebaseAccount){
     return this.currentFirebaseAccount.value;
   }
@@ -168,8 +179,9 @@ export class AuthService {
       });
   }
 
-  SignInWithAccount(username: string, password: string): void {
-    this.accountService.authenticatePersonnel({mail: username, password  }).then( (e: IPersonnel) => {
+  SignInWithAccount(username: string, password: string, form): void {
+    if (!form.valid) { this.toastrService.warning('username et password sont obligatoire');  return; }
+    this.accountService.authenticatePersonnel({mail: username.trim(), password : password.trim()  }).then( (e: IPersonnel) => {
       this.isLogged.next(true);
       this.currentUser.next(e);
 
