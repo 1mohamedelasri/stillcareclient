@@ -1,0 +1,24 @@
+<input type="radio" id="radio1" name="radios" value="all" [checked]="isPersonnel" (change)="switchPersonnel(true)">
+<label for="radio1">personnel</label>
+<input type="radio" id="radio2" name="radios" value="all" [checked]="!isPersonnel" (change)="switchPersonnel(false)" >
+<label for="radio2">resident</label>
+<br>
+
+<mat-form-field appearance="fill" *ngIf="!isPersonnel">
+  <mat-label>choix resident</mat-label>
+  <mat-select >
+    <mat-option *ngFor="let resident of residents |async"   [value]="resident.idResident" (click)="putResidentToCalendar(resident.idResident)" >
+      {{resident.nom}} {{resident.prenom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill" *ngIf="isPersonnel">
+  <mat-label>choix Personnel</mat-label>
+  <mat-select >
+    <mat-option *ngFor="let personnel of personnels |async"  [value]="personnel.idPersonnel" (click)="putPersonnelToCalendar(personnel.idPersonnel)" >
+      {{personnel.nom}} {{personnel.prenom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<ejs-schedule #scheduleObj locale='fr' [firstDayOfWeek]= 1 [eventSettings]="this.eventObject" (actionComplete)="test($event)" (eventRendered)="oneventRendered($event)" ></ejs-schedule>

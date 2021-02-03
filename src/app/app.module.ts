@@ -107,6 +107,7 @@ import { TableResidentsComponent } from './common/components/table-residents/tab
 import { TableResidentsItemComponent } from './common/components/table-residents/table-residents-item/table-residents-item.component';
 import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
 import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
+import { AgendaPersonnelsComponent } from './common/components/agenda-personnels/agenda-personnels.component';
 
 
 @NgModule({
@@ -208,7 +209,8 @@ import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-a
     ChangementStatutResidentComponent, SharewithpeopleComponent,
     AgendaComponent,
     UnitAddResidentComponent,
-    UnitAddPersonnelComponent
+    UnitAddPersonnelComponent,
+    AgendaPersonnelsComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, {
     provide: MatDialogRef,
