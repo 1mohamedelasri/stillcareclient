@@ -1,5 +1,5 @@
 export interface IPersonnel{
-   idPersonnel: number ;
+   idPersonnel?: number ;
    mail: string;
    fonction: string;
    ntel: string;
@@ -7,6 +7,5 @@ export interface IPersonnel{
    login: string;
    password: string;
    nom: string;
-   personnel: string;
    prenom: string;
 }

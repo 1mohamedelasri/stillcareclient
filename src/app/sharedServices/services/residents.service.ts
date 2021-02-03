@@ -55,7 +55,7 @@ export class ResidentService {
     params = params.append('page', String(page));
     params = params.append('limit', String(size));
 
-    return this.http.get(`${config.endpoint}/residents`, {params}).pipe(
+    return this.http.get(`${config.endpoint}/residents/pages`, {params}).pipe(
       map((userData: IResidentResult) => userData),
       catchError(err => throwError(err))
     );

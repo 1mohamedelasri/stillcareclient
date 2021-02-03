@@ -1,4 +1,5 @@
-<form class="myForm" (submit)="ajouterPersonnel(nom.value, prenom.value,mail.value, nTel.value)">
+<form class="myForm"
+      (submit)="ajouterPersonnel(nom.value, prenom.value,mail.value, nTel.value,login.value,password.value )">
   <h1>Ajouter un personnel</h1>
   <label>Nom :</label>
   <input matInput class="myInput" #nom>
@@ -21,6 +22,14 @@
     <mat-option selected disabled >Fonction</mat-option>
     <mat-option *ngFor="let fonction of fonctionList" [value]="fonction">{{fonction}}</mat-option>
   </mat-select>
+
+  <label>Username :</label>
+  <input type="text" matInput class="myInput" #login>
+  <br><br>
+
+  <label>Password :</label>
+  <input type="password" matInput class="myInput" #password>
+  <br><br>
 
   <br><br><br>
   <button type="submit" class="btn-primary">Ajouter un personnel</button>

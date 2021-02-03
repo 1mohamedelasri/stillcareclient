@@ -96,20 +96,19 @@ import { PlanningCreneauxComponent } from './personnel/planning-creneaux/plannin
 import { ChangementStatutResidentComponent } from './personnel/changement-statut-resident/changement-statut-resident.component';
 import {MatIconModule} from '@angular/material/icon';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
-import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
 import { TableResidentsComponent } from './common/components/table-residents/table-residents.component';
 import { TableResidentsItemComponent } from './common/components/table-residents/table-residents-item/table-residents-item.component';
 import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
 import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
 import {NgProgress, NgProgressModule} from 'ngx-progressbar';
 import {LoggerConfig, LoggerModule, NGXLogger, NgxLoggerLevel} from 'ngx-logger';
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatTableModule} from "@angular/material/table";
-import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {MatSelectModule} from "@angular/material/select";
-import {MatInputModule} from "@angular/material/input";
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -211,7 +210,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     DeclarerResidentsComponent,
     DeclarerCreneauxComponent,
     PlanningCreneauxComponent,
-    ChangementStatutResidentComponent, SharewithpeopleComponent,
+    ChangementStatutResidentComponent,
     AgendaComponent,
     UnitAddResidentComponent,
     UnitAddPersonnelComponent

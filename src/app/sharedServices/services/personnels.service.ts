@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {config} from '../../../environments/config';
-import {catchError} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {IPersonnel} from '../models/Personnel';
 import {IContact} from '../models/Contact';
 import {IResident, IResidentItem} from '../models/Resident';
@@ -34,14 +34,6 @@ export class PersonnelService {
     });
   }
 
-  async saveResident(resident: IResident): Promise<IResident>{
-    return new Promise<IResident>((resolve, reject) => {
-      this.http.post<IResident>(`${config.endpoint}/contacts`, {resident}).subscribe(res => {
-        resolve(res);
-      }, err => reject(err));
-    });
-  }
-
   async findPersonnelByUniteAndEhpad(idEhpad: number, idUnite: number, ): Promise<IPersonnel[]> {
     return new Promise<IPersonnel[]>((resolve, reject) => {
       this.http.get<IPersonnel[]>(`${config.endpoint}/personnels/ehpad/${idEhpad}/unite/${idUnite}`).subscribe(res => {
@@ -51,6 +43,14 @@ export class PersonnelService {
   }
 
 
+  async saveRPersonnel(personnel: IPersonnel): Promise<IPersonnel>{
+    console.log(personnel);
+    return new Promise<IPersonnel>((resolve, reject) => {
+      this.http.post<IPersonnel>(`${config.endpoint}/personnels`, personnel).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
 
 
 }

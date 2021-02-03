@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ResidentService} from '../../sharedServices/services/residents.service';
 import {AuthService} from '../../sharedServices/services/auth.service';
-import {IResident} from "../../sharedServices/models/Resident";
-import {PersonnelService} from "../../sharedServices/services/personnels.service";
-import {UniteService} from "../../sharedServices/services/unites.service";
-import {ToastrService} from "ngx-toastr";
-import {IUnite} from "../../sharedServices/models/Unite";
-import {IPersonnel} from "../../sharedServices/models/Personnel";
+import {IResident} from '../../sharedServices/models/Resident';
+import {PersonnelService} from '../../sharedServices/services/personnels.service';
+import {UniteService} from '../../sharedServices/services/unites.service';
+import {ToastrService} from 'ngx-toastr';
+import {IUnite} from '../../sharedServices/models/Unite';
+import {IPersonnel} from '../../sharedServices/models/Personnel';
 
 @Component({
   selector: 'app-affecter-resident',
@@ -31,8 +31,15 @@ export class AffecterResidentComponent implements OnInit {
               private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.loadResidents();
+  }
+
+  loadResidents(){
     this.residentService.getResidentsWithEPHAD(this.auth.getUserPesronnel().idEhpad).then(residents => {
-        this.residentList = residents;
+      this.residentList = residents;
+    }).catch(ex => {
+      this.toastrService.error('encountered error while fetching residents');
+      console.log(ex.error);
     });
   }
 
