@@ -16,13 +16,13 @@ export class Login{
 @Injectable({
   providedIn: 'root'
 })
-export class ResidentService {
+export class UniteService {
 
   constructor(private http: HttpClient) { }
 
-  async getResidentWithName(nom: string, prenom: string): Promise<IResident> {
-    return new Promise<IResident>((resolve, reject) => {
-      this.http.get<IResident>(`${config.endpoint}/Residents/${nom}/${prenom}`).subscribe(res => {
+  async getResidentWithName(nom: string, prenom: string): Promise<IUnit> {
+    return new Promise<IUnit>((resolve, reject) => {
+      this.http.get<IUnit>(`${config.endpoint}/Unites`).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });

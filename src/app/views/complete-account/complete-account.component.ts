@@ -29,9 +29,9 @@ export class CompleteAccountComponent implements OnInit {
   selectedResidents: IResidentItem[] = [];
 
   form = new FormGroup({
-    email: new FormControl(this.authService.getUserObject().email, [Validators.required, Validators.email]),
-    nom: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    prenom: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    email: new FormControl(this.authService?.getFirebaseUser()?.email, [Validators.required, Validators.email]),
+    nom: new FormControl(this.authService?.getUserObject()?.nom, [Validators.required, Validators.minLength(2)]),
+    prenom: new FormControl(this.authService?.getUserObject()?.prenom, [Validators.required, Validators.minLength(2)]),
     tel : new FormControl('', [Validators.required, Validators.minLength(2)])
   });
   value: any = new FormControl();
