@@ -131,6 +131,7 @@ export class AuthService {
 
   SignOut(): Promise<any> {
     return this.afAuth.signOut().then(() => {
+      this.ClearStorage();
       this.currentFirebaseAccount.next(null);
       this.isLogged.next(false);
       this.router.navigate(['main-login']);

@@ -106,8 +106,7 @@ import { TableResidentsComponent } from './common/components/table-residents/tab
 import { TableResidentsItemComponent } from './common/components/table-residents/table-residents-item/table-residents-item.component';
 import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
 import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
-import {NgProgress, NgProgressModule} from '@ngx-progressbar/core';
-
+import {NgProgress, NgProgressModule} from 'ngx-progressbar';
 
 @NgModule({
   imports: [
