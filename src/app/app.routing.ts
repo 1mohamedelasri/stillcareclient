@@ -60,8 +60,7 @@ export const routes: Routes = [
       {path: 'residents/declarer', component: DeclarerResidentsComponent},
       {path: 'residents/contacte', component: NotyetimplComponent},
       {path: 'residents/changer', component: NotyetimplComponent},
-      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent},
-      {path: 'residents/consulter', component: ConsulterResidentComponent}
+      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent}
     ]
   },
   // tslint:disable-next-line:max-line-length
@@ -71,6 +70,7 @@ export const routes: Routes = [
       {path: 'residents/créer', component: CreateResidentComponent},
       {path: 'residents/affecter', component: AffecterResidentComponent},
       {path: 'residents/changement', component: ChangerUniteComponent},
+      {path: 'residents/consulter', component: ConsulterResidentComponent},
       {path: 'unites', component: UnitListComponent},
       {path: 'unites/creer', component: UnitCreateModifyComponent},
       {path: 'unites/consulter', component: UnitComponent},

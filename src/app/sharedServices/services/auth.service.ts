@@ -8,13 +8,9 @@ import {Role} from '../models/Role';
 import {IFirebaseAccount} from '../models/FirebaseAccount';
 import {IContact} from '../models/Contact';
 import {IPersonnel} from '../models/Personnel';
-import {PopupService} from './popup.service';
 import {AccountService} from './account.service';
-import {MessageType} from '../models/MessageType';
 import auth = firebase.auth;
 import {ToastrService} from 'ngx-toastr';
-import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -36,13 +32,12 @@ export class AuthService {
   constructor(    public afAuth: AngularFireAuth, // Inject Firebase auth service
                   public router: Router,
                   public ngProgress: NgProgress,
-                  private popupService: PopupService,
                   private accountService: AccountService,
                   private toastrService: ToastrService
   ) {
-    this.RegisterLoginStatusLocally();
-    this.RegisterRoleLocally();
-    this.RegisterUserLocally();
+    this.GetLoginStatusFromStorage();
+    this.GetRoleFromStorage();
+    this.GetUserFromStorage();
 
     this.afAuth.user.subscribe(async (user) => {
 
@@ -52,49 +47,69 @@ export class AuthService {
         this.currentRole.next(Role.Contact);
       }
     });
-    this.isLoggedInObs.subscribe(isLogged => localStorage?.setItem('isLogged', JSON.stringify(isLogged)));
-    this.currentRoleObs.subscribe(currentRole => localStorage?.setItem('currentRole', JSON.stringify(currentRole)));
-    this.currentRoleObs.subscribe(e => {
-      console.log('CURRENT ROLE');
-      console.log(e);
+
+    this.isLoggedInObs.subscribe(isLogged => {
+      if (isLogged) {
+        localStorage?.setItem('isLogged', JSON.stringify(isLogged)),
+        console.log(`=========> isLogged [ ${isLogged}]`);
+      }
     });
-    this.currentUserObs.subscribe(currentUser => localStorage?.setItem('currentRole', JSON.stringify(currentUser)));
+    this.currentRoleObs.subscribe(currentRole => {
+      if (currentRole) {
+        localStorage?.setItem('currentRole', JSON.stringify(currentRole));
+        console.log(`=========> CURRENT ROLE [ ${ currentRole }]`);
+      }
+    });
+    this.currentUserObs.subscribe(currentUser => {
+      if (currentUser) {
+        localStorage?.setItem('currentUser', JSON.stringify(currentUser));
+        console.log(`=========> current User [ ${currentUser}]`);
+      }
+    });
 
   }
 
-  RegisterLoginStatusLocally(): void{
+
+  GetLoginStatusFromStorage(): void{
     const log = localStorage.getItem('isLogged');
     if (log) {
       const isLog = JSON.parse(log);
-      this.isLogged.next(isLog);
+      const res = isLog ? this.isLogged.next(isLog) : null;
     }
   }
 
-  RegisterRoleLocally(): void{
+  GetRoleFromStorage(): void{
     const log = localStorage.getItem('currentRole');
     if (log) {
-      const currentRole = JSON.parse(log);
-      this.currentRole.next(currentRole);
+      const role = JSON.parse(log);
+      const res = role ? this.currentRole.next(role) : null;
     }
   }
 
-  RegisterUserLocally(): void{
-    const log = localStorage.getItem('user');
+  GetUserFromStorage(): void{
+    const log = localStorage.getItem('currentUser');
     if (log) {
       const user = JSON.parse(log);
-      this.currentRole.next(user);
+      const res = user ? this.currentUser.next(user) : null;
     }
   }
-  getUserObject(): IFirebaseAccount{
-    return this.currentFirebaseAccount?.value;
+
+  getUserObject(): (IPersonnel| IContact){
+    return this.currentUser.value;
+  }
+
+  getFirebaseUser(): (IFirebaseAccount){
+    return this.currentFirebaseAccount.value;
   }
 
   isAuthenticated(): boolean {
-    return this.isLogged?.getValue();
+    this.GetUserFromStorage();
+    return this.isLogged.getValue();
   }
 
   currentUserRole(): Role {
-    return this.currentRole?.getValue();
+    this.GetRoleFromStorage();
+    return this.currentRole.getValue();
   }
 
   SignOut(): Promise<any> {
@@ -102,6 +117,8 @@ export class AuthService {
       this.currentFirebaseAccount.next(null);
       this.isLogged.next(false);
       localStorage.removeItem('isLogged');
+      localStorage.removeItem('currentRole');
+      localStorage.removeItem('currentUser');
       this.router.navigate(['main-login']);
     });
   }
@@ -156,7 +173,7 @@ export class AuthService {
       this.isLogged.next(true);
       this.currentUser.next(e);
 
-      if (e.fonction === 'directeur'){
+      if (e.fonction.trim() === 'directeur'){
         this.currentRole.next(Role.Direction);
         this.router.navigate(['direction']);
 
