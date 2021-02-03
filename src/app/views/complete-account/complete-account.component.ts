@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {AccountService} from '../../sharedServices/services/account.service';
 import {IContact} from '../../sharedServices/models/Contact';
 import {AuthService} from '../../sharedServices/services/auth.service';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-complete-account',
   templateUrl: './complete-account.component.html',
@@ -21,6 +22,7 @@ export class CompleteAccountComponent implements OnInit {
               private toastrService: ToastrService,
               private accountService: AccountService,
               private authService: AuthService,
+              private route : Router
               ) {
   }
 
@@ -87,6 +89,7 @@ export class CompleteAccountComponent implements OnInit {
         const contact: IContact = {idContact: 0, nom, prenom, numtel: tel, firebasetoken: firebaseUser.firebasetoken, statutcompte : 'En cours', mail: firebaseUser.mail};
         this.accountService.saveContactWithResident(contact, this.residentList).then(e => {
           this.toastrService.success('Information bien enregistrés');
+          this.route.navigate(['contact']);
         }).catch(ex => {
           console.log(ex.error);
           this.toastrService.error('Echec d\'enregistrement des informations pour ce compte ', 'Informations compte');

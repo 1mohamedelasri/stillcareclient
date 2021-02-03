@@ -78,14 +78,13 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
 import {environment} from '../environments/environment';
-import {NgProgress, NgProgressModule} from 'ngx-progressbar';
 import {Toast, ToastrModule, ToastrService} from 'ngx-toastr';
 import {AuthService} from './sharedServices/services/auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {AccountService} from "./sharedServices/services/account.service";
+import {AccountService} from './sharedServices/services/account.service';
 import { CompleteAccountComponent } from './views/complete-account/complete-account.component';
-import {NgSelectModule} from "@ng-select/ng-select";
+import {NgSelectModule} from '@ng-select/ng-select';
 import { DialogOverviewComponent } from './views/complete-account/dialog-overview/dialog-overview.component';
 import { AjouterPersonnelComponent } from './direction/ajouter-personnel/ajouter-personnel.component';
 import { ModifierPersonnelComponent } from './direction/modifier-personnel/modifier-personnel.component';
@@ -99,14 +98,15 @@ import { DeclarerResidentsComponent } from './personnel/declarer-residents/decla
 import { DeclarerCreneauxComponent } from './personnel/declarer-creneaux/declarer-creneaux.component';
 import { PlanningCreneauxComponent } from './personnel/planning-creneaux/planning-creneaux.component';
 import { ChangementStatutResidentComponent } from './personnel/changement-statut-resident/changement-statut-resident.component';
-import {MatIconModule} from "@angular/material/icon";
-import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
-import {SharewithpeopleComponent} from "./views/sharewithpeople/sharewithpeople.component";
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatIconModule} from '@angular/material/icon';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { TableResidentsComponent } from './common/components/table-residents/table-residents.component';
 import { TableResidentsItemComponent } from './common/components/table-residents/table-residents-item/table-residents-item.component';
 import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
 import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
+import {NgProgress, NgProgressModule} from '@ngx-progressbar/core';
 
 
 @NgModule({

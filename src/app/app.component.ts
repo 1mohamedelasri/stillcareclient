@@ -7,7 +7,7 @@ import { freeSet } from '@coreui/icons';
 @Component({
   // tslint:disable-next-line
   selector: 'body',
-  template: '<router-outlet></router-outlet>'
+  template: '<ng-progress></ng-progress> <router-outlet></router-outlet>'
 })
 export class AppComponent {
   constructor() {

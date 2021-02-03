@@ -52,9 +52,7 @@ export const routes: Routes = [
   {path: 'complete-account', component: CompleteAccountComponent, data: {title: 'Register Page'}},
   {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard, DirectionGuard]},
   {path: 'main-login', component: MainLoginComponent},
-  {path: 'personnel', component: DefaultLayoutComponent,
-    data: {title: 'Home', role: Role.Personnel},
-    canActivate: [AuthGuard, PersonnelGuard],
+  {path: 'personnel', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard, PersonnelGuard],
     children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/declarer', component: DeclarerResidentsComponent},
