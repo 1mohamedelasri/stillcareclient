@@ -1,0 +1,39 @@
+<div class="container">
+    <form class="myForm" (submit)="modifiercontact(mail.value, nTel.value)">
+        <h1>{{contact.nom + " " + contact.prenom}}</h1>
+        <br>
+        <b>{{contact.statut}}</b>
+
+        <div class="form-group">
+            <label for="last_name">
+                <h5>Nom</h5>
+            </label>
+            <input type="text" class="form-control" [value]="contact.nom" placeholder="last name" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="first_name">
+                <h5>Prenom</h5>
+            </label>
+            <input type="text" class="form-control" [value]="contact.prenom" placeholder="Prenom" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">
+                <h5>Numéro de téléphone</h5>
+            </label>
+            <input type="mobile" class="form-control" #nTel [value]="contact.ntel" placeholder="Numéro de téléphone">
+        </div>
+
+        <div class="form-group">
+            <label for="email">
+                <h5>Email</h5>
+            </label>
+            <input type="email" class="form-control" #mail [value]="contact.mail" placeholder="your@email.com">
+        </div>
+
+        <br>
+        <button type="submit" class="btn-primary">Modifier mes données</button>
+
+    </form>
+</div>

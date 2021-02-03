@@ -1,0 +1,39 @@
+h1{
+  margin-top: 20px;
+}
+
+.myForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group{
+    min-width: 300px;
+}
+
+input, .my-input{
+    border-radius: 20px;
+    border:1px solid rgb(200, 200, 200);
+    background: #f4f2f3;
+    padding: 15px;
+    height: 40px;
+  }
+
+  label{
+    font-size: larger;
+    font-weight: bold;
+    padding-right: 5px;
+    margin: 0px 15px;
+  }
+
+  button {
+    border-radius: 20px;
+    border: 0px solid #555555;
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px ;
+    margin-bottom: 20px;
+  }

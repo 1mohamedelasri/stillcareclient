@@ -1,0 +1,58 @@
+<div class="container">
+    <form class="myForm" (submit)="modifierPersonnel(mail.value, nTel.value)">
+        <h1>{{personnel.nom + " " + personnel.prenom}}</h1>
+<br>
+        <div class=" EHPAD">
+            <div><b>{{personnel.fonction + " de l'EHPAD "+ personnel.idEhpad}}</b></div>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">
+                <h5>Nom</h5>
+            </label>
+            <input type="text" class="form-control" [value]="personnel.nom" placeholder="last name" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="first_name">
+                <h5>Prenom</h5>
+            </label>
+            <input type="text" class="form-control" [value]="personnel.prenom" placeholder="Prenom" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="login">
+                <h5>Login</h5>
+            </label>
+            <input type="text" class="form-control" [value]="personnel.login" placeholder="Login" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">
+                <h5>Numéro de téléphone</h5>
+            </label>
+            <input type="mobile" class="form-control" #nTel [value]="personnel.ntel" placeholder="Numéro de téléphone">
+        </div>
+
+        <div class="form-group">
+            <label for="email">
+                <h5>Email</h5>
+            </label>
+            <input type="email" class="form-control" #mail [value]="personnel.mail" placeholder="your@email.com">
+        </div>
+
+        <div class="form-group">
+            <label for="email">
+                <h5>Fonction</h5>
+            </label>
+            <mat-select class="my-input" [formControl]="fonctions" [value]="selectedFonction">
+                <mat-option selected disabled value="0">{{Fonction}}</mat-option>
+                <mat-option *ngFor="let fonction of fonctionList" [value]="fonction">{{fonction}}</mat-option>
+            </mat-select>
+        </div>
+
+        <br>
+        <button type="submit" class="btn-primary">Modifier mes données</button>
+
+    </form>
+</div>

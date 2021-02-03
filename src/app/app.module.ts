@@ -49,7 +49,7 @@ import { SettingItemComponent } from './common/components/setting-list/setting-i
 import { TableComponent } from './common/components/table/table.component';
 import { TableItemComponent } from './common/components/table/table-item/table-item.component';
 import { MatTableModule } from '@angular/material/table';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './views/dashboard/dashboard-routing.module';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
@@ -66,31 +66,33 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { UnitCreateComponent } from './direction/unit-create/unit-create.component';
 import { UnitComponent } from './direction/unit/unit.component';
 import { CreateResidentComponent } from './direction/create-resident/create-resident.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
 import { ConsulterResidentComponent } from './direction/consulter-resident/consulter-resident.component';
-import {ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './common/components/agenda/agenda.component';
 import { AjouterPersonnelComponent } from './direction/ajouter-personnel/ajouter-personnel.component';
-import { ModifierPersonnelComponent } from './direction/modifier-personnel/modifier-personnel.component';
 import { ConsulterListePersonnelComponent } from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
 import { ChangerUniteComponent } from './direction/changer-unite/changer-unite.component';
 import { ConsulterCreneauxComponent } from './contact/consulter-creneaux/consulter-creneaux.component';
 import { DeclarerAbsenceComponent } from './contact/declarer-absence/declarer-absence.component';
 import { AnnulerRdvComponent } from './contact/annuler-rdv/annuler-rdv.component';
-import { ModifierProfileComponent } from './personnel/modifier-profile/modifier-profile.component';
 import { DeclarerResidentsComponent } from './personnel/declarer-residents/declarer-residents.component';
 import { DeclarerCreneauxComponent } from './personnel/declarer-creneaux/declarer-creneaux.component';
 import { PlanningCreneauxComponent } from './personnel/planning-creneaux/planning-creneaux.component';
 import { ChangementStatutResidentComponent } from './personnel/changement-statut-resident/changement-statut-resident.component';
 import { ReserverRdvComponent } from './contact/reserver-rdv/reserver-rdv.component';
 import { ValiderContactComponent } from './personnel/valider-contact/valider-contact.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CreneauLibreComponent } from './personnel/creneau-libre/creneau-libre.component';
 import { AnnuleRendezVousComponent } from './personnel/annule-rendez-vous/annule-rendez-vous.component';
 import { ValiderReservationComponent } from './personnel/valider-réservation/valider-reservation.component';
+import { ProfileInfoDirectionComponent } from './direction/profile-info-direct/profile-info-direct.component';
+import { ProfileInfoContactComponent } from './contact/profile-info-contact/profile-info-contact.component';
+import { ProfileInfoPersonnelComponent } from './personnel/profile-info-personnel/profile-info-personnel.component';
+import { ModifierPersonnelComponent } from './direction/modifier-personnel/modifier-personnel.component';
 
 @NgModule({
   imports: [
@@ -162,7 +164,9 @@ import { ValiderReservationComponent } from './personnel/valider-réservation/va
     ConsulterCreneauxComponent,
     DeclarerAbsenceComponent,
     AnnulerRdvComponent,
-    ModifierProfileComponent,
+    ProfileInfoDirectionComponent,
+    ProfileInfoContactComponent,
+    ProfileInfoPersonnelComponent,
     DeclarerResidentsComponent,
     DeclarerCreneauxComponent,
     PlanningCreneauxComponent,
