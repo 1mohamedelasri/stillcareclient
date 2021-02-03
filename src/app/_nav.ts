@@ -30,7 +30,7 @@ export const PersonnelNavItems: INavData[] = [
       {name: 'Annuler un rendez-vous', url: '/personnel/rendezvous/annuler', icon: 'cil-folder-open'},
       {name: 'Reporter un rendez-vous', url: '/personnel/rendezvous/reporter', icon: 'cil-folder-open'}
     ]
-  }S
+  }
 ];
 
 export const DirectionNavItems: INavData[] = [
