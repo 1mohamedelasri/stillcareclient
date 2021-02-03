@@ -44,7 +44,25 @@ export class AuthService {
       if (user) {
         this.currentFirebaseAccount.next(user);
         this.isLogged.next(true);
-        this.currentRole.next(Role.Contact);
+        const [nom, prenom] = user.displayName.split(' ');
+        this.accountService.getContactWithToken(user.uid).then(res => {
+          this.currentUser.next(res);
+          this.currentRole.next(Role.Contact);
+          this.isLogged.next(true);
+          this.router.navigate(['/contact']);
+        }).catch((exp) => {
+          if (exp.status === 404) {
+            this.currentUser.next({
+              firebasetoken: user.uid,
+              photo: user.photoURL,
+              mail: user.email,
+              nom,
+              prenom
+            });
+            this.toastrService.info('Vous devez completer votre profile');
+            this.router.navigate(['/complete-account']);
+          }
+        });
       }
     });
 
@@ -159,7 +177,7 @@ export class AuthService {
     return this.afAuth.signInWithPopup(provider)
       .then(async (result) => {
         const user = result.user;
-        const [nom, prenom] = user.displayName.split('');
+        const [nom, prenom] = user.displayName.split(' ');
         this.accountService.getContactWithToken(user.uid).then(res => {
           this.currentUser.next(res);
           this.currentRole.next(Role.Contact);

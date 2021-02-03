@@ -20,7 +20,7 @@ export class ResidentService {
 
   async getResidentWithName(nom: string, prenom: string): Promise<IResident> {
     return new Promise<IResident>((resolve, reject) => {
-      this.http.get<IResident>(`${config.endpoint}/Residents/${nom}/${prenom}`).subscribe(res => {
+      this.http.get<IResident>(`${config.endpoint}/residents/${nom}/${prenom}`).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });

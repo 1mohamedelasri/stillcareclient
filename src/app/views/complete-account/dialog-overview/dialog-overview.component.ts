@@ -40,7 +40,7 @@ export class DialogOverviewComponent implements OnInit {
     if ( this.childFrom.invalid){
       this.toastrService.warning('Nom et prenom sont obligatoire', 'required fields');
     }else{
-      this.residentService.getResidentWithName(residnet.nom, residnet.prenom).then(res => {
+      this.residentService.getResidentWithName(residnet.nom.trim(), residnet.prenom.trim()).then(res => {
         const resident: IResidentItem = {nom: res.nom, id: res.idResident, prenom: res.prenom, lienFamille: residnet.lienFamille };
         this.dialogRef.close(resident);
       }).catch(ex => {

@@ -50,7 +50,7 @@ export const routes: Routes = [
   {path: 'personnel-login', component: PersonnelLoginComponent, data: {title: 'Login Page'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
   {path: 'complete-account', component: CompleteAccountComponent, data: {title: 'Register Page'}},
-  {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard, RedirectGuardGuard]},
+  {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard]},
   {path: 'main-login', component: MainLoginComponent},
   {path: 'personnel', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard, PersonnelGuard],
     children: [

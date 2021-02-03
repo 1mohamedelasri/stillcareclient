@@ -107,6 +107,7 @@ import { TableResidentsItemComponent } from './common/components/table-residents
 import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
 import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
 import {NgProgress, NgProgressModule} from 'ngx-progressbar';
+import {LoggerConfig, LoggerModule, NGXLogger, NgxLoggerLevel} from 'ngx-logger';
 
 @NgModule({
   imports: [
@@ -156,7 +157,8 @@ import {NgProgress, NgProgressModule} from 'ngx-progressbar';
     HttpClientModule,
     MatIconModule,
     NgMultiSelectDropDownModule.forRoot(),
-    MatCheckboxModule
+    MatCheckboxModule,
+    LoggerModule
   ],
   declarations: [
     AppComponent,
@@ -209,7 +211,7 @@ import {NgProgress, NgProgressModule} from 'ngx-progressbar';
     UnitAddResidentComponent,
     UnitAddPersonnelComponent
   ],
-  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, {
+  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, NGXLogger, LoggerConfig,  {
     provide: MatDialogRef,
     useValue: {}
   }],
