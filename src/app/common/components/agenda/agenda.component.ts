@@ -116,8 +116,6 @@ export class AgendaComponent implements OnInit {
         }
       );
     });
-
-
   }
   oneventRendered(args: EventRenderedArgs): void {
     let categoryColor: string = args.data.CategoryColor as string;

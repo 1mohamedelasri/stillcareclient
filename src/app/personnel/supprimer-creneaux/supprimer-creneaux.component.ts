@@ -1,10 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {EventRenderedArgs, ScheduleComponent, PopupOpenEventArgs } from '@syncfusion/ej2-angular-schedule';
+import {EventRenderedArgs, PopupOpenEventArgs, ScheduleComponent} from '@syncfusion/ej2-angular-schedule';
+import {HttpClient} from '@angular/common/http';
 import {RendezVous} from '../../common/interfaces/RendezVous';
 import {Creneau} from '../../common/interfaces/Creneau';
 import {L10n, loadCldr} from '@syncfusion/ej2-base';
 import * as EJ2_LOCALE from '../../common/components/agenda/Translate/fr.json';
-import {HttpClient} from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import {NotificationService} from '../../sharedServices/services/notification.service';
 
 declare var require: any;
 loadCldr(
@@ -18,90 +20,73 @@ L10n.load({ fr: EJ2_LOCALE.fr });
 const endpoint = 'http://localhost:8085/';
 
 @Component({
-  selector: 'app-declarer-creneaux',
-  templateUrl: './declarer-creneaux.component.html',
-  styleUrls: ['./declarer-creneaux.component.scss']
+  selector: 'app-supprimer-creneaux',
+  templateUrl: './supprimer-creneaux.component.html',
+  styleUrls: ['./supprimer-creneaux.component.scss']
 })
-export class DeclarerCreneauxComponent implements OnInit {
+export class SupprimerCreneauxComponent implements OnInit {
+
   @ViewChild('scheduleObj')
   public scheduleObj: ScheduleComponent;
 
   eventObject: any;
   toRegister: Array<any> = new Array<any>();
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private notifyService: NotificationService) { }
   ngOnInit(): void {this.putPersonnelToCalendar(6);
   }
   // tslint:disable-next-line:typedef
   test(e: any) {
-    if (e.requestType === 'eventChanged') {
-      console.log('changed id: ' + e.changedRecords[0].Id + ' value:');
-      console.log(e.changedRecords);
-      console.log(e.changedRecords[0]);
-      this.toRegister[this.toRegister.findIndex( i => i.Id === e.changedRecords[0].Id)] = e.changedRecords[0];
 
-    }
-    if (e.requestType === 'eventCreated') {
-      console.log(' new value: ');
-      console.log(e.addedRecords);
-      this.toRegister.push(e.addedRecords[0]);
-    }
     if (e.requestType === 'eventRemoved') {
-      console.log(' deleted id: ' + e.deletedRecords[0].Id);
-      console.log(e.deletedRecords);
-      this.toRegister = this.toRegister.filter( i => i.Id !== e.deletedRecords[0].Id);
+      this.eventObject.dataSource = this.eventObject.dataSource.filter( i => i.id !== e.deletedRecords[0].id);
+      if (e.deletedRecords[0].Rdv){
+        console.log(e.deletedRecords[0].Rdv);
+      }else{
+        console.log(e.deletedRecords[0].cr);
+      }
     }
-    console.log(this.toRegister);
+    this.eventObject = {
+      dataSource: this.eventObject.dataSource,
+    };
   }
   putPersonnelToCalendar(e: any): void{
-    console.log(e);
+    let i = 0;
     const data: Array<Object>= new Array<Object>();
     this.http.get<Array<RendezVous>>(endpoint + 'Rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
-          id: rdv.idRdv,
+          id: i ,
+          Rdv: rdv,
           Subject: 'Rendez vous ' + rdv?.etat ,
           StartTime: rdv.datedebutRdv ? rdv.datedebutRdv : rdv.dateCreneau,
           // tslint:disable-next-line:max-line-length
           EndTime: rdv.datefinRdv ? rdv.datefinRdv : rdv.datedebutRdv ? new Date(new Date(rdv.datedebutRdv).getTime() + (30 * 60000)) : new Date(new Date(rdv.dateCreneau).getTime() + (30 * 60000)),
           CategoryColor: '#ffaa00',
-          IsReadonly: true,
         });
+        i++;
       });
       this.http.get<Array<Creneau>>(endpoint + 'creneaux/personnel/sansRdv/' + e ).subscribe(
         val => {
           val.forEach(
             creneau => {
               data.push({
+                id: i,
+                cr: creneau,
                 Subject: 'Creneau sans RDV ' + creneau?.etat  ,
                 StartTime: creneau.datedebut,
                 // tslint:disable-next-line:max-line-length
                 EndTime: new Date(new Date(creneau.datedebut).getTime() + (30 * 60000)) ,
                 CategoryColor: '#20a8d8',
-                IsReadonly: true,
               });
+              i++;
             }
           );
           const d = new Date('2020-01');
           d.setMonth(new Date().getMonth() + 1);
           d.setFullYear(new Date().getFullYear());
           d.setHours(d.getHours() - 1);
-          data.push({
-            Subject: 'non autorisé'  ,
-            StartTime: new Date(0),
-            // tslint:disable-next-line:max-line-length
-            EndTime: d ,
-            IsBlock: true,
-          });
-          const c = new Date(d);
-          c.setMonth(c.getMonth() + 1);
-          data.push({
-            Subject: 'non autorisé'  ,
-            StartTime: c,
-            EndTime: new Date('2220-01') ,
-            IsBlock: true,
-          });
           this.eventObject = {
-            dataSource: data
+            dataSource: data,
           };
         }
       );
@@ -119,9 +104,10 @@ export class DeclarerCreneauxComponent implements OnInit {
     }
   }
   onPopupOpen(args: PopupOpenEventArgs): void {
-    console.log(args.type);
-   /* if ( args.data.hasOwnProperty('Subject') ? false : true)  {
+    if (!((args.type === 'QuickInfo' && args.data.hasOwnProperty('Subject')) || args.type === 'DeleteAlert' )) {
       args.cancel = true;
-    }*/
+      this.notifyService.showWarning('cette action n\'est pas autorisé dans cette page' , 'Attention' );
+    }
   }
+
 }

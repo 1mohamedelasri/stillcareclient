@@ -42,6 +42,7 @@ import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-pr
 import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
 import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
+import {SupprimerCreneauxComponent} from './personnel/supprimer-creneaux/supprimer-creneaux.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -60,7 +61,8 @@ export const routes: Routes = [
       {path: 'residents/declarer', component: DeclarerResidentsComponent},
       {path: 'residents/contacte', component: NotyetimplComponent},
       {path: 'residents/changer', component: NotyetimplComponent},
-      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent}
+      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent},
+      {path: 'calendrier/supprimer', component: SupprimerCreneauxComponent}
     ]
   },
   // tslint:disable-next-line:max-line-length
