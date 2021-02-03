@@ -1,20 +1,27 @@
 <form class="myForm">
   <h1>Affecter un résident </h1>
   <label>Choisir un résident :</label>
-  <mat-select [formControl]="residents" class = "myInput" [(value)]="selectedResident">
-    <mat-option *ngFor="let resident of residentList" [value]="resident" >{{resident}} </mat-option>
+  <mat-select [formControl]="residents" class = "myInput" [(value)]="selectedResident" (selectionChange)="onResidentChange()">
+    <mat-option *ngFor="let resident of residentList" [value]="resident" >{{resident.nom + '  ' + resident.prenom +'     ,  née le ' }}{{ resident.datenaissance | date}} </mat-option>
   </mat-select>
   <br><br>
-  <label>Choisir une unité :</label>
-  <mat-select [formControl]="unites" class = "myInput" [(value)]="selectedUnite">
-    <mat-option *ngFor="let unite of uniteList" [value]="unite" >{{unite}}</mat-option>
-  </mat-select>
+  <div *ngIf="selectedResident">
+    <label>Choisir une unité :</label>
+    <mat-select [formControl]="unites" class = "myInput"  [(value)]="selectedUnite" (selectionChange)="onUniteChange()" >
+      <mat-option selected *ngIf="uniteList.length ===0"> aucunes unités pour votre EHPAD : {{this.auth.getUserPesronnel().idEhpad}}</mat-option>
+      <mat-option *ngFor="let unite of uniteList" [value]="unite" >{{unite.nom + '    ,  ' + unite.etat }}</mat-option>
+    </mat-select>
+  </div>
   <br><br>
+  <div *ngIf="selectedUnite">
+
   <label>Choisir un responsable :</label>
   <mat-select [formControl]="unites" class = "myInput" [(value)]="selectedPersonnel">
-    <mat-option *ngFor="let personnel of personnelList" [value]="personnel" >{{personnel}}</mat-option>
+    <mat-option selected *ngIf="personnelList.length ===0"> pas de personnels dans votre EHPAD : {{this.auth.getUserPesronnel().idEhpad}} à l'unité {{selectedUnite.idUnite}}</mat-option>
+    <mat-option *ngFor="let personnel of personnelList" [value]="personnel" >{{personnel.nom}}</mat-option>
   </mat-select>
   <br><br><br>
   <button (click)="affecterResident()" class="btn-primary">Affecter résident à l'unité</button>
+  </div>
 
 </form>

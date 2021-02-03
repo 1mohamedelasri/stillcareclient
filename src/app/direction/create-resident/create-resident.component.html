@@ -19,14 +19,14 @@
     <mat-option *ngFor="let statut of statutList" [value]="statut">{{statut}}</mat-option>
   </mat-select>
 
-  <label>Statut :</label> <br>
+  <label>choisir une unité :</label> <br>
   <mat-select class = "myInput" [formControl]="statuts" [(value)]="selectedunite" (selectionChange)="onChangeItem()">
     <mat-option selected disabled value="0">Statut</mat-option>
     <mat-option *ngFor="let statut of uniteLists" [value]="statut">{{statut.nom}}</mat-option>
   </mat-select>
 
   <div *ngIf="selectedunite">
-  <label>Personnel :</label> <br>
+  <label>choisir un personnel  : </label> <br>
   <mat-select class = "myInput" [formControl]="personnels" [(value)]="selectedPersonnel">
     <mat-option  *ngFor="let pers of this.personnelList" [value]="pers">{{pers.nom}}</mat-option>
   </mat-select>

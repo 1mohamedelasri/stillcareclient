@@ -28,6 +28,15 @@ export class UniteService {
     });
   }
 
+  async findOtherUniteOfResidentByEphad(resident: number, idehpad: number): Promise<IUnite[]> {
+    return new Promise<IUnite[]>((resolve, reject) => {
+      this.http.get<IUnite[]>(`${config.endpoint}/unites/${resident}/ehpad/${idehpad}`).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+
   async saveResident(resident: IResident): Promise<IResident>{
     return new Promise<IResident>((resolve, reject) => {
       this.http.post<IResident>(`${config.endpoint}/contacts`, {resident}).subscribe(res => {

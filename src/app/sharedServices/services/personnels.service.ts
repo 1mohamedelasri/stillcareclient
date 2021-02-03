@@ -42,4 +42,15 @@ export class PersonnelService {
     });
   }
 
+  async findPersonnelByUniteAndEhpad(idEhpad: number, idUnite: number, ): Promise<IPersonnel[]> {
+    return new Promise<IPersonnel[]>((resolve, reject) => {
+      this.http.get<IPersonnel[]>(`${config.endpoint}/personnels/ehpad/${idEhpad}/unite/${idUnite}`).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+
+
+
 }
