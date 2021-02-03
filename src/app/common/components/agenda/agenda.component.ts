@@ -66,7 +66,7 @@ export class AgendaComponent implements OnInit {
   }
   putResidentToCalendar(e: any): void{
     let data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'Rendezvous/resident/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/resident/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: rdv.idRdv,
@@ -86,7 +86,7 @@ export class AgendaComponent implements OnInit {
   putPersonnelToCalendar(e: any): void{
     console.log(e);
     let data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'Rendezvous/personnel/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: rdv.idRdv,

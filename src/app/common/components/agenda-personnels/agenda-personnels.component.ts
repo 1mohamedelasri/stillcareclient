@@ -59,7 +59,7 @@ export class AgendaPersonnelsComponent implements OnInit {
   putResidentToCalendar(e: any): void{
     // tslint:disable-next-line:ban-types
     const data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'Rendezvous/resident/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/resident/' + e ).subscribe(value => {
         value.forEach(rdv => {
           data.push({
             id: rdv.idRdv,
@@ -79,7 +79,7 @@ export class AgendaPersonnelsComponent implements OnInit {
   putPersonnelToCalendar(e: any): void{
     console.log(e);
     let data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'Rendezvous/personnel/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: rdv.idRdv,

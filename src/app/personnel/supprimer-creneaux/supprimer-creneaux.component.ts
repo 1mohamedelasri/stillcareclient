@@ -52,7 +52,7 @@ export class SupprimerCreneauxComponent implements OnInit {
   putPersonnelToCalendar(e: any): void{
     let i = 0;
     const data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'Rendezvous/personnel/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: i ,

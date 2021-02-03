@@ -55,7 +55,7 @@ export class DeclarerCreneauxComponent implements OnInit {
   putPersonnelToCalendar(e: any): void{
     console.log(e);
     const data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'Rendezvous/personnel/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: rdv.idRdv,
