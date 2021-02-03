@@ -41,21 +41,21 @@ import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
 import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-profile.component';
 import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
+import {P500Component} from './views/error/500.component';
+import {RedirectGuardGuard} from './sharedServices/helpers/guard/redirect.guard';
 import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
 import {SupprimerCreneauxComponent} from './personnel/supprimer-creneaux/supprimer-creneaux.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-  {path: '404', component: SharewithpeopleComponent, data: {title: 'Page 404'}},
-  {path: '500', component: TableComponent, data: {title: 'Page 500'}},
+  {path: '404', component: P404Component, data: {title: 'Page 404'}},
+  {path: '500', component: P500Component, data: {title: 'Page 500'}},
   {path: 'personnel-login', component: PersonnelLoginComponent, data: {title: 'Login Page'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
   {path: 'complete-account', component: CompleteAccountComponent, data: {title: 'Register Page'}},
-  {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard, DirectionGuard]},
+  {path: 'dashboard', component: DefaultLayoutComponent, data: {title: 'Register Page'}, canActivate: [AuthGuard, RedirectGuardGuard]},
   {path: 'main-login', component: MainLoginComponent},
-  {path: 'personnel', component: DefaultLayoutComponent,
-    data: {title: 'Home', role: Role.Personnel},
-    canActivate: [AuthGuard, PersonnelGuard],
+  {path: 'personnel', component: DefaultLayoutComponent, data: {title: 'Home', role: Role.Personnel}, canActivate: [AuthGuard, PersonnelGuard],
     children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'residents/declarer', component: DeclarerResidentsComponent},

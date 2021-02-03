@@ -11,10 +11,8 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (!this.authService.isAuthenticated()) {
-      this.router.navigate(['main-login']);
-      return false;
-    }
+    this.authService.isLoggedInObs.subscribe(islogged => {
+    });
     return true;
   }
 }

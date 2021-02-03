@@ -1,45 +1,49 @@
+<h1 style="text-align: center;">Consulter Résidents</h1>
+<mat-form-field>
+  <mat-label>Filtrer les Residents </mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
 
-<h1>Consulter liste des résidents</h1>
-<table>
-  <tr>
-    <td>
-      <mat-form-field>
-        <mat-label>Choisir une unité :</mat-label>
-        <mat-select [formControl]="unites" multiple [(value)]="selectedUnite" >
-          <mat-option *ngFor="let unite of uniteList" [value]="unite">{{unite}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </td>
-
-    <td>
-      <button (click)="choisirUnite()" class="btn-primary" > Rechercher</button>
-    </td>
-  </tr>
-</table>
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Nom Column -->
-  <ng-container matColumnDef="nom">
-    <th mat-header-cell *matHeaderCellDef> Nom </th>
-    <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
-  </ng-container>
-
-  <!-- Prenom Column -->
-  <ng-container matColumnDef="prenom">
-    <th mat-header-cell *matHeaderCellDef> Prénom </th>
-    <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
-  </ng-container>
-
-  <!-- dateNaissance Column -->
-  <ng-container matColumnDef="dateNaissance">
-    <th mat-header-cell *matHeaderCellDef> Date de naissance </th>
-    <td mat-cell *matCellDef="let element"> {{element.dateNaissance}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<div class="example-container mat-elevation-z8">
+<div *ngIf="dataSource">
+  <mat-table [dataSource]="dataSource">
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row ; columns: displayedColumns" (click)="navigateToProfile(row.idResident)"></mat-row>
 
 
+    <ng-container matColumnDef="idResident">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>idResident</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row?.idResident}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>nom</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nom}}</mat-cell>
+    </ng-container>
 
 
+    <ng-container matColumnDef="prenom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>prenom</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row?.prenom}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="statut">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>statut</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row?.statut}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="datenaissance">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>datenaissance</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row?.datenaissance | date}}</mat-cell>
+    </ng-container>
+  </mat-table>
+
+  <mat-paginator
+    [length]="residentResult.totalElements"
+    [pageSize]="residentResult.numberOfElements"
+    [pageSizeOptions]="[5,10,25,100]"
+    (page)="pageEvent = $event; onPaginateChange($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>
+</div>

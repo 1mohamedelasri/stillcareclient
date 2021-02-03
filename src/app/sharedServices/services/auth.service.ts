@@ -44,7 +44,25 @@ export class AuthService {
       if (user) {
         this.currentFirebaseAccount.next(user);
         this.isLogged.next(true);
-        this.currentRole.next(Role.Contact);
+        const [nom, prenom] = user.displayName.split(' ');
+        this.accountService.getContactWithToken(user.uid).then(res => {
+          this.currentUser.next(res);
+          this.currentRole.next(Role.Contact);
+          this.isLogged.next(true);
+          this.router.navigate(['/contact']);
+        }).catch((exp) => {
+          if (exp.status === 404) {
+            this.currentUser.next({
+              firebasetoken: user.uid,
+              photo: user.photoURL,
+              mail: user.email,
+              nom,
+              prenom
+            });
+            this.toastrService.info('Vous devez completer votre profile');
+            this.router.navigate(['/complete-account']);
+          }
+        });
       }
     });
 
@@ -98,6 +116,17 @@ export class AuthService {
     return this.currentUser.value;
   }
 
+  getUserContact(): any{
+    if (this.currentRole.value === Role.Contact) { return this.currentUser.value; }
+    return null;
+  }
+
+  getUserPesronnel(): any{
+    if (this.currentRole.value === Role.Direction || this.currentRole.value === Role.Personnel)
+    { return this.currentUser.value; }
+    return null;
+  }
+
   getFirebaseUser(): (IFirebaseAccount){
     return this.currentFirebaseAccount.value;
   }
@@ -112,13 +141,17 @@ export class AuthService {
     return this.currentRole.getValue();
   }
 
+  ClearStorage(): void{
+    localStorage.removeItem('isLogged');
+    localStorage.removeItem('currentRole');
+    localStorage.removeItem('currentUser');
+  }
+
   SignOut(): Promise<any> {
     return this.afAuth.signOut().then(() => {
+      this.ClearStorage();
       this.currentFirebaseAccount.next(null);
       this.isLogged.next(false);
-      localStorage.removeItem('isLogged');
-      localStorage.removeItem('currentRole');
-      localStorage.removeItem('currentUser');
       this.router.navigate(['main-login']);
     });
   }
@@ -144,7 +177,7 @@ export class AuthService {
     return this.afAuth.signInWithPopup(provider)
       .then(async (result) => {
         const user = result.user;
-        const [nom, prenom] = user.displayName.split('');
+        const [nom, prenom] = user.displayName.split(' ');
         this.accountService.getContactWithToken(user.uid).then(res => {
           this.currentUser.next(res);
           this.currentRole.next(Role.Contact);
@@ -168,8 +201,9 @@ export class AuthService {
       });
   }
 
-  SignInWithAccount(username: string, password: string): void {
-    this.accountService.authenticatePersonnel({mail: username, password  }).then( (e: IPersonnel) => {
+  SignInWithAccount(username: string, password: string, form): void {
+    if (!form.valid) { this.toastrService.warning('username et password sont obligatoire');  return; }
+    this.accountService.authenticatePersonnel({mail: username.trim(), password : password.trim()  }).then( (e: IPersonnel) => {
       this.isLogged.next(true);
       this.currentUser.next(e);
 

@@ -7,6 +7,8 @@ import {ToastrService} from 'ngx-toastr';
 import {AccountService} from '../../sharedServices/services/account.service';
 import {IContact} from '../../sharedServices/models/Contact';
 import {AuthService} from '../../sharedServices/services/auth.service';
+import {Router} from '@angular/router';
+import {NGXLogger} from 'ngx-logger';
 @Component({
   selector: 'app-complete-account',
   templateUrl: './complete-account.component.html',
@@ -21,6 +23,8 @@ export class CompleteAccountComponent implements OnInit {
               private toastrService: ToastrService,
               private accountService: AccountService,
               private authService: AuthService,
+              private route: Router,
+              private logger: NGXLogger
               ) {
   }
 
@@ -50,7 +54,7 @@ export class CompleteAccountComponent implements OnInit {
     dialogRef.afterClosed().subscribe(resident => {
       console.log('The dialog was closed');
       if (resident) {
-        console.log(resident?.nom, resident?.prenom);
+        this.logger.debug(`validateInfos : nom ${resident?.nom} --- prenom ${resident?.prenom}  `);
         this.residentList.push(resident);
         this.selectedResidents.push(resident);
         this.toastrService.success('Resident Ajouté à la liste');
@@ -82,13 +86,13 @@ export class CompleteAccountComponent implements OnInit {
       if (this.residentList.length < 1) {
         this.toastrService.warning('Vous devez choisir au moins un résident!', 'Choix de résident!');
       }else {
-        console.log(`nom ${nom} --- prenom ${prenom}  `);
-        // tslint:disable-next-line:max-line-length
+        this.logger.debug(`validateInfos : nom ${nom} --- prenom ${prenom}  `);
         const contact: IContact = {idContact: 0, nom, prenom, numtel: tel, firebasetoken: firebaseUser.firebasetoken, statutcompte : 'En cours', mail: firebaseUser.mail};
         this.accountService.saveContactWithResident(contact, this.residentList).then(e => {
           this.toastrService.success('Information bien enregistrés');
+          this.route.navigate(['contact']);
         }).catch(ex => {
-          console.log(ex.error);
+          this.logger.debug(ex.error);
           this.toastrService.error('Echec d\'enregistrement des informations pour ce compte ', 'Informations compte');
         });
       }

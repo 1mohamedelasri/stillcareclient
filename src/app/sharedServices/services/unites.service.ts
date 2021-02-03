@@ -6,7 +6,7 @@ import {catchError} from 'rxjs/operators';
 import {IPersonnel} from '../models/Personnel';
 import {IContact} from '../models/Contact';
 import {IResident, IResidentItem} from '../models/Resident';
-import {IUnit} from "../models/Unite";
+import { IUnite} from '../models/Unite';
 
 export class Login{
   mail: string;
@@ -20,13 +20,22 @@ export class UniteService {
 
   constructor(private http: HttpClient) { }
 
-  async getResidentWithName(nom: string, prenom: string): Promise<IUnit> {
-    return new Promise<IUnit>((resolve, reject) => {
-      this.http.get<IUnit>(`${config.endpoint}/Unites`).subscribe(res => {
+  async findUnitesByEhpad(idehpad: number): Promise<IUnite[]> {
+    return new Promise<IUnite[]>((resolve, reject) => {
+      this.http.get<IUnite[]>(`${config.endpoint}/unites/ehpad/${idehpad}`).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });
   }
+
+  async findOtherUniteOfResidentByEphad(resident: number, idehpad: number): Promise<IUnite[]> {
+    return new Promise<IUnite[]>((resolve, reject) => {
+      this.http.get<IUnite[]>(`${config.endpoint}/unites/${resident}/ehpad/${idehpad}`).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
 
   async saveResident(resident: IResident): Promise<IResident>{
     return new Promise<IResident>((resolve, reject) => {

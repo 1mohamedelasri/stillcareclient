@@ -13,11 +13,17 @@ export class DefaultLayoutComponent {
   public navItems = personnelNavItems;
 
   constructor(private auth: AuthService, private route: ActivatedRoute) {
-    this.route
+   /* this.route
       .data
       .subscribe(v => {
         this.set(v.role);
-      });
+      });*/
+
+    auth.currentRoleObs.subscribe(e =>  {
+      if (e) {
+      this.set(e);
+      }
+    });
 /*
     const role: Role = this.route.snapshot.params.role;
     console.log(role);

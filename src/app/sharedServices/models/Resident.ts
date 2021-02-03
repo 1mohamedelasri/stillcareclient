@@ -1,7 +1,7 @@
 export class IResident{
   idResident?: number;
   idPersonnel?: number;
-  dateNaissance?: Date;
+  datenaissance?: any;
   statut?: string;
   nom: string;
   prenom: string;
@@ -18,3 +18,16 @@ export class IResidentItem{
 
 }
 
+export class IResidentResult {
+  content?: IResident[];
+  pageable?: any;
+  last: string;
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+  sort?: any;
+  first: boolean;
+  numberOfElements: number;
+  empty: boolean;
+}

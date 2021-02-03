@@ -1,43 +1,82 @@
-import {Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
-
-
-export interface Residents {
-  nom: string;
-  prenom: string;
-  dateNaissance: string;
-  unite: string;
-}
-
-const RESIDENTS_DATA: Residents[] = [
-  {nom: 'Nom1', prenom: 'Prénom1', dateNaissance: 'date1', unite: 'Unité1'},
-  {nom: 'Nom2', prenom: 'Prénom2', dateNaissance: 'date2', unite: 'Unité2'},
-  {nom: 'Nom3', prenom: 'Prénom3', dateNaissance: 'date3', unite: 'Unité3'},
-  {nom: 'Nom4', prenom: 'Prénom4', dateNaissance: 'date4', unite: 'Unité4'},
-  {nom: 'Nom5', prenom: 'Prénom5', dateNaissance: 'date5', unite: 'Unité5'},
-  {nom: 'Nom6', prenom: 'Prénom6', dateNaissance: 'date6', unite: 'Unité1'},
-  {nom: 'Nom7', prenom: 'Prénom7', dateNaissance: 'date7', unite: 'Unité2'},
-  {nom: 'Nom8', prenom: 'Prénom8', dateNaissance: 'date8', unite: 'Unité3'},
-  {nom: 'Nom9', prenom: 'Prénom9', dateNaissance: 'date9', unite: 'Unité4'},
-  {nom: 'Nom10', prenom: 'Prénom10', dateNaissance: 'date10', unite: 'Unité5'}
-];
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { map, tap } from 'rxjs/operators';
+import { PageEvent } from '@angular/material/paginator';
+import { Router, ActivatedRoute } from '@angular/router';
+import {ResidentService} from '../../sharedServices/services/residents.service';
+import {IResident, IResidentResult} from '../../sharedServices/models/Resident';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-consulter-resident',
   templateUrl: './consulter-resident.component.html',
-  styleUrls: ['./consulter-resident.component.scss']
+  styleUrls: ['./consulter-resident.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConsulterResidentComponent {
-  displayedColumns: string[] = ['nom', 'prenom', 'dateNaissance'];
-  dataSource = RESIDENTS_DATA;
-  unites = new FormControl();
-  uniteList: string[] = ['Unité1', 'Unité2', 'Unité3', 'Unité4', 'Unité5'];
-  selectedUnite: string;
+export class ConsulterResidentComponent implements OnInit {
 
-  constructor() { }
+  filterValue: string = null;
+  dataSource: MatTableDataSource<IResident> = null;
+  residentResult: IResidentResult;
+  pageEvent: PageEvent;
+  displayedColumns: string[] = ['idResident', 'nom', 'prenom', 'statut', 'datenaissance'];
 
-  // Choisir unité pour lister ces residents
-  choisirUnite(): void {
-    console.log('Unité choisi : ' + this.selectedUnite);
+  constructor(private residentService: ResidentService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.initDataSource();
+    this.dataSource = new MatTableDataSource();
   }
+
+  initDataSource(): void{
+    this.residentService.findAll(1, 10).pipe(
+      map((userData: IResidentResult) => {
+        this.dataSource.data = userData.content;
+        this.residentResult = userData;
+      })
+    ).subscribe();
+  }
+
+  onPaginateChange(event: PageEvent): void {
+    let page = event.pageIndex;
+    const size = event.pageSize;
+
+
+    if (this.filterValue == null) {
+      page = page + 1;
+      this.residentService.findAll(page, size).pipe(
+        map((userData: IResidentResult) => {
+          this.dataSource.data = userData.content;
+          this.residentResult = userData;
+        })
+      ).subscribe();
+    } else {
+      this.residentService.paginateByName(page, size, this.filterValue).pipe(
+        map((userData: IResidentResult) => this.residentResult = userData)
+      ).subscribe();
+    }
+
+  }
+
+  findByName(username: string): void {
+    console.log(username);
+    this.residentService.paginateByName(0, 10, username).pipe(
+      map((userData: IResidentResult) => {
+        this.dataSource.data = userData.content;
+        this.residentResult = userData;
+      })
+    ).subscribe();
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  navigateToProfile(id): void {
+    this.router.navigate(['./' + id], {relativeTo: this.activatedRoute});
+  }
+
 }
