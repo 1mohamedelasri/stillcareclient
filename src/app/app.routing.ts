@@ -38,6 +38,7 @@ import {PlanningCreneauxComponent} from './personnel/planning-creneaux/planning-
 import {ValiderContactComponent} from './personnel/valider-contact/valider-contact.component';
 import {CreneauLibreComponent} from './personnel/creneau-libre/creneau-libre.component';
 import {AnnuleRendezVousComponent} from './personnel/annule-rendez-vous/annule-rendez-vous.component';
+import { ValiderReservationComponent } from './personnel/valider-réservation/valider-reservation.component';
 
 
 export const routes: Routes = [
@@ -57,7 +58,7 @@ export const routes: Routes = [
       {path: 'calendrier/declarer', component: DeclarerCreneauxComponent},
       {path: 'calendrier/consulter', component: PlanningCreneauxComponent},
       {path: 'calendrier/creneau-libre', component: CreneauLibreComponent},
-      {path: 'rendezvous/valider-refuser', component: NotyetimplComponent},
+      {path: 'rendezvous/valider-refuser', component: ValiderReservationComponent},
       {path: 'rendezvous/annuler', component: AnnuleRendezVousComponent},
       {path: 'rendezvous/details', component: NotyetimplComponent},
       {path: 'rendezvous/reporter', component: NotyetimplComponent},

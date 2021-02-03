@@ -26,12 +26,11 @@ export const PersonnelNavItems: INavData[] = [
   {name: 'Gérer rendez-vous', url: '/rendezvous', icon: 'cil-folder',
     children: [
       // tslint:disable-next-line:max-line-length
-      {name: 'Valider/Refuser réservations des familles', url: '/personnel/rendezvous/valider-refuser', icon: 'cil-folder-open'},
+      {name: 'Valider un rendez-vous', url: '/personnel/rendezvous/valider-refuser', icon: 'cil-folder-open'},
       {name: 'Annuler un rendez-vous', url: '/personnel/rendezvous/annuler', icon: 'cil-folder-open'},
-      {name: 'Deplacer un rendez-vous', url: '/personnel/rendezvous/details', icon: 'cil-folder-open'},
       {name: 'Reporter un rendez-vous', url: '/personnel/rendezvous/reporter', icon: 'cil-folder-open'}
     ]
-  }
+  }S
 ];
 
 export const DirectionNavItems: INavData[] = [

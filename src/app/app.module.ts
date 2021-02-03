@@ -90,6 +90,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CreneauLibreComponent } from './personnel/creneau-libre/creneau-libre.component';
 import { AnnuleRendezVousComponent } from './personnel/annule-rendez-vous/annule-rendez-vous.component';
+import { ValiderReservationComponent } from './personnel/valider-réservation/valider-reservation.component';
 
 @NgModule({
   imports: [
@@ -168,6 +169,7 @@ import { AnnuleRendezVousComponent } from './personnel/annule-rendez-vous/annule
     ChangementStatutResidentComponent,
     ReserverRdvComponent,
     ValiderContactComponent,
+    ValiderReservationComponent,
     CreneauLibreComponent,
     AnnuleRendezVousComponent
   ],
