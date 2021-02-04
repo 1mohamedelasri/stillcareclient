@@ -1,28 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
 import {IPersonnel} from "../../sharedServices/models/Personnel";
+import {FormControl} from "@angular/forms";
 import {ReplaySubject, Subject} from "rxjs";
 import {PersonnelService} from "../../sharedServices/services/personnels.service";
 import {AuthService} from "../../sharedServices/services/auth.service";
 import {ToastrService} from "ngx-toastr";
 import {debounceTime, delay, filter, map, takeUntil, tap} from "rxjs/operators";
 
-export interface Residents {
-  nom: string;
-  prenom: string;
-  dateNaissance: string;
-  unite: string;
-}
-
 @Component({
-  selector: 'app-declarer-residents',
-  templateUrl: './declarer-residents.component.html',
-  styleUrls: ['./declarer-residents.component.scss']
+  selector: 'app-reporter',
+  templateUrl: './reporter.component.html',
+  styleUrls: ['./reporter.component.scss']
 })
-export class DeclarerResidentsComponent implements OnInit {
-  fonctions = new FormControl();
-  fonctionList: string[] = [ 'Animatrice', 'Aide-soignante', 'Directeur', 'Medecin', 'Psychologue', 'Secretaire', 'Soignante' ];
-  selectedFonction: string;
+export class ReporterComponent implements OnInit {
 
   /** list of banks */
   protected personnels: IPersonnel[] = [];
@@ -41,6 +31,27 @@ export class DeclarerResidentsComponent implements OnInit {
 
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
+
+
+// ==========================================================================
+
+  /** list of banks */
+  protected personnels2: IPersonnel[] = [];
+
+  /** control for the selected Personnel for server side filtering */
+  public personnelServerSideCtrl2: FormControl = new FormControl();
+
+  /** control for filter for server side. */
+  public personnelServerSideFilteringCtrl2: FormControl = new FormControl();
+
+  /** indicate search operation is in progress */
+  public searching2 = false;
+
+  /** list of banks filtered after simulating server side search */
+  public  filteredServerSidePersonnel2: ReplaySubject<IPersonnel[]> = new ReplaySubject<IPersonnel[]>(1);
+
+  /** Subject that emits when the component has been destroyed. */
+  protected _onDestroy2 = new Subject<void>();
 
 
   constructor(private persService: PersonnelService, private auth: AuthService, private toast: ToastrService) { }
@@ -78,24 +89,50 @@ export class DeclarerResidentsComponent implements OnInit {
         this.searching = false;
         // handle error...
       });
+
+
+    // listen for search field value changes
+    this.personnelServerSideFilteringCtrl2.valueChanges
+      .pipe(
+        filter(search => !!search),
+        tap(() => this.searching2 = true),
+        takeUntil(this._onDestroy2),
+        debounceTime(200),
+        map(search => {
+          this.persService.searchByKey(search, this.auth.getUserPesronnel()?.idEhpad).pipe(
+            map((userData: IPersonnel[]) => {
+              if (userData ) {
+                this.personnels2 = userData;
+              }
+            })
+          ).subscribe();
+
+          // simulate server fetching and filtering data
+          return this.personnels2;
+        }),
+        delay(500),
+        takeUntil(this._onDestroy)
+      ).subscribe(filteredPersonnel => {
+        this.searching2 = false;
+        this.filteredServerSidePersonnel2.next(filteredPersonnel);
+      },
+      error => {
+        // no errors in our simulated example
+        this.searching2 = false;
+        // handle error...
+      });
   }
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy() {
     this._onDestroy.next();
     this._onDestroy.complete();
+    this._onDestroy2.next();
+    this._onDestroy2.complete();
   }
 
-  modifierPersonnel(mail: string): void {
- /*   if (personnel) {
-      personnel.mail = mail;
-      personnel.ntel = nTel;
 
-      this.persService.updatePersonnel(personnel)
-        .then(e => this.toast.show('les informations sont mises à jour avec succes'))
-        .catch(e => this.toast.error('les informations ne sont pas enregistré à cause d\'un problème technique'));
-    }else {
-      this.toast.warning('veulliez selectionner un personnel');
-    }*/
+  modifierPersonnel(value: any) {
+
   }
-
 }

@@ -112,6 +112,7 @@ import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter
 import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-profile.component';
 import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
 import {UnitCreateModifyComponent} from './direction/unit-create-modify/unit-create-modify.component';
+import { ReporterComponent } from './personnel/reporter/reporter.component';
 
 
 @NgModule({
@@ -219,7 +220,8 @@ import {UnitCreateModifyComponent} from './direction/unit-create-modify/unit-cre
     UnitAddResidentComponent,
     UnitAddPersonnelComponent,
     AgendaPersonnelsComponent,
-    SupprimerCreneauxComponent
+    SupprimerCreneauxComponent,
+    ReporterComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, NGXLogger, LoggerConfig,  {
     provide: MatDialogRef,

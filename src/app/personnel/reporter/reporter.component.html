@@ -1,6 +1,6 @@
 <form class="myForm"
       (submit)="modifierPersonnel(personnelServerSideCtrl.value)">
-  <h1>Déclarer des résident pour un personnel</h1>
+  <h1>Déclarer un rendez vous sur un autre personnel</h1>
 
   <h3>Chercher un personnel par nom ou prenom</h3>
   <p>
@@ -20,12 +20,12 @@
   <h3>Chercher et selectionner les residents</h3>
   <p>
     <mat-form-field>
-      <mat-select [multiple]="false" [formControl]="personnelServerSideCtrl" placeholder="Bank">
+      <mat-select [multiple]="false" [formControl]="personnelServerSideCtrl2" placeholder="Bank">
         <mat-option>
-          <ngx-mat-select-search [formControl]="personnelServerSideFilteringCtrl" [searching]="searching"></ngx-mat-select-search>
+          <ngx-mat-select-search [formControl]="personnelServerSideFilteringCtrl2" [searching]="searching2"></ngx-mat-select-search>
         </mat-option>
-        <mat-option *ngFor="let personnel of filteredServerSidePersonnel | async" [value]="personnel">
-          {{personnel.nom}} {{'    ' + personnel.prenom}}
+        <mat-option *ngFor="let personnel2 of filteredServerSidePersonnel2 | async" [value]="personnel2">
+          {{personnel2.nom}} {{'    ' + personnel2.prenom}}
         </mat-option>
       </mat-select>
     </mat-form-field>

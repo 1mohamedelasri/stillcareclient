@@ -1,4 +1,5 @@
 import { INavData } from '@coreui/angular';
+import {ReporterComponent} from './personnel/reporter/reporter.component';
 
 
 export const personnelNavItems: INavData[] = [
@@ -43,12 +44,14 @@ export const DirectionNavItems: INavData[] = [
     children: [
       {name: '  Ajouter un personnel', url: '/direction/personnels/créer', icon: 'cil-toll'},
       {name: '  Modifier un personnel', url: '/direction/personnels/affecter', icon: 'cil-toll'},
-      {name: '  liste des personnels', url: '/direction/personnels/list', icon: 'cil-toll'}
+      {name: '  liste des personnels', url: '/direction/personnels/list', icon: 'cil-toll'},
+      {name: '  reporter sur un autre', url: '/personnel/rendezvous/reporter', icon: 'cil-toll'}
+
     ]
   },
-  {name: 'Calendrier', url: '/direction/calendrier', icon: 'icon-cursor',
+  {name: 'Calendrier', url: '/direction/calendrier', icon: 'cil-calendar-check',
     children: [
-      {name: '  déclarer créneaux', url: '/direction/calendrier/declarer', icon: 'cil-toll' },
+      {name: '  déclarer créneaux', url: '/direction/calendrier/declarer', icon: 'cil-calendar-check' },
       {name: '  consulter créneaux', url: '/direction/calendrier/consulter', icon: 'cil-toll'},
     ]
   },
