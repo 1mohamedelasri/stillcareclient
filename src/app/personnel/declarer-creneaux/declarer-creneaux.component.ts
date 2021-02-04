@@ -5,6 +5,8 @@ import {Creneau} from '../../common/interfaces/Creneau';
 import {L10n, loadCldr} from '@syncfusion/ej2-base';
 import * as EJ2_LOCALE from '../../common/components/agenda/Translate/fr.json';
 import {HttpClient} from '@angular/common/http';
+import {NotificationService} from '../../sharedServices/services/notification.service';
+import {CreneauService} from '../../sharedServices/services/creneau.service';
 
 declare var require: any;
 loadCldr(
@@ -28,8 +30,8 @@ export class DeclarerCreneauxComponent implements OnInit {
 
   eventObject: any;
   toRegister: Array<any> = new Array<any>();
-  constructor(private http: HttpClient) { }
-  ngOnInit(): void {this.putPersonnelToCalendar(6);
+  constructor(private http: HttpClient, private notifyService: NotificationService, private creneauService: CreneauService) { }
+  ngOnInit(): void {this.putPersonnelToCalendar(6);//TODO
   }
   // tslint:disable-next-line:typedef
   test(e: any) {
@@ -53,6 +55,7 @@ export class DeclarerCreneauxComponent implements OnInit {
     console.log(this.toRegister);
   }
   putPersonnelToCalendar(e: any): void{
+    this.toRegister = new Array<any>();
     console.log(e);
     const data: Array<Object>= new Array<Object>();
     this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
@@ -120,8 +123,44 @@ export class DeclarerCreneauxComponent implements OnInit {
   }
   onPopupOpen(args: PopupOpenEventArgs): void {
     console.log(args.type);
-   /* if ( args.data.hasOwnProperty('Subject') ? false : true)  {
+    if ( args.type === 'Editor'  ) {
       args.cancel = true;
-    }*/
+      this.notifyService.showWarning('creation de rendez vous non validé vous pouvez le supprimer et crée en un nouveau' , 'Attention' );
+    }
+    if (args.type === 'EditEventInfo'){
+      this.notifyService.showWarning('cet action n\'est pas encore activer' , 'Attention' );
+    }
+  }
+
+  enregistrer(): void{
+    const c: Creneau[] = this.toRegister.map( elem =>
+    {
+      return new Creneau(6, elem.StartTime); // TODO
+    });
+    if (c[0]) {
+    this.creneauService.enregistrerCreneau(c).then( s => {
+      this.putPersonnelToCalendar(6); // TODO
+      this.notifyService.showSuccess('Rendez-vous enregistré avec succès', 'Enregistrer');
+    }).catch(reason => {
+      this.putPersonnelToCalendar(6); // TODO
+      console.log(reason.error);
+      this.notifyService.showError(reason.error, 'Erreur d\'enregistrement');
+    });
+    }else{
+      this.notifyService.showInfo('Aucun rendez-vous a enregistrer', 'Enregistrer');
+    }
+
+}
+  annuler(): void{
+    this.toRegister.forEach( elem =>
+    {
+      this.eventObject.dataSource = this.eventObject.dataSource.filter( i => i.id !== elem.id);
+    });
+    this.eventObject = {
+      dataSource: this.eventObject.dataSource,
+    };
+    this.toRegister = new Array<any>();
+    this.notifyService.showSuccess('Operation annulé avec succès', 'Annuler');
+
   }
 }

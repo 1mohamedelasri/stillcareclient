@@ -7,6 +7,8 @@ import {L10n, loadCldr} from '@syncfusion/ej2-base';
 import * as EJ2_LOCALE from '../../common/components/agenda/Translate/fr.json';
 import { ToastrService } from 'ngx-toastr';
 import {NotificationService} from '../../sharedServices/services/notification.service';
+import {RendezvousService} from '../../sharedServices/services/rendezvous.service';
+import {CreneauService} from '../../sharedServices/services/creneau.service';
 
 declare var require: any;
 loadCldr(
@@ -31,8 +33,8 @@ export class SupprimerCreneauxComponent implements OnInit {
 
   eventObject: any;
   toRegister: Array<any> = new Array<any>();
-  constructor(private http: HttpClient, private notifyService: NotificationService) { }
-  ngOnInit(): void {this.putPersonnelToCalendar(6);
+  constructor(private http: HttpClient, private notifyService: NotificationService, private rdvService: RendezvousService, private creneauService: CreneauService) { }
+  ngOnInit(): void {this.putPersonnelToCalendar(6); // TODO change index
   }
   // tslint:disable-next-line:typedef
   test(e: any) {
@@ -40,14 +42,21 @@ export class SupprimerCreneauxComponent implements OnInit {
     if (e.requestType === 'eventRemoved') {
       this.eventObject.dataSource = this.eventObject.dataSource.filter( i => i.id !== e.deletedRecords[0].id);
       if (e.deletedRecords[0].Rdv){
-        console.log(e.deletedRecords[0].Rdv);
+        this.rdvService.deleteRdv(e.deletedRecords[0].Rdv.idRdv).then( s => {
+          this.putPersonnelToCalendar(6); // TODO change index
+        }).catch(reason => {
+          console.log(reason.error);
+        });
       }else{
-        console.log(e.deletedRecords[0].cr);
+        this.creneauService.deleteCreneau(e.deletedRecords[0].cr).then( s => {
+          this.eventObject = {
+            dataSource: this.eventObject.dataSource,
+          };
+        }).catch(reason => {
+          console.log(reason.error);
+        });
       }
     }
-    this.eventObject = {
-      dataSource: this.eventObject.dataSource,
-    };
   }
   putPersonnelToCalendar(e: any): void{
     let i = 0;
@@ -93,6 +102,7 @@ export class SupprimerCreneauxComponent implements OnInit {
     });
   }
   oneventRendered(args: EventRenderedArgs): void {
+
     const categoryColor: string = args.data.CategoryColor as string;
     if (!args.element || !categoryColor) {
       return;
@@ -104,7 +114,7 @@ export class SupprimerCreneauxComponent implements OnInit {
     }
   }
   onPopupOpen(args: PopupOpenEventArgs): void {
-    if (!((args.type === 'QuickInfo' && args.data.hasOwnProperty('Subject')) || args.type === 'DeleteAlert' )) {
+    if ((args.type === 'QuickInfo' && !args.data.hasOwnProperty('Subject')) || args.type === 'Editor' || args.type === 'EditEventInfo' ) {
       args.cancel = true;
       this.notifyService.showWarning('cette action n\'est pas autorisé dans cette page' , 'Attention' );
     }
