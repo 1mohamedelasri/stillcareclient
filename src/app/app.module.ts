@@ -110,6 +110,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import { SupprimerCreneauxComponent } from './personnel/supprimer-creneaux/supprimer-creneaux.component';
+import { AgendaPersonnelsComponent } from './common/components/agenda-personnels/agenda-personnels.component';
 
 
 @NgModule({
@@ -215,7 +217,9 @@ import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
     ChangementStatutResidentComponent,
     AgendaComponent,
     UnitAddResidentComponent,
-    UnitAddPersonnelComponent
+    UnitAddPersonnelComponent,
+    AgendaPersonnelsComponent,
+    SupprimerCreneauxComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, NGXLogger, LoggerConfig,  {
     provide: MatDialogRef,

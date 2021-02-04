@@ -7,7 +7,7 @@
 <mat-form-field appearance="fill" *ngIf="!isPersonnel">
   <mat-label>choix resident</mat-label>
   <mat-select >
-    <mat-option *ngFor="let resident of residents |async"  [value]="resident.idResident" (click)="putResidentToCalendar(resident.idResident)" >
+    <mat-option *ngFor="let resident of residents |async"   [value]="resident.idResident" (click)="putResidentToCalendar(resident.idResident)" >
       {{resident.nom}} {{resident.prenom}}
     </mat-option>
   </mat-select>
@@ -21,4 +21,4 @@
   </mat-select>
 </mat-form-field>
 
-<ejs-schedule #scheduleObj locale='fr' [firstDayOfWeek]= 1 [eventSettings]="this.eventObject" (actionComplete)="test($event)" (eventRendered)="oneventRendered($event)" readonly="true"></ejs-schedule>
+<ejs-schedule #scheduleObj locale='fr' [firstDayOfWeek]= 1 [eventSettings]="this.eventObject" (actionComplete)="test($event)" (eventRendered)="oneventRendered($event)" ></ejs-schedule>

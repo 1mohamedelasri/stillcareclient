@@ -14,7 +14,7 @@ export const personnelNavItems: INavData[] = [
   {name: 'Calendrier', url: '/personnel/calendrier', icon: 'icon-cursor',
     children: [
       {name: 'Déclarer créneaux', url: '/personnel/calendrier/declarer', icon: 'icon-cursor'},
-      {name: 'Consulter créneaux', url: '/personnel/calendrier/consulter', icon: 'icon-cursor'},
+      {name: 'Supprimer créneaux', url: '/personnel/calendrier/supprimer', icon: 'icon-cursor'},
     ]
   },
   {name: 'Gérer rendez-vous', url: '/rendezvous', icon: 'icon-star',

@@ -43,6 +43,9 @@ import {DeclarerResidentsComponent} from './personnel/declarer-residents/declare
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
 import {P500Component} from './views/error/500.component';
 import {RedirectGuardGuard} from './sharedServices/helpers/guard/redirect.guard';
+import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
+import {SupprimerCreneauxComponent} from './personnel/supprimer-creneaux/supprimer-creneaux.component';
+
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '404', component: P404Component, data: {title: 'Page 404'}},
@@ -58,7 +61,8 @@ export const routes: Routes = [
       {path: 'residents/declarer', component: DeclarerResidentsComponent},
       {path: 'residents/contacte', component: NotyetimplComponent},
       {path: 'residents/changer', component: NotyetimplComponent},
-      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent}
+      {path: 'calendrier/declarer', component: DeclarerCreneauxComponent},
+      {path: 'calendrier/supprimer', component: SupprimerCreneauxComponent}
     ]
   },
   // tslint:disable-next-line:max-line-length

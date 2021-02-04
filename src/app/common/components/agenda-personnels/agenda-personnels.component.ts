@@ -1,35 +1,27 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { loadCldr } from '@syncfusion/ej2-base';
-import { L10n } from '@syncfusion/ej2-base';
-import {View, EventSettingsModel, ScheduleComponent, EventRenderedArgs} from '@syncfusion/ej2-angular-schedule';
-import {DataManager} from '@syncfusion/ej2-data';
-declare var require: any;
-// @ts-ignore
-import * as EJ2_LOCALE from './Translate/fr.json';
+import {EventRenderedArgs, EventSettingsModel, ScheduleComponent} from '@syncfusion/ej2-angular-schedule';
 import {HttpClient} from '@angular/common/http';
-import {Resident} from '../../interfaces/Resident';
 import {Observable} from 'rxjs';
+import {Resident} from '../../interfaces/Resident';
 import {Personnel} from '../../interfaces/Personnel';
 import {RendezVous} from '../../interfaces/RendezVous';
 import {Creneau} from '../../interfaces/Creneau';
+import {L10n, loadCldr} from '@syncfusion/ej2-base';
+import * as EJ2_LOCALE from '../agenda/Translate/fr.json';
 
-loadCldr(
-  require('cldr-data/supplemental/numberingSystems.json'),
-  require('cldr-data/main/fr/ca-gregorian.json'),
-  require('cldr-data/main/fr/numbers.json'),
-  require('cldr-data/main/fr/timeZoneNames.json'));
+
+
 
 L10n.load({ fr: EJ2_LOCALE.fr });
 const endpoint = 'http://localhost:8085/';
 
 
 @Component({
-  selector: 'app-agenda',
-  templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.scss']
+  selector: 'app-agenda-personnels',
+  templateUrl: './agenda-personnels.component.html',
+  styleUrls: ['./agenda-personnels.component.scss']
 })
-
-export class AgendaComponent implements OnInit {
+export class AgendaPersonnelsComponent implements OnInit {
   @ViewChild('scheduleObj')
   public scheduleObj: ScheduleComponent;
   constructor(private http: HttpClient) { }
@@ -65,22 +57,23 @@ export class AgendaComponent implements OnInit {
     }
   }
   putResidentToCalendar(e: any): void{
-    let data: Array<Object>= new Array<Object>();
+    // tslint:disable-next-line:ban-types
+    const data: Array<Object>= new Array<Object>();
     this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/resident/' + e ).subscribe(value => {
-      value.forEach(rdv => {
-        data.push({
-          id: rdv.idRdv,
-          Subject: 'Rendez vous ' + rdv?.etat,
-          StartTime: rdv.datedebutRdv ? rdv.datedebutRdv : rdv.dateCreneau,
-          // tslint:disable-next-line:max-line-length
-          EndTime: rdv.datefinRdv ? rdv.datefinRdv : rdv.datedebutRdv ? new Date(new Date(rdv.datedebutRdv).getTime() + (30 * 60000)) : new Date(new Date(rdv.dateCreneau).getTime() + (30 * 60000)),
-          CategoryColor: '#ffaa00',
+        value.forEach(rdv => {
+          data.push({
+            id: rdv.idRdv,
+            Subject: 'Rendez vous ' + rdv?.etat,
+            StartTime: rdv.datedebutRdv ? rdv.datedebutRdv : rdv.dateCreneau,
+            // tslint:disable-next-line:max-line-length
+            EndTime: rdv.datefinRdv ? rdv.datefinRdv : rdv.datedebutRdv ? new Date(new Date(rdv.datedebutRdv).getTime() + (30 * 60000)) : new Date(new Date(rdv.dateCreneau).getTime() + (30 * 60000)),
+            CategoryColor: '#ffaa00',
+          });
         });
-      });
-      this.eventObject = {
+        this.eventObject = {
           dataSource: data
         };
-    }
+      }
     );
   }
   putPersonnelToCalendar(e: any): void{
@@ -108,7 +101,7 @@ export class AgendaComponent implements OnInit {
                 EndTime: new Date(new Date(creneau.datedebut).getTime() + (30 * 60000)) ,
                 CategoryColor: '#20a8d8',
               });
-          }
+            }
           );
           this.eventObject = {
             dataSource: data
@@ -116,6 +109,8 @@ export class AgendaComponent implements OnInit {
         }
       );
     });
+
+
   }
   oneventRendered(args: EventRenderedArgs): void {
     let categoryColor: string = args.data.CategoryColor as string;

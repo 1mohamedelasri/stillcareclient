@@ -1,2 +1,4 @@
 <h1>Declarer les créneaux</h1>
-<ejs-schedule locale='fr' [firstDayOfWeek]= 1 [eventSettings]="this.eventObject" (actionComplete)="test($event)" ></ejs-schedule>
+<button type="button" class="btn btn-danger" (click)="annuler()" >Annulé</button> <button type="button" class="btn btn-success" (click)="enregistrer()">Enregistrer</button>
+<ejs-schedule #scheduleObj locale='fr' [firstDayOfWeek]= 1 [eventSettings]="this.eventObject" (actionComplete)="test($event)" (eventRendered)="oneventRendered($event)"  (popupOpen)='onPopupOpen($event)'></ejs-schedule>
+
