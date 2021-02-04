@@ -41,6 +41,7 @@ import { ProfileInfoDirectionComponent } from './direction/profile-info-direct/p
 import { ProfileInfoContactComponent } from './contact/profile-info-contact/profile-info-contact.component';
 import { ProfileInfoPersonnelComponent } from './personnel/profile-info-personnel/profile-info-personnel.component';
 import { ModifierPersonnelComponent } from './direction/modifier-personnel/modifier-personnel.component';
+import { ReporterRDVComponent } from './personnel/reporter-rdv/reporter-rdv.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'direction', pathMatch: 'full' },
@@ -66,7 +67,7 @@ export const routes: Routes = [
       { path: 'rendezvous/valider-refuser', component: ValiderReservationComponent },
       { path: 'rendezvous/annuler', component: AnnuleRendezVousComponent },
       { path: 'rendezvous/details', component: NotyetimplComponent },
-      { path: 'rendezvous/reporter', component: NotyetimplComponent },
+      { path: 'rendezvous/reporter', component: ReporterRDVComponent },
     ]
   },
   // Espace de la direction

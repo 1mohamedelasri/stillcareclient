@@ -8,8 +8,7 @@ export const PersonnelNavItems: INavData[] = [
     children: [
       { name: 'Déclarer résident associé', url: '/personnel/residents/declarer', icon: 'cil-user-follow' },
       { name: 'Déclarer un changement de statut', url: '/personnel/residents/changer', icon: 'cil-user' },
-      { name: 'Gérer contactes', url: '/personnel/residents/contacte', icon: 'cil-list' },
-      { name: 'Gérer contactes', url: '/personnel/residents/contacte', icon: 'cil-list' }
+      // { name: 'Gérer contactes', url: '/personnel/residents/contacte', icon: 'cil-list' },
     ]
   },
   {

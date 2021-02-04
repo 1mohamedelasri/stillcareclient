@@ -1,0 +1,17 @@
+<form class="myForm">
+
+  <h1>Choisir votre remplacant</h1>
+
+  <mat-select [formControl]="remplacants" class = "myInput" [(value)]="selectedRemplacant">
+    <mat-option *ngFor="let remplacant of personnelList" [value]="remplacant" >{{remplacant.nom}} {{remplacant.prenom}}</mat-option>
+  </mat-select>
+  <br><br>
+  
+  <button class='btn-primary' (click)="reporterRDV()">Confirmer</button>
+  
+  <br><br>
+  <span *ngIf="selectedRemplacant != null">
+    Vous avez reporté votre rendez-vous à {{selectedRemplacant.nom}} {{selectedRemplacant.prenom}}.
+  </span>
+
+</form>
