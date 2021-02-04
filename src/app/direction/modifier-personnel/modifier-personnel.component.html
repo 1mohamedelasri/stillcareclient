@@ -1,12 +1,27 @@
-<form class="myForm" (submit)="modifierPersonnel(mail.value, nTel.value)">
+<form class="myForm"
+      (submit)="modifierPersonnel(mail.value, nTel.value, personnelServerSideCtrl.value)">
   <h1>Modifier un personnel</h1>
 
+  <h3>Chercher un personnel par nom ou prenom</h3>
+  <p>
+    <mat-form-field>
+      <mat-select [formControl]="personnelServerSideCtrl" placeholder="Bank">
+        <mat-option>
+          <ngx-mat-select-search [formControl]="personnelServerSideFilteringCtrl" [searching]="searching"></ngx-mat-select-search>
+        </mat-option>
+        <mat-option *ngFor="let personnel of filteredServerSidePersonnel | async" [value]="personnel">
+          {{personnel.nom}} {{'    ' + personnel.prenom}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+
   <label>Adresse e-mail du personnel :</label>
-  <input type="text" matInput class="myInput" #mail>
+  <input type="text" matInput class="myInput" [value] = 'personnelServerSideCtrl?.value?.mail' #mail>
   <br><br>
 
   <label>Numéro de téléphone :</label>
-  <input type="text" matInput class="myInput" #nTel>
+  <input type="text" matInput class="myInput" [value] = 'personnelServerSideCtrl?.value?.ntel' #nTel>
   <br><br>
 
   <label>Fonction :</label> <br>

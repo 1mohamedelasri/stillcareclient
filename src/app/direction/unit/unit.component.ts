@@ -3,64 +3,83 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IUnit, UnitStatus } from '../../common/interfaces/Unit';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteUnitPopupComponent } from '../../common/components/delete-unit-popup/delete-unit-popup.component';
+import {IUnite} from '../../sharedServices/models/Unite';
+import {AuthService} from '../../sharedServices/services/auth.service';
+import {PersonnelService} from '../../sharedServices/services/personnels.service';
+import {UniteService} from '../../sharedServices/services/unites.service';
+import {ToastrService} from 'ngx-toastr';
+import {IPersonnel} from '../../sharedServices/models/Personnel';
+import {ResidentService} from '../../sharedServices/services/residents.service';
 
 @Component({
   selector: 'app-unit',
   templateUrl: './unit.component.html',
-  styleUrls: ['./unit.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./unit.component.scss']
 })
 export class UnitComponent implements OnInit {
 
-  unites: IUnit[] = [
-    { id: '1', name: 'Unité 1', status: UnitStatus.COVID,   desc: 'The best 1 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom1', img: '../../../../assets/content/doctor-400-2.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom1', img: '../../../../assets/content/doctor-400-3.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-    { id: '2', name: 'Unité 2', status: UnitStatus.DEJOUR,  desc: 'The best 2 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom2', img: '../../../../assets/content/doctor-400-4.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom2', img: '../../../../assets/content/doctor-400-2.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-    { id: '3', name: 'Unité 3', status: UnitStatus.FERMEE,  desc: 'The best 3 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom3', img: '../../../../assets/content/doctor-400-5.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom3', img: '../../../../assets/content/doctor-400-1.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-    { id: '4', name: 'Unité 4', status: UnitStatus.DEJOUR,  desc: 'The best 4 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom4', img: '../../../../assets/content/doctor-400-6.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom4', img: '../../../../assets/content/doctor-400-1.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-    { id: '5', name: 'Unité 5', status: UnitStatus.OUVERTE, desc: 'The best 5 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom6', img: '../../../../assets/content/doctor-400-1.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom6', img: '../../../../assets/content/doctor-400-2.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-    { id: '6', name: 'Unité 6', status: UnitStatus.OUVERTE, desc: 'The best 6 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom1', img: '../../../../assets/content/doctor-400-5.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom1', img: '../../../../assets/content/doctor-400-3.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-    { id: '7', name: 'Unité 7', status: UnitStatus.COVID,   desc: 'The best 7 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom1', img: '../../../../assets/content/doctor-400-3.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom1', img: '../../../../assets/content/doctor-400-4.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-    { id: '8', name: 'Unité 8', status: UnitStatus.FERMEE,  desc: 'The best 8 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom2', img: '../../../../assets/content/doctor-400-4.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom9', img: '../../../../assets/content/doctor-400-5.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-    { id: '9', name: 'Unité 9', status: UnitStatus.OUVERTE, desc: 'The best 9 unit of the world', personnels: [{ surname: 'personnel2', name: 'prenom1', img: '../../../../assets/content/doctor-400-5.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }, { surname: 'personnel3', name: 'prenom1', img: '../../../../assets/content/doctor-400-6.jpg', function: 'certaine fonction', mail: 'mail@mail.com' }] },
-  ];
+  unites: IUnit[] = [];
 
-  unit: IUnit;
+  unit: IUnite;
+
+  personnels: IPersonnel[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private auth: AuthService,
+    private personnelService: PersonnelService,
+    private residentsService: ResidentService,
+    private uniteService: UniteService,
+    private toast: ToastrService
+
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     let id: string;
     this.route.queryParams.subscribe(params => {
       id = params.id;
     });
-    this.unit = this.unites.find(el => el.id === id);
+    this.uniteService.getUniteById(+id).then( ( unite: IUnite) => {
+      this.unit = unite;
+      this.personnelService.findPersonnelByUniteAndEhpad(this.unit.idEhpad, this.unit.idUnite).then( ( personnels: IPersonnel[]) => {
+        this.personnels = personnels;
+        console.log(unite);
+        console.log(this.personnels);
+      }).catch(ex => {
+        console.log(ex.error);
+      });
+      this.residentsService.getResidentsWithEPHADandUnite(unite.idEhpad, unite.idUnite);
+    }).catch(ex => {
+      this.toast.error('couldn\'t fetch unités data');
+      console.log(ex.error);
+    });
+
+
   }
 
-  goToUnitModification() {
-    this.router.navigate(['direction/unites/modifier'], { queryParams: { id: this.unit.id } });
+  goToUnitModification(): void {
+    this.router.navigate(['direction/unites/modifier'], { queryParams: { id: this.unit.idUnite } });
   }
 
-  goToUnitDelete() {
-    this.router.navigate(['direction/unites/supprimer'], { queryParams: { id: this.unit.id } });
+  goToUnitDelete(): void {
+    this.router.navigate(['direction/unites/supprimer'], { queryParams: { id: this.unit.idUnite } });
   }
 
-  onDeleteUnitClick(){
+  onDeleteUnitClick(): void{
     const dialogRef = this.dialog.open(DeleteUnitPopupComponent, {
       width: '50%',
-      data: this.unit.name
+      data: this.unit
     });
   }
 
-  onAddResidentClick() {
-    this.router.navigate(['direction/unites/add-resident'], { queryParams: { id: this.unit.id } });
+  onAddResidentClick(): void {
+    this.router.navigate(['direction/unites/add-resident'], { queryParams: { id: this.unit.idUnite } });
   }
 
-  onAddPersonnelClick() {
-    this.router.navigate(['direction/unites/add-personnel'], { queryParams: { id: this.unit.id } });
+  onAddPersonnelClick(): void {
+    this.router.navigate(['direction/unites/add-personnel'], { queryParams: { id: this.unit.idUnite } });
   }
 }
 

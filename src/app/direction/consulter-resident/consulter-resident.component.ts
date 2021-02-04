@@ -61,21 +61,17 @@ export class ConsulterResidentComponent implements OnInit {
 
   findByName(username: string): void {
     console.log(username);
-    this.residentService.paginateByName(0, 10, username).pipe(
-      map((userData: IResidentResult) => {
+    this.residentService.paginateByName(0, 10, username).then((userData: IResidentResult) => {
+      if (userData && !userData.empty) {
         this.dataSource.data = userData.content;
         this.residentResult = userData;
-      })
-    ).subscribe();
+      }
+    });
   }
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  navigateToProfile(id): void {
-    this.router.navigate(['./' + id], {relativeTo: this.activatedRoute});
   }
 
 }

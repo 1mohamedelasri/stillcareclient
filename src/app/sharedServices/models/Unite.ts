@@ -1,6 +1,8 @@
 export interface IUnite {
-  idUnite: number;
-  idEhpad: number;
+  idUnite?: number;
+  idEhpad?: number;
   nom: string;
   etat: string;
+  nombrePersonnel?: number;
+
 }

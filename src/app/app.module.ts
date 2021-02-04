@@ -109,6 +109,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 
 
 @NgModule({
@@ -162,7 +163,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatCheckboxModule,
     LoggerModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxMatSelectSearchModule
   ],
   declarations: [
     AppComponent,

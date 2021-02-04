@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {config} from '../../../environments/config';
 import {catchError, map} from 'rxjs/operators';
 import {IPersonnel} from '../models/Personnel';
 import {IContact} from '../models/Contact';
-import {IResident, IResidentItem} from '../models/Resident';
+import {IResident, IResidentItem, IResidentResult} from '../models/Resident';
+import {IFirebaseAccount} from "../models/FirebaseAccount";
 export class Login{
   mail: string;
   password: string;
@@ -15,6 +16,9 @@ export class Login{
   providedIn: 'root'
 })
 export class PersonnelService {
+
+  private currentPersonnel = new BehaviorSubject<IPersonnel[]>( null );
+  readonly firebaseAccountObs = this.currentPersonnel.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -37,6 +41,7 @@ export class PersonnelService {
   async findPersonnelByUniteAndEhpad(idEhpad: number, idUnite: number, ): Promise<IPersonnel[]> {
     return new Promise<IPersonnel[]>((resolve, reject) => {
       this.http.get<IPersonnel[]>(`${config.endpoint}/personnels/ehpad/${idEhpad}/unite/${idUnite}`).subscribe(res => {
+        this.currentPersonnel.next(res);
         resolve(res);
       }, err => reject(err));
     });
@@ -47,6 +52,27 @@ export class PersonnelService {
     console.log(personnel);
     return new Promise<IPersonnel>((resolve, reject) => {
       this.http.post<IPersonnel>(`${config.endpoint}/personnels`, personnel).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+  searchByKey(key: string, ehpad?: number): Observable<IPersonnel[]> {
+    let params = new HttpParams();
+
+    params = params.append('key', key );
+    params = params.append('ehpad', String(ehpad));
+
+    return this.http.get(`${config.endpoint}/personnels/search`, {params}).pipe(
+      map((userData: IPersonnel[]) => userData),
+      catchError(err => throwError(err))
+    );
+  }
+
+  async updatePersonnel(personnel: IPersonnel): Promise<IPersonnel>{
+    console.log(personnel);
+    return new Promise<IPersonnel>((resolve, reject) => {
+      this.http.put<IPersonnel>(`${config.endpoint}/personnels`, personnel).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });

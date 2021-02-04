@@ -1,31 +1,31 @@
 <button class="btn btn-primary back-button" (click)="onBackButtonClick()" >&lt; Retour</button>
 <div class="unit">
-  <h1>{{ unit.id=="-1" ? "Nouvelle unité" : "Modifier unité"}}</h1>
+  <h1>{{ unit.idUnite=="-1" ? "Nouvelle unité" : "Modifier unité"}}</h1>
 
   <strong>Nom : </strong> <br>
-  <input class="input" [value]="unit.name">
+  <input class="input" [(ngModel)]="unit.nom">
   <br><br>
-  
+
   <strong>Etat :</strong> <br>
-  <select class="input" [value]="unit.status">
+  <select class="input" [(ngModel)]="unit.etat">
     <option value="Ouverte">Ouverte</option>
     <option value="Fermée">Fermée</option>
     <option value="De jour">De jour</option>
     <option value="Contagieuse COVID">Contagieuse COVID</option>
   </select>
   <br><br>
-  
+
   <!-- Does not work for some reasson -->
   <!-- <select class="input" [value]="unit.status">
     <option *ngFor="let status of unitStatus" [value]="status">
       {{status}}
     </option>
   </select> -->
-  
+
   <strong>Déscription :</strong> <br>
-  <textarea class="input" rows="3" [value]="unit.desc"></textarea>
+  <textarea class="input" rows="3" [value]="unit?.desc"></textarea>
   <br><br>
 
-  <button type="button" class="btn btn-primary btn-block">Valider</button>
+  <button type="button" (click)="validateOperation()" class="btn btn-primary btn-block">Valider</button>
 
 </div>
