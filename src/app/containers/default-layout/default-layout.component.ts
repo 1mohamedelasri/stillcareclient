@@ -9,7 +9,7 @@ import { ContactNavItems } from '../../_nav';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = PersonnelNavItems;
+  public navItems = DirectionNavItems;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
