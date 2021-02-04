@@ -94,6 +94,7 @@ import { ProfileInfoContactComponent } from './contact/profile-info-contact/prof
 import { ProfileInfoPersonnelComponent } from './personnel/profile-info-personnel/profile-info-personnel.component';
 import { ModifierPersonnelComponent } from './direction/modifier-personnel/modifier-personnel.component';
 import { ReporterRDVComponent } from './personnel/reporter-rdv/reporter-rdv.component';
+import { PrendreRDVComponent } from './contact/prendre-RDV/prendre-rdv.component';
 
 @NgModule({
   imports: [
@@ -177,7 +178,8 @@ import { ReporterRDVComponent } from './personnel/reporter-rdv/reporter-rdv.comp
     ValiderReservationComponent,
     CreneauLibreComponent,
     AnnuleRendezVousComponent,
-    ReporterRDVComponent
+    ReporterRDVComponent,
+    PrendreRDVComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, {
     provide: MatDialogRef,

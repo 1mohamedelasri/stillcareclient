@@ -1,0 +1,65 @@
+<div class="container">
+    <form class="myForm">
+        <h1>Votre RDV</h1>
+        <br>
+        <div>
+            <div class="form-group">
+                <label>Date et heure</label>
+                {{currentRDV.dateDebut | date: 'dd/MM/yyyy hh:mm'}} - {{currentRDV.dateFin | date: 'hh:mm'}}
+            </div>
+
+            <div class="form-group">
+                <label>Personnel</label>
+                {{currentRDV.personnel.personnelNom}} {{currentRDV.personnel.personnelPrenom}}
+            </div>
+
+            <div class="form-group">
+                <label>Contact</label>
+                {{currentRDV.contact.contactNom}} {{currentRDV.contact.contactPrenom}}
+            </div>
+
+            <div class="form-group">
+                <label>Résident</label>
+                {{currentRDV.resident.residentNom}} {{currentRDV.resident.residentPrenom}}
+            </div>
+        </div>
+
+        <div *ngIf="currentRDV.invites.length>0" class="form-group invite-form">
+            <label>Invités</label>
+            <div class="invite-list">
+                <div *ngFor='let invite of currentRDV.invites'>
+                    {{invite.inviteNom}} {{invite.invitePrenom}} {{invite.inviteMail}}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group add-invites ">
+            <label for="invite">
+                <h5>Ajouter invité</h5>
+            </label>
+            <div class="invites invite-form">
+                <div class="invite-elem">
+                    <b>Nom: </b>
+                    <input [(ngModel)]="inviteNom" name="inviteNom" type="text">
+                </div>
+
+                <div class="invite-elem">
+                    <b>Prenom: </b>
+                    <input [(ngModel)]="invitePrenom" name="invitePrenom" type="text">
+                </div>
+
+                <div class="invite-elem">
+                    <b>Mail: </b>
+                    <input [(ngModel)]="inviteMail" name="inviteMail" type="text">
+                </div>
+
+                <button class="btn-primary ajoutbtn"
+                    (click)='onAddInviteClick(inviteNom, invitePrenom, inviteMail)'>Ajouter invité</button>
+            </div>
+        </div>
+
+        <br>
+        <button class="btn-primary" (click)='onReserverClick()'>Réserver le RDV</button>
+
+    </form>
+</div>

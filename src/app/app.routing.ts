@@ -38,6 +38,7 @@ import { ProfileInfoContactComponent } from './contact/profile-info-contact/prof
 import { ProfileInfoPersonnelComponent } from './personnel/profile-info-personnel/profile-info-personnel.component';
 import { ModifierPersonnelComponent } from './direction/modifier-personnel/modifier-personnel.component';
 import { ReporterRDVComponent } from './personnel/reporter-rdv/reporter-rdv.component';
+import { PrendreRDVComponent } from './contact/prendre-RDV/prendre-rdv.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'direction', pathMatch: 'full' },
@@ -96,7 +97,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'calendrier', component: NotyetimplComponent },
       { path: 'calendrier/consulter', component: ConsulterCreneauxComponent },
-      { path: 'calendrier/reserver', component: ReserverRdvComponent },
+      { path: 'calendrier/reserver', component: PrendreRDVComponent },
       { path: 'rendezvous/absence-annuler', component: DeclarerAbsenceComponent },
       { path: 'reservation/annuler', component: AnnulerRdvComponent },
     ]
