@@ -52,7 +52,7 @@ export class AffecterResidentComponent implements OnInit {
   }
 
   loadUnite(): void {
-    this.uniteService.findOtherUniteOfResidentByEphad(this.auth.getUserPesronnel().idEhpad, this.selectedResident.idResident ).then( res => {
+    this.uniteService.findOtherUniteOfResidentByEphad(this.auth.getUserPesronnel().idEhpad ).then( res => {
       this.uniteList = res;
     }).catch(ex => {
       console.log(ex.error);

@@ -58,10 +58,7 @@ export class PersonnelService {
   }
 
   searchByKey(key: string, ehpad?: number): Observable<IPersonnel[]> {
-    let params = new HttpParams();
-
-    params = params.append('key', key );
-    return this.http.get(`${config.endpoint}/personnels/search`, {params}).pipe(
+    return this.http.get(`${config.endpoint}/personnels/search/${key}`).pipe(
       map((userData: IPersonnel[]) => userData),
       catchError(err => throwError(err))
     );
@@ -70,7 +67,7 @@ export class PersonnelService {
   async updatePersonnel(personnel: IPersonnel): Promise<IPersonnel>{
     console.log(personnel);
     return new Promise<IPersonnel>((resolve, reject) => {
-      this.http.put<IPersonnel>(`${config.endpoint}/personnels`, personnel).subscribe(res => {
+      this.http.post<IPersonnel>(`${config.endpoint}/personnels/replace`, personnel).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });
