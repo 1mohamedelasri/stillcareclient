@@ -10,6 +10,7 @@ export class ContactGuard implements CanActivate {
     private authService: AuthService
   ) { }
 
+  // tslint:disable-next-line:typedef
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     const role = this.authService.currentUserRole();

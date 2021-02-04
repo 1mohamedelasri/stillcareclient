@@ -61,8 +61,6 @@ export class PersonnelService {
     let params = new HttpParams();
 
     params = params.append('key', key );
-    params = params.append('ehpad', String(ehpad));
-
     return this.http.get(`${config.endpoint}/personnels/search`, {params}).pipe(
       map((userData: IPersonnel[]) => userData),
       catchError(err => throwError(err))

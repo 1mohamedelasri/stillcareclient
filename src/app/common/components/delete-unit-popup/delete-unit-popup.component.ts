@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {UniteService} from '../../../sharedServices/services/unites.service';
 import {ToastrService} from 'ngx-toastr';
+import {UniteService} from "../../../sharedServices/services/unites.service";
 
 @Component({
   selector: 'delete-unit-popup',
