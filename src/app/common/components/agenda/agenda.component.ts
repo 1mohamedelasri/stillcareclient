@@ -12,6 +12,8 @@ import {Observable} from 'rxjs';
 import {Personnel} from '../../interfaces/Personnel';
 import {RendezVous} from '../../interfaces/RendezVous';
 import {Creneau} from '../../interfaces/Creneau';
+import {config} from '../../../../environments/config';
+import {AuthService} from '../../../sharedServices/services/auth.service';
 
 loadCldr(
   require('cldr-data/supplemental/numberingSystems.json'),
@@ -20,7 +22,6 @@ loadCldr(
   require('cldr-data/main/fr/timeZoneNames.json'));
 
 L10n.load({ fr: EJ2_LOCALE.fr });
-const endpoint = 'http://localhost:8085/';
 
 
 @Component({
@@ -32,7 +33,10 @@ const endpoint = 'http://localhost:8085/';
 export class AgendaComponent implements OnInit {
   @ViewChild('scheduleObj')
   public scheduleObj: ScheduleComponent;
-  constructor(private http: HttpClient) { }
+  user: any;
+  constructor(private http: HttpClient, private auth: AuthService) {
+    this.user = auth.getUserObject();
+  }
   public eventObject: EventSettingsModel = {
     dataSource: []
   };
@@ -43,9 +47,8 @@ export class AgendaComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = this.eventObject.dataSource;
-    // TODO change ehpad 1 => ehpad of user logged after implementing authentification of direction
-    this.residents = this.http.get<Array<Resident>>(endpoint + 'residents/ehpad/1' ).pipe();
-    this.personnels = this.http.get<Array<Personnel>>(endpoint + 'personnels/ehpad/1' ).pipe();
+    this.residents = this.http.get<Array<Resident>>(config.endpoint + '/residents/ehpad/' + this.user.idEhpad ).pipe();
+    this.personnels = this.http.get<Array<Personnel>>(config.endpoint + '/personnels/ehpad/' + this.user.idEhpad  ).pipe();
   }
 
   // tslint:disable-next-line:typedef
@@ -66,7 +69,7 @@ export class AgendaComponent implements OnInit {
   }
   putResidentToCalendar(e: any): void{
     let data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/resident/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(config.endpoint + '/rendezvous/resident/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: rdv.idRdv,
@@ -86,7 +89,7 @@ export class AgendaComponent implements OnInit {
   putPersonnelToCalendar(e: any): void{
     console.log(e);
     let data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(config.endpoint + '/rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: rdv.idRdv,
@@ -97,7 +100,7 @@ export class AgendaComponent implements OnInit {
           CategoryColor: '#ffaa00',
         });
       });
-      this.http.get<Array<Creneau>>(endpoint + 'creneaux/personnel/sansRdv/' + e ).subscribe(
+      this.http.get<Array<Creneau>>(config.endpoint + '/creneaux/personnel/sansRdv/' + e ).subscribe(
         val => {
           val.forEach(
             creneau => {

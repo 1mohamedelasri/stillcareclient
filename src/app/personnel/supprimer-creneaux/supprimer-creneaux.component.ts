@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 import {NotificationService} from '../../sharedServices/services/notification.service';
 import {RendezvousService} from '../../sharedServices/services/rendezvous.service';
 import {CreneauService} from '../../sharedServices/services/creneau.service';
+import {AuthService} from '../../sharedServices/services/auth.service';
+import {config} from '../../../environments/config';
 
 declare var require: any;
 loadCldr(
@@ -19,7 +21,7 @@ loadCldr(
 );
 
 L10n.load({ fr: EJ2_LOCALE.fr });
-const endpoint = 'http://localhost:8085/';
+
 
 @Component({
   selector: 'app-supprimer-creneaux',
@@ -33,8 +35,12 @@ export class SupprimerCreneauxComponent implements OnInit {
 
   eventObject: any;
   toRegister: Array<any> = new Array<any>();
-  constructor(private http: HttpClient, private notifyService: NotificationService, private rdvService: RendezvousService, private creneauService: CreneauService) { }
-  ngOnInit(): void {this.putPersonnelToCalendar(6); // TODO change index
+  user: any;
+  constructor(private http: HttpClient, private notifyService: NotificationService, private rdvService: RendezvousService, private creneauService: CreneauService, private auth: AuthService) {
+    this.user = auth.getUserObject();
+  }
+
+  ngOnInit(): void {this.putPersonnelToCalendar(this.user.idPersonnel);
   }
   // tslint:disable-next-line:typedef
   test(e: any) {
@@ -43,7 +49,7 @@ export class SupprimerCreneauxComponent implements OnInit {
       this.eventObject.dataSource = this.eventObject.dataSource.filter( i => i.id !== e.deletedRecords[0].id);
       if (e.deletedRecords[0].Rdv){
         this.rdvService.deleteRdv(e.deletedRecords[0].Rdv.idRdv).then( s => {
-          this.putPersonnelToCalendar(6); // TODO change index
+          this.putPersonnelToCalendar(this.user.idPersonnel);
         }).catch(reason => {
           console.log(reason.error);
         });
@@ -61,7 +67,7 @@ export class SupprimerCreneauxComponent implements OnInit {
   putPersonnelToCalendar(e: any): void{
     let i = 0;
     const data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(config.endpoint + '/rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: i ,
@@ -74,7 +80,7 @@ export class SupprimerCreneauxComponent implements OnInit {
         });
         i++;
       });
-      this.http.get<Array<Creneau>>(endpoint + 'creneaux/personnel/sansRdv/' + e ).subscribe(
+      this.http.get<Array<Creneau>>(config.endpoint + '/creneaux/personnel/sansRdv/' + e ).subscribe(
         val => {
           val.forEach(
             creneau => {

@@ -8,6 +8,8 @@ import {RendezVous} from '../../interfaces/RendezVous';
 import {Creneau} from '../../interfaces/Creneau';
 import {L10n, loadCldr} from '@syncfusion/ej2-base';
 import * as EJ2_LOCALE from '../agenda/Translate/fr.json';
+import {AuthService} from '../../../sharedServices/services/auth.service';
+import {config} from '../../../../environments/config';
 
 
 
@@ -21,10 +23,14 @@ const endpoint = 'http://localhost:8085/';
   templateUrl: './agenda-personnels.component.html',
   styleUrls: ['./agenda-personnels.component.scss']
 })
+
 export class AgendaPersonnelsComponent implements OnInit {
   @ViewChild('scheduleObj')
+  user: any;
   public scheduleObj: ScheduleComponent;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, auth: AuthService) {
+    this.user = auth.getUserObject();
+  }
   public eventObject: EventSettingsModel = {
     dataSource: []
   };
@@ -35,9 +41,8 @@ export class AgendaPersonnelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = this.eventObject.dataSource;
-    // TODO change ehpad 1 => ehpad of user logged after implementing authentification of direction
-    this.residents = this.http.get<Array<Resident>>(endpoint + 'Residents/ehpad/1' ).pipe();
-    this.personnels = this.http.get<Array<Personnel>>(endpoint + 'personnels/ehpad/1' ).pipe();
+    this.residents = this.http.get<Array<Resident>>(config.endpoint + '/residents/ehpad/' + this.user.idEhpad ).pipe();
+    this.personnels = this.http.get<Array<Personnel>>(config.endpoint + '/personnels/ehpad/' + this.user.idEhpad).pipe();
   }
 
   // tslint:disable-next-line:typedef
@@ -59,7 +64,7 @@ export class AgendaPersonnelsComponent implements OnInit {
   putResidentToCalendar(e: any): void{
     // tslint:disable-next-line:ban-types
     const data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/resident/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(config.endpoint + '/rendezvous/resident/' + e ).subscribe(value => {
         value.forEach(rdv => {
           data.push({
             id: rdv.idRdv,
@@ -79,7 +84,7 @@ export class AgendaPersonnelsComponent implements OnInit {
   putPersonnelToCalendar(e: any): void{
     console.log(e);
     let data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(config.endpoint + '/rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: rdv.idRdv,
@@ -90,7 +95,7 @@ export class AgendaPersonnelsComponent implements OnInit {
           CategoryColor: '#ffaa00',
         });
       });
-      this.http.get<Array<Creneau>>(endpoint + 'creneaux/personnel/sansRdv/' + e ).subscribe(
+      this.http.get<Array<Creneau>>(config.endpoint + '/creneaux/personnel/sansRdv/' + e ).subscribe(
         val => {
           val.forEach(
             creneau => {
@@ -113,7 +118,7 @@ export class AgendaPersonnelsComponent implements OnInit {
 
   }
   oneventRendered(args: EventRenderedArgs): void {
-    let categoryColor: string = args.data.CategoryColor as string;
+    const categoryColor: string = args.data.CategoryColor as string;
     if (!args.element || !categoryColor) {
       return;
     }

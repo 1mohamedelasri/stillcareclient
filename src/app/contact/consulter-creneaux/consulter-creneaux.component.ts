@@ -12,6 +12,7 @@ import {CreneauService} from '../../sharedServices/services/creneau.service';
 import {config} from '../../../environments/config';
 import {Observable} from 'rxjs';
 import {Resident} from '../../common/interfaces/Resident';
+import {AuthService} from '../../sharedServices/services/auth.service';
 
 declare var require: any;
 loadCldr(
@@ -22,7 +23,6 @@ loadCldr(
 );
 
 L10n.load({ fr: EJ2_LOCALE.fr });
-const endpoint = 'http://localhost:8085/';
 @Component({
   selector: 'app-consulter-creneaux',
   templateUrl: './consulter-creneaux.component.html',
@@ -34,10 +34,12 @@ export class ConsulterCreneauxComponent implements OnInit {
   private residents: Observable<Array<Resident>>;
   eventObject: any;
   toRegister: Array<any> = new Array<any>();
-  constructor(private http: HttpClient, private notifyService: NotificationService, private rdvService: RendezvousService, private creneauService: CreneauService) { }
+  user: any;
+  residentId: number;
+  constructor(private http: HttpClient, private notifyService: NotificationService, private rdvService: RendezvousService, private creneauService: CreneauService, private auth: AuthService) { }
   ngOnInit(): void {
-    // TODO change id 7 with contact id
-    this.residents = this.http.get<Array<Resident>>(config.endpoint + '/residents/contact/7' ).pipe();
+    this.user = this.auth.getUserObject();
+    this.residents = this.http.get<Array<Resident>>(config.endpoint + '/residents/contact/' + this.user.idContact ).pipe();
   }
   // tslint:disable-next-line:typedef
   test(e: any) {
@@ -55,10 +57,10 @@ export class ConsulterCreneauxComponent implements OnInit {
     }
   }
   putResidentToCalendar(e: any): void{
+    this.residentId = e;
     let i = 0;
     const data: Array<Object>= new Array<Object>();
-    // TODO change 7 with id contact
-    this.http.get<Array<RendezVous>>(`${endpoint}rendezvous/resident/${e}/${7}`).subscribe(value => {
+    this.http.get<Array<RendezVous>>(`${config.endpoint}/rendezvous/resident/${this.user.idContact}/${e}`).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: i ,
@@ -71,7 +73,7 @@ export class ConsulterCreneauxComponent implements OnInit {
         });
         i++;
       });
-      this.http.get<Array<Creneau>>(endpoint + 'creneaux/resident/libre/' + e ).subscribe(
+      this.http.get<Array<Creneau>>(config.endpoint + '/creneaux/resident/libre/' + e ).subscribe(
         val => {
           val.forEach(
             creneau => {
@@ -112,10 +114,14 @@ export class ConsulterCreneauxComponent implements OnInit {
   }
   onPopupOpen(args: PopupOpenEventArgs): void {
     args.cancel = true;
-    console.log(args.data[0].cr);
+    const value: any = args.data;
     if (args.type === 'QuickInfo' && args.data.hasOwnProperty('Subject'))
     {
-      this.notifyService.showWarning('cette action n\'est pas autorisé dans cette page' , 'Attention' );
+      const rdv: RendezVous = new RendezVous(value.cr , this.user.idContact, this.residentId);
+      this.rdvService.ajouterrdv(rdv).then( value1 => {
+        this.putResidentToCalendar(this.residentId);
+      });
+
     }
   }
 

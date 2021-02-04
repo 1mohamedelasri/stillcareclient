@@ -7,6 +7,9 @@ import * as EJ2_LOCALE from '../../common/components/agenda/Translate/fr.json';
 import {HttpClient} from '@angular/common/http';
 import {NotificationService} from '../../sharedServices/services/notification.service';
 import {CreneauService} from '../../sharedServices/services/creneau.service';
+import {AuthService} from '../../sharedServices/services/auth.service';
+import {IPersonnel} from '../../sharedServices/models/Personnel';
+import {config} from '../../../environments/config';
 
 declare var require: any;
 loadCldr(
@@ -17,7 +20,6 @@ loadCldr(
 );
 
 L10n.load({ fr: EJ2_LOCALE.fr });
-const endpoint = 'http://localhost:8085/';
 
 @Component({
   selector: 'app-declarer-creneaux',
@@ -30,8 +32,12 @@ export class DeclarerCreneauxComponent implements OnInit {
 
   eventObject: any;
   toRegister: Array<any> = new Array<any>();
-  constructor(private http: HttpClient, private notifyService: NotificationService, private creneauService: CreneauService) { }
-  ngOnInit(): void {this.putPersonnelToCalendar(6);//TODO
+  user: any;
+  constructor(private http: HttpClient, private notifyService: NotificationService, private creneauService: CreneauService, private auth: AuthService) { }
+  ngOnInit(): void {
+    this.user = this.auth.getUserObject();
+    this.putPersonnelToCalendar(this.user.idPersonnel);
+    this.putPersonnelToCalendar(this.user.idPersonnel);
   }
   // tslint:disable-next-line:typedef
   test(e: any) {
@@ -58,7 +64,7 @@ export class DeclarerCreneauxComponent implements OnInit {
     this.toRegister = new Array<any>();
     console.log(e);
     const data: Array<Object>= new Array<Object>();
-    this.http.get<Array<RendezVous>>(endpoint + 'rendezvous/personnel/' + e ).subscribe(value => {
+    this.http.get<Array<RendezVous>>(config.endpoint + '/rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
           id: rdv.idRdv,
@@ -70,7 +76,7 @@ export class DeclarerCreneauxComponent implements OnInit {
           IsReadonly: true,
         });
       });
-      this.http.get<Array<Creneau>>(endpoint + 'creneaux/personnel/sansRdv/' + e ).subscribe(
+      this.http.get<Array<Creneau>>(config.endpoint + '/creneaux/personnel/sansRdv/' + e ).subscribe(
         val => {
           val.forEach(
             creneau => {
@@ -135,14 +141,14 @@ export class DeclarerCreneauxComponent implements OnInit {
   enregistrer(): void{
     const c: Creneau[] = this.toRegister.map( elem =>
     {
-      return new Creneau(6, elem.StartTime); // TODO
+      return new Creneau(this.user.idPersonnel, elem.StartTime);
     });
     if (c[0]) {
     this.creneauService.enregistrerCreneau(c).then( s => {
-      this.putPersonnelToCalendar(6); // TODO
+      this.putPersonnelToCalendar(this.user.idPersonnel);
       this.notifyService.showSuccess('Rendez-vous enregistré avec succès', 'Enregistrer');
     }).catch(reason => {
-      this.putPersonnelToCalendar(6); // TODO
+      this.putPersonnelToCalendar(this.user.idPersonnel);
       console.log(reason.error);
       this.notifyService.showError(reason.error, 'Erreur d\'enregistrement');
     });
