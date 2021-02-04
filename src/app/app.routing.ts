@@ -15,7 +15,6 @@ import {ProfilecardListComponent} from './common/profilecard-list/profilecard-li
 import {EtablissementListComponent} from './direction/etablissement-list/etablissement-list.component';
 import {NotyetimplComponent} from './common/components/notyetimpl/notyetimpl.component';
 import { UnitListComponent } from './direction/unit-list/unit-list.component';
-import { UnitCreateModifyComponent } from './direction/unit-create-modify/unit-create-modify.component';
 import { UnitComponent } from './direction/unit/unit.component';
 import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
 import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
@@ -31,20 +30,19 @@ import {DirectionGuard} from './sharedServices/helpers/guard/direction.guard';
 import {ContactGuard} from './sharedServices/helpers/guard/contact.guard';
 import {PersonnelGuard} from './sharedServices/helpers/guard/personnel.guard';
 import {CompleteAccountComponent} from './views/complete-account/complete-account.component';
-import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
-import {ConsulterListePersonnelComponent} from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
 import {ModifierPersonnelComponent} from './direction/modifier-personnel/modifier-personnel.component';
-import {ChangerUniteComponent} from './direction/changer-unite/changer-unite.component';
-import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter-creneaux.component';
-import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
-import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
-import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-profile.component';
-import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
 import {P500Component} from './views/error/500.component';
-import {RedirectGuardGuard} from './sharedServices/helpers/guard/redirect.guard';
-import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
 import {SupprimerCreneauxComponent} from './personnel/supprimer-creneaux/supprimer-creneaux.component';
+import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
+import {UnitCreateModifyComponent} from './direction/unit-create-modify/unit-create-modify.component';
+import {ChangerUniteComponent} from './direction/changer-unite/changer-unite.component';
+import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
+import {ConsulterListePersonnelComponent} from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
+import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter-creneaux.component';
+import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
+import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
+import {RedirectGuardGuard} from './sharedServices/helpers/guard/redirect.guard';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},

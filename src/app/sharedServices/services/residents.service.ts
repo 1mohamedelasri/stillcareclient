@@ -40,7 +40,7 @@ export class ResidentService {
 
   async getResidentsWithEPHAD(idEhpad: number): Promise<IResident[]> {
     return new Promise<IResident[]>((resolve, reject) => {
-      this.http.get<IResident[]>(`${config.endpoint}/residents`).subscribe(res => {
+      this.http.get<IResident[]>(`${config.endpoint}/residents/ehpad/${idEhpad}`).subscribe(res => {
         this.currentResidents.next(res);
         resolve(res);
       }, err => reject(err));

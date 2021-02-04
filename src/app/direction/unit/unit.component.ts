@@ -1,15 +1,14 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUnit, UnitStatus } from '../../common/interfaces/Unit';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteUnitPopupComponent } from '../../common/components/delete-unit-popup/delete-unit-popup.component';
-import {IUnite} from '../../sharedServices/models/Unite';
 import {AuthService} from '../../sharedServices/services/auth.service';
-import {PersonnelService} from '../../sharedServices/services/personnels.service';
-import {UniteService} from '../../sharedServices/services/unites.service';
 import {ToastrService} from 'ngx-toastr';
 import {IPersonnel} from '../../sharedServices/models/Personnel';
-import {ResidentService} from '../../sharedServices/services/residents.service';
+import {IUnite} from "../../sharedServices/models/Unite";
+import {ResidentService} from "../../sharedServices/services/residents.service";
+import {PersonnelService} from "../../sharedServices/services/personnels.service";
+import {UniteService} from "../../sharedServices/services/unites.service";
 
 @Component({
   selector: 'app-unit',
@@ -18,7 +17,7 @@ import {ResidentService} from '../../sharedServices/services/residents.service';
 })
 export class UnitComponent implements OnInit {
 
-  unites: IUnit[] = [];
+  unites: IUnite[] = [];
 
   unit: IUnite;
 

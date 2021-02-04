@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {ResidentService} from '../../sharedServices/services/residents.service';
 import {AuthService} from '../../sharedServices/services/auth.service';
 import {IResident} from '../../sharedServices/models/Resident';
-import {PersonnelService} from '../../sharedServices/services/personnels.service';
-import {UniteService} from '../../sharedServices/services/unites.service';
 import {ToastrService} from 'ngx-toastr';
-import {IUnite} from '../../sharedServices/models/Unite';
 import {IPersonnel} from '../../sharedServices/models/Personnel';
+import {UniteService} from "../../sharedServices/services/unites.service";
+import {PersonnelService} from "../../sharedServices/services/personnels.service";
+import {ResidentService} from "../../sharedServices/services/residents.service";
+import {IUnite} from "../../sharedServices/models/Unite";
 
 @Component({
   selector: 'app-affecter-resident',
