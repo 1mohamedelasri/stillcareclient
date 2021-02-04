@@ -43,6 +43,7 @@ import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter
 import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
 import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
 import {RedirectGuardGuard} from './sharedServices/helpers/guard/redirect.guard';
+import {ReporterComponent} from "./personnel/reporter/reporter.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -60,7 +61,7 @@ export const routes: Routes = [
       {path: 'residents/contacte', component: NotyetimplComponent},
       {path: 'residents/changer', component: NotyetimplComponent},
       {path: 'calendrier/declarer', component: DeclarerCreneauxComponent},
-      {path: 'calendrier/supprimer', component: SupprimerCreneauxComponent}
+      {path: 'rendezvous/reporter', component: ReporterComponent}
     ]
   },
   // tslint:disable-next-line:max-line-length
@@ -96,9 +97,8 @@ export const routes: Routes = [
   },
   {path: '**', component: P404Component }
 ];
-
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }) ],
+  imports: [ RouterModule.forRoot(routes, {useHash: true, relativeLinkResolution: 'legacy' }) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

@@ -9,7 +9,7 @@
     <label>Choisir une unité :</label>
     <mat-select [formControl]="unites" class = "myInput"  [(value)]="selectedUnite" (selectionChange)="onUniteChange()" >
       <mat-option selected *ngIf="uniteList.length ===0"> aucunes unités pour votre EHPAD : {{this.auth.getUserPesronnel().idEhpad}}</mat-option>
-      <mat-option *ngFor="let unite of uniteList" [value]="unite" >{{unite.nom + '    ,  ' + unite.etat }}</mat-option>
+      <mat-option *ngFor="let unite of uniteList"  [value]="unite" >{{unite.nom + '    ,  ' + unite.etat }}</mat-option>
     </mat-select>
   </div>
   <br><br>

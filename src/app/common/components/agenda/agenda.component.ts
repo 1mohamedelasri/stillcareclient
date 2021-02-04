@@ -44,7 +44,7 @@ export class AgendaComponent implements OnInit {
   ngOnInit(): void {
     this.data = this.eventObject.dataSource;
     // TODO change ehpad 1 => ehpad of user logged after implementing authentification of direction
-    this.residents = this.http.get<Array<Resident>>(endpoint + 'Residents/ehpad/1' ).pipe();
+    this.residents = this.http.get<Array<Resident>>(endpoint + 'residents/ehpad/1' ).pipe();
     this.personnels = this.http.get<Array<Personnel>>(endpoint + 'personnels/ehpad/1' ).pipe();
   }
 
