@@ -1,1 +1,12 @@
-<ejs-schedule locale='fr' [firstDayOfWeek]= 1 [eventSettings]="this.eventObject" (actionComplete)="test($event)" ></ejs-schedule>
+<h1>Declarer les créneaux</h1>
+<mat-form-field appearance="fill" >
+  <mat-label>choix resident</mat-label>
+  <mat-select >
+    <mat-option *ngFor="let resident of residents |async"  [value]="resident.idResident" (click)="putResidentToCalendar(resident.idResident)" >
+      {{resident.nom}} {{resident.prenom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<ejs-schedule #scheduleObj locale='fr' [firstDayOfWeek]= 1 [eventSettings]="this.eventObject" (actionComplete)="test($event)" (eventRendered)="oneventRendered($event)"  (popupOpen)='onPopupOpen($event)'></ejs-schedule>
+
