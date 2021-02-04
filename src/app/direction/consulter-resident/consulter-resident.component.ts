@@ -10,8 +10,7 @@ import {MatTableDataSource} from '@angular/material/table';
   selector: 'app-consulter-resident',
   templateUrl: './consulter-resident.component.html',
   styleUrls: ['./consulter-resident.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation: ViewEncapsulation.None
 })
 export class ConsulterResidentComponent implements OnInit {
 
@@ -33,8 +32,10 @@ export class ConsulterResidentComponent implements OnInit {
   initDataSource(): void{
     this.residentService.findAll(1, 10).pipe(
       map((userData: IResidentResult) => {
-        this.dataSource.data = userData.content;
-        this.residentResult = userData;
+        if (userData && !userData.empty) {
+          this.dataSource.data = userData.content;
+          this.residentResult = userData;
+        }
       })
     ).subscribe();
   }
@@ -48,13 +49,11 @@ export class ConsulterResidentComponent implements OnInit {
       page = page + 1;
       this.residentService.findAll(page, size).pipe(
         map((userData: IResidentResult) => {
-          this.dataSource.data = userData.content;
-          this.residentResult = userData;
+          if (userData){
+            this.dataSource.data = userData.content;
+            this.residentResult = userData;
+          }
         })
-      ).subscribe();
-    } else {
-      this.residentService.paginateByName(page, size, this.filterValue).pipe(
-        map((userData: IResidentResult) => this.residentResult = userData)
       ).subscribe();
     }
 
@@ -62,21 +61,17 @@ export class ConsulterResidentComponent implements OnInit {
 
   findByName(username: string): void {
     console.log(username);
-    this.residentService.paginateByName(0, 10, username).pipe(
-      map((userData: IResidentResult) => {
+    this.residentService.paginateByName(0, 10, username).then((userData: IResidentResult) => {
+      if (userData && !userData.empty) {
         this.dataSource.data = userData.content;
         this.residentResult = userData;
-      })
-    ).subscribe();
+      }
+    });
   }
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  navigateToProfile(id): void {
-    this.router.navigate(['./' + id], {relativeTo: this.activatedRoute});
   }
 
 }

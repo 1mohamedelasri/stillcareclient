@@ -28,9 +28,18 @@ export class UniteService {
     });
   }
 
+
   async findOtherUniteOfResidentByEphad(resident: number, idehpad: number): Promise<IUnite[]> {
     return new Promise<IUnite[]>((resolve, reject) => {
       this.http.get<IUnite[]>(`${config.endpoint}/unites/${resident}/ehpad/${idehpad}`).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+  async getUniteById(id: number): Promise<IUnite> {
+    return new Promise<IUnite>((resolve, reject) => {
+      this.http.get<IUnite>(`${config.endpoint}/unites/${id}`).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });
@@ -40,6 +49,30 @@ export class UniteService {
   async saveResident(resident: IResident): Promise<IResident>{
     return new Promise<IResident>((resolve, reject) => {
       this.http.post<IResident>(`${config.endpoint}/contacts`, {resident}).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+  async saveUnite(unite: IUnite): Promise<IUnite>{
+    return new Promise<IUnite>((resolve, reject) => {
+      this.http.post<IUnite>(`${config.endpoint}/unites`, unite).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+  async updateUnite(idUnite: number, unite: IUnite): Promise<IUnite>{
+    return new Promise<IUnite>((resolve, reject) => {
+      this.http.post<IUnite>(`${config.endpoint}/unites/replace/${idUnite}`, unite).subscribe(res => {
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+  async deleteUnite(idUnite: number): Promise<IUnite>{
+    return new Promise<IUnite>((resolve, reject) => {
+      this.http.delete<IUnite>(`${config.endpoint}/unites/${idUnite}`).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });

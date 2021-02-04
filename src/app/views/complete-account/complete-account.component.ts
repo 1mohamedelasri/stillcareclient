@@ -83,7 +83,7 @@ export class CompleteAccountComponent implements OnInit {
   validateInfos(firebaseUser: any, nom: string, prenom: string, email: string, tel: string): void{
     console.log(`nom ${nom} --- prenom ${prenom}  `);
     if (this.form.valid) {
-      if (this.residentList.length < 1) {
+      if (this.selectedResidents.length < 1) {
         this.toastrService.warning('Vous devez choisir au moins un résident!', 'Choix de résident!');
       }else {
         this.logger.debug(`validateInfos : nom ${nom} --- prenom ${prenom}  `);

@@ -61,7 +61,6 @@ import { EtablissementListComponent } from './direction/etablissement-list/etabl
 import { NotyetimplComponent } from './common/components/notyetimpl/notyetimpl.component';
 import { UnitListComponent } from './direction/unit-list/unit-list.component';
 import { DeleteUnitPopupComponent } from './common/components/delete-unit-popup/delete-unit-popup.component';
-import { UnitCreateModifyComponent } from './direction/unit-create-modify/unit-create-modify.component';
 import { UnitComponent } from './direction/unit/unit.component';
 import { CreateResidentComponent } from './direction/create-resident/create-resident.component';
 import { AffecterResidentComponent } from './direction/affecter-resident/affecter-resident.component';
@@ -82,93 +81,93 @@ import {AccountService} from './sharedServices/services/account.service';
 import { CompleteAccountComponent } from './views/complete-account/complete-account.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import { DialogOverviewComponent } from './views/complete-account/dialog-overview/dialog-overview.component';
-import { AjouterPersonnelComponent } from './direction/ajouter-personnel/ajouter-personnel.component';
 import { ModifierPersonnelComponent } from './direction/modifier-personnel/modifier-personnel.component';
-import { ConsulterListePersonnelComponent } from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
-import { ChangerUniteComponent } from './direction/changer-unite/changer-unite.component';
-import { ConsulterCreneauxComponent } from './contact/consulter-creneaux/consulter-creneaux.component';
-import { DeclarerAbsenceComponent } from './contact/declarer-absence/declarer-absence.component';
-import { AnnulerRdvComponent } from './contact/annuler-rdv/annuler-rdv.component';
-import { ModifierProfileComponent } from './personnel/modifier-profile/modifier-profile.component';
-import { DeclarerResidentsComponent } from './personnel/declarer-residents/declarer-residents.component';
-import { DeclarerCreneauxComponent } from './personnel/declarer-creneaux/declarer-creneaux.component';
-import { PlanningCreneauxComponent } from './personnel/planning-creneaux/planning-creneaux.component';
-import { ChangementStatutResidentComponent } from './personnel/changement-statut-resident/changement-statut-resident.component';
 import {MatIconModule} from '@angular/material/icon';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
-import {SharewithpeopleComponent} from './views/sharewithpeople/sharewithpeople.component';
 import { TableResidentsComponent } from './common/components/table-residents/table-residents.component';
 import { TableResidentsItemComponent } from './common/components/table-residents/table-residents-item/table-residents-item.component';
 import { UnitAddResidentComponent } from './direction/unit-add-resident/unit-add-resident.component';
 import { UnitAddPersonnelComponent } from './direction/unit-add-personnel/unit-add-personnel.component';
 import {NgProgress, NgProgressModule} from 'ngx-progressbar';
 import {LoggerConfig, LoggerModule, NGXLogger, NgxLoggerLevel} from 'ngx-logger';
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatTableModule} from "@angular/material/table";
-import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {MatSelectModule} from "@angular/material/select";
-import {MatInputModule} from "@angular/material/input";
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { AgendaPersonnelsComponent } from './common/components/agenda-personnels/agenda-personnels.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import { SupprimerCreneauxComponent } from './personnel/supprimer-creneaux/supprimer-creneaux.component';
-import {MatButtonModule} from '@angular/material/button';
+import { AgendaPersonnelsComponent } from './common/components/agenda-personnels/agenda-personnels.component';
+import {ConsulterListePersonnelComponent} from './direction/consulter-liste-personnel/consulter-liste-personnel.component';
+import {ChangerUniteComponent} from './direction/changer-unite/changer-unite.component';
+import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
+import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
+import {ChangementStatutResidentComponent} from './personnel/changement-statut-resident/changement-statut-resident.component';
+import {PlanningCreneauxComponent} from './personnel/planning-creneaux/planning-creneaux.component';
+import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
+import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
+import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter-creneaux.component';
+import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-profile.component';
+import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
+import {UnitCreateModifyComponent} from './direction/unit-create-modify/unit-create-modify.component';
 
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        AppAsideModule,
-        AppBreadcrumbModule.forRoot(),
-        AppFooterModule,
-        AppHeaderModule,
-        AppSidebarModule,
-        PerfectScrollbarModule,
-        BsDropdownModule.forRoot(),
-        TabsModule.forRoot(),
-        ChartsModule,
-        IconModule,
-        IconSetModule.forRoot(),
-        MatTableModule,
-        FormsModule,
-        DashboardRoutingModule,
-        ChartsModule,
-        BsDropdownModule,
-        ButtonsModule.forRoot(),
-        PaginationModule,
-        CommonModule,
-        MatDialogModule,
-        MatInputModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        ScheduleModule,
-        RecurrenceEditorModule,
-        InputsModule,
-        NgSelectModule,
-        FormsModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireAnalyticsModule,
-        AngularFirestoreModule,
-        NgProgressModule.withConfig({
-            spinnerPosition: 'left',
-            thick: true
-        }),
-        ToastrModule.forRoot({
-            timeOut: 2500,
-            progressAnimation: 'increasing',
-            preventDuplicates: true
-        }),
-        HttpClientModule,
-        MatIconModule,
-        NgMultiSelectDropDownModule.forRoot(),
-        MatCheckboxModule,
-        LoggerModule,
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        MatButtonModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    AppAsideModule,
+    AppBreadcrumbModule.forRoot(),
+    AppFooterModule,
+    AppHeaderModule,
+    AppSidebarModule,
+    PerfectScrollbarModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ChartsModule,
+    IconModule,
+    IconSetModule.forRoot(),
+    MatTableModule,
+    FormsModule,
+    DashboardRoutingModule,
+    ChartsModule,
+    BsDropdownModule,
+    ButtonsModule.forRoot(),
+    PaginationModule,
+    CommonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    ScheduleModule,
+    RecurrenceEditorModule,
+    InputsModule,
+    NgSelectModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
+    NgProgressModule.withConfig({
+      spinnerPosition: 'left',
+      thick: true
+    }),
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      progressAnimation: 'increasing',
+      preventDuplicates: true
+    }),
+    HttpClientModule,
+    MatIconModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    MatCheckboxModule,
+    LoggerModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    NgxMatSelectSearchModule
+  ],
   declarations: [
     AppComponent,
     DefaultLayoutComponent,
@@ -215,7 +214,7 @@ import {MatButtonModule} from '@angular/material/button';
     DeclarerResidentsComponent,
     DeclarerCreneauxComponent,
     PlanningCreneauxComponent,
-    ChangementStatutResidentComponent, SharewithpeopleComponent,
+    ChangementStatutResidentComponent,
     AgendaComponent,
     UnitAddResidentComponent,
     UnitAddPersonnelComponent,

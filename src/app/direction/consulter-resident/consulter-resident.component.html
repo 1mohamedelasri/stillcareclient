@@ -8,7 +8,7 @@
 <div *ngIf="dataSource">
   <mat-table [dataSource]="dataSource">
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row ; columns: displayedColumns" (click)="navigateToProfile(row.idResident)"></mat-row>
+    <mat-row *matRowDef="let row ; columns: displayedColumns"></mat-row>
 
 
     <ng-container matColumnDef="idResident">
@@ -39,8 +39,8 @@
   </mat-table>
 
   <mat-paginator
-    [length]="residentResult.totalElements"
-    [pageSize]="residentResult.numberOfElements"
+    [length]="residentResult?.totalElements"
+    [pageSize]="residentResult?.numberOfElements"
     [pageSizeOptions]="[5,10,25,100]"
     (page)="pageEvent = $event; onPaginateChange($event)"
     showFirstLastButtons>

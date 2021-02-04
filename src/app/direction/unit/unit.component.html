@@ -1,9 +1,10 @@
+<div *ngIf="unit">
 <div class="header">
   <div>
-    <h1>{{unit.name}} </h1>
-    <p>{{unit.status}}</p>
+    <h1>{{unit?.nom}} </h1>
+    <p>{{unit?.etat}}</p>
   </div>
-  
+
   <div class="action-buttons">
     <button type="button" class="btn btn-primary" (click)="goToUnitModification()">Modifier unité</button><br>
     <button type="button" class="btn btn-danger" (click)="onDeleteUnitClick()">Supprimer unité</button>
@@ -12,13 +13,12 @@
 
 
 <div class="card-wrapper">
-  <p class="font-weight-bold blue-text">{{unit.desc}}</p>
+  <p class="font-weight-bold blue-text"></p>
 </div>
 
-<div class="staff">
+<div class="staff" *ngIf="unit">
   <div class="header">
     <h3>Notre équipe</h3>
-    <button type="button" class="btn btn-primary" (click)="onAddPersonnelClick()">Ajouter personnel</button>
   </div>
   <app-table></app-table>
 </div>
@@ -26,8 +26,8 @@
 <div class="residents">
   <div class="header">
     <h3>Nos résidents</h3>
-    <button type="button" class="btn btn-primary" (click)="onAddResidentClick()">Ajouter résident</button>
   </div>
   <app-residents-table> </app-residents-table>
 
+</div>
 </div>
