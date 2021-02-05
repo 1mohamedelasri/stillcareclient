@@ -33,7 +33,6 @@ import {CompleteAccountComponent} from './views/complete-account/complete-accoun
 import {ModifierPersonnelComponent} from './direction/modifier-personnel/modifier-personnel.component';
 import {DeclarerCreneauxComponent} from './personnel/declarer-creneaux/declarer-creneaux.component';
 import {P500Component} from './views/error/500.component';
-import {SupprimerCreneauxComponent} from './personnel/supprimer-creneaux/supprimer-creneaux.component';
 import {DeclarerResidentsComponent} from './personnel/declarer-residents/declarer-residents.component';
 import {UnitCreateModifyComponent} from './direction/unit-create-modify/unit-create-modify.component';
 import {ChangerUniteComponent} from './direction/changer-unite/changer-unite.component';
@@ -44,6 +43,7 @@ import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
 import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
 import {RedirectGuardGuard} from './sharedServices/helpers/guard/redirect.guard';
 import {ReporterComponent} from './personnel/reporter/reporter.component';
+import {SupprimerCreneauxComponent} from './personnel/supprimer-creneaux/supprimer-creneaux.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},

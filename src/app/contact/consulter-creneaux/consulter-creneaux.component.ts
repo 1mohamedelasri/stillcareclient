@@ -134,10 +134,11 @@ export class ConsulterCreneauxComponent implements OnInit {
       const dialogRef = this.dialog.open(PopupRdvComponent, {
         width: '250px',
         data: rdv
-      });
-    /*  this.rdvService.ajouterrdv(rdv).then( value1 => {
+      }).afterClosed().subscribe(e =>
+        {
         this.putResidentToCalendar(this.residentId);
-      });*/
+        }
+      );
     }
   }
 

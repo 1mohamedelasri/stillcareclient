@@ -13,10 +13,10 @@
     <input matInput class="form-control"  value ="" formControlName="mail" #email >
   </mat-form-field>
   <button type="submit" class="btn-primary" (click)="ajouterinviter({nom: nom.value, prenom: prenom.value,mail: email.value})" cdkFocusInitial> ajouter inviter</button>
-
+<br>
     <mat-label>List des inviter</mat-label>
-    <mat-nav-list [formControl]="value">
-      <mat-list-item  *ngFor="let inviter of inviterList"  >
+    <cdk-virtual-scroll-viewport itemSize="50" [formControl]="value" class="example-viewport">
+      <mat-list-item  *ngFor="let inviter of inviterList"   >
         <div style="display:flex; justify-content: space-between">
           <span>{{inviter.nom}} {{inviter.prenom}}</span>
           <span></span>
@@ -26,10 +26,12 @@
         </div>
 
       </mat-list-item >
-    </mat-nav-list>
+    </cdk-virtual-scroll-viewport>
+
+
 
   <div class="d-flex flex-row">
-    <button type="submit" class="btn-primary" cdkFocusInitial> Prendre le Rendez vous</button>
+    <button type="submit" class="btn-primary" (click)="validate()" cdkFocusInitial> Prendre le Rendez vous</button>
     <button type="submit" class="btn-secondary"  (click)="Annuler()">Annuler</button>
   </div>
 </form>

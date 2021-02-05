@@ -4,6 +4,7 @@ import {IContact} from '../models/Contact';
 import {IResidentItem} from '../models/Resident';
 import {config} from '../../../environments/config';
 import {IRendezVous, RendezVous} from '../../common/interfaces/RendezVous';
+import {Inviter} from '../models/Inviter';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,9 @@ export class RendezvousService {
     });
   }
 
-  async ajouterrdv(rdv: RendezVous): Promise<any> {
+  async ajouterrdv(rdv: RendezVous, inv: Array<Inviter>): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.http.post(`${config.endpoint}/rendezvous`, rdv).subscribe(res => {
+      this.http.post(`${config.endpoint}/rendezvous`, {rendezvous: rdv, inviterlist: inv}).subscribe(res => {
         resolve(res);
       }, err => reject(err));
     });
