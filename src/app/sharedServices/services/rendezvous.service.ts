@@ -4,6 +4,9 @@ import {IContact} from '../models/Contact';
 import {IResidentItem} from '../models/Resident';
 import {config} from '../../../environments/config';
 import {IRendezVous, RendezVous} from '../../common/interfaces/RendezVous';
+import {Observable, throwError} from "rxjs";
+import {IPersonnel} from "../models/Personnel";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +30,13 @@ export class RendezvousService {
         resolve(res);
       }, err => reject(err));
     });
+  }
+
+  searchByKey(key: string, idrdv?: number): Observable<IPersonnel[]> {
+    console.log(idrdv);
+    return this.http.get(`${config.endpoint}/rendezvous/${+idrdv}/search/${key.toLowerCase()}`).pipe(
+      map((userData: IPersonnel[]) => userData),
+      catchError(err => throwError(err))
+    );
   }
 }

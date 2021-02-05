@@ -4,10 +4,11 @@ import {AuthService} from '../../sharedServices/services/auth.service';
 import {IResident} from '../../sharedServices/models/Resident';
 import {ToastrService} from 'ngx-toastr';
 import {IPersonnel} from '../../sharedServices/models/Personnel';
-import {UniteService} from "../../sharedServices/services/unites.service";
-import {PersonnelService} from "../../sharedServices/services/personnels.service";
-import {ResidentService} from "../../sharedServices/services/residents.service";
-import {IUnite} from "../../sharedServices/models/Unite";
+import {UniteService} from '../../sharedServices/services/unites.service';
+import {PersonnelService} from '../../sharedServices/services/personnels.service';
+import {ResidentService} from '../../sharedServices/services/residents.service';
+import {IUnite} from '../../sharedServices/models/Unite';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-affecter-resident',
@@ -68,6 +69,9 @@ export class AffecterResidentComponent implements OnInit {
   }
 
 
+  checkDate(dateNaissance: any) {
+    return new DatePipe('en-US').transform(dateNaissance, `${'yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\''}`);
+  }
 
   // tslint:disable-next-line:typedef
   affecterResident() {
@@ -77,18 +81,19 @@ export class AffecterResidentComponent implements OnInit {
     }else{
       console.log('all fields are filled!');
       // tslint:disable-next-line:max-line-length
-    /*  const resident: I = {
-        nom,
-        prenom,
-        datenaissance: this.checkDate(dateNaissance),
-        statut: this.selectedStatut, idPersonnel: this.selectedPersonnel.idPersonnel,
-        idUnite: this.selectedunite.idUnite
+      const resident: IResident = {
+        idResident: this.selectedResident.idResident,
+        nom: this.selectedResident.nom,
+        prenom: this.selectedResident.prenom,
+        datenaissance: this.checkDate(this.selectedResident.datenaissance),
+        statut: this.selectedResident.statut, idPersonnel: this.selectedPersonnel.idPersonnel,
+        idUnite: this.selectedResident.idUnite
       };
       this.residentService.saveResident(resident).then(result => {
         this.toastrService.success(`Le résident ${result.nom}  ${result.prenom} est enregistré`, 'Enregistrement validé');
       }).catch(exp => {
         this.toastrService.error('Erreur enregistrement du résident', 'Echec enregistrement');
-      });*/
+      });
     }
   }
 }

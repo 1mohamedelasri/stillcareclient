@@ -1,13 +1,16 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {EventRenderedArgs, PopupOpenEventArgs, ScheduleComponent} from "@syncfusion/ej2-angular-schedule";
-import {HttpClient} from "@angular/common/http";
-import {NotificationService} from "../../sharedServices/services/notification.service";
-import {RendezvousService} from "../../sharedServices/services/rendezvous.service";
-import {CreneauService} from "../../sharedServices/services/creneau.service";
-import {AuthService} from "../../sharedServices/services/auth.service";
-import {RendezVous} from "../../common/interfaces/RendezVous";
-import {config} from "../../../environments/config";
-import {Creneau} from "../../common/interfaces/Creneau";
+import {EventRenderedArgs, PopupOpenEventArgs, ScheduleComponent} from '@syncfusion/ej2-angular-schedule';
+import {HttpClient} from '@angular/common/http';
+import {NotificationService} from '../../sharedServices/services/notification.service';
+import {RendezvousService} from '../../sharedServices/services/rendezvous.service';
+import {CreneauService} from '../../sharedServices/services/creneau.service';
+import {AuthService} from '../../sharedServices/services/auth.service';
+import {RendezVous} from '../../common/interfaces/RendezVous';
+import {config} from '../../../environments/config';
+import {Creneau} from '../../common/interfaces/Creneau';
+import {DialogOverviewComponent} from '../../views/complete-account/dialog-overview/dialog-overview.component';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogChoixPersonnelComponent} from "./dialog-choix-personnel/dialog-choix-personnel.component";
 
 @Component({
   selector: 'app-declarer-remplacant',
@@ -21,7 +24,10 @@ export class DeclarerRemplacantComponent implements OnInit {
   eventObject: any;
   toRegister: Array<any> = new Array<any>();
   user: any;
-  constructor(private http: HttpClient, private notifyService: NotificationService, private rdvService: RendezvousService, private creneauService: CreneauService, private auth: AuthService) {
+  constructor(private http: HttpClient,
+              private notifyService: NotificationService,
+              public dialog: MatDialog,
+              private rdvService: RendezvousService, private creneauService: CreneauService, private auth: AuthService) {
     this.user = auth.getUserObject();
   }
 
@@ -52,7 +58,7 @@ export class DeclarerRemplacantComponent implements OnInit {
   }
   putPersonnelToCalendar(e: any): void{
     let i = 0;
-    const data: Array<Object>= new Array<Object>();
+    const data: Array<Object> = new Array<Object>();
     this.http.get<Array<RendezVous>>(config.endpoint + '/rendezvous/personnel/' + e ).subscribe(value => {
       value.forEach(rdv => {
         data.push({
@@ -66,31 +72,13 @@ export class DeclarerRemplacantComponent implements OnInit {
         });
         i++;
       });
-      this.http.get<Array<Creneau>>(config.endpoint + '/creneaux/personnel/sansRdv/' + e ).subscribe(
-        val => {
-          val.forEach(
-            creneau => {
-              data.push({
-                id: i,
-                cr: creneau,
-                Subject: 'Creneau sans RDV ' + creneau?.etat  ,
-                StartTime: creneau.datedebut,
-                // tslint:disable-next-line:max-line-length
-                EndTime: new Date(new Date(creneau.datedebut).getTime() + (30 * 60000)) ,
-                CategoryColor: '#20a8d8',
-              });
-              i++;
-            }
-          );
-          const d = new Date('2020-01');
-          d.setMonth(new Date().getMonth() + 1);
-          d.setFullYear(new Date().getFullYear());
-          d.setHours(d.getHours() - 1);
-          this.eventObject = {
-            dataSource: data,
-          };
-        }
-      );
+      const d = new Date('2020-01');
+      d.setMonth(new Date().getMonth() + 1);
+      d.setFullYear(new Date().getFullYear());
+      d.setHours(d.getHours() - 1);
+      this.eventObject = {
+        dataSource: data,
+      };
     });
   }
   oneventRendered(args: EventRenderedArgs): void {
@@ -106,10 +94,27 @@ export class DeclarerRemplacantComponent implements OnInit {
     }
   }
   onPopupOpen(args: PopupOpenEventArgs): void {
+    args.cancel = true;
     if ((args.type === 'QuickInfo' && !args.data.hasOwnProperty('Subject')) || args.type === 'Editor' || args.type === 'EditEventInfo' ) {
-      args.cancel = true;
       this.notifyService.showWarning('cette action n\'est pas autorisé dans cette page' , 'Attention' );
+    }else{
+      const rdv: any = args.data;
+      this.openDialog(rdv.Rdv.idRdv);
     }
+  }
+
+  openDialog(data: any): void {
+    const dialogRef = this.dialog.open(DialogChoixPersonnelComponent, {
+      width: '250px',
+      data
+    });
+
+    dialogRef.afterClosed().subscribe(resident => {
+      console.log('The dialog was closed');
+      if (resident) {
+
+      }
+    });
   }
 
 }

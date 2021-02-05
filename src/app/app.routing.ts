@@ -43,7 +43,7 @@ import {ConsulterCreneauxComponent} from './contact/consulter-creneaux/consulter
 import {AnnulerRdvComponent} from './contact/annuler-rdv/annuler-rdv.component';
 import {DeclarerAbsenceComponent} from './contact/declarer-absence/declarer-absence.component';
 import {RedirectGuardGuard} from './sharedServices/helpers/guard/redirect.guard';
-import {ReporterComponent} from './personnel/reporter/reporter.component';
+import {DeclarerRemplacantComponent} from './personnel/declarer-remplacant/declarer-remplacant.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -62,7 +62,7 @@ export const routes: Routes = [
       {path: 'residents/changer', component: NotyetimplComponent},
       {path: 'calendrier/declarer', component: DeclarerCreneauxComponent},
       {path: 'calendrier/supprimer', component: SupprimerCreneauxComponent},
-      {path: 'rendezvous/reporter', component: ReporterComponent}
+      {path: 'rendezvous/reporter', component: DeclarerRemplacantComponent}
     ]
   },
   // tslint:disable-next-line:max-line-length

@@ -135,9 +135,9 @@ export class ConsulterCreneauxComponent implements OnInit {
         width: '250px',
         data: rdv
       });
-    /*  this.rdvService.ajouterrdv(rdv).then( value1 => {
+      this.rdvService.ajouterrdv(rdv).then( value1 => {
         this.putResidentToCalendar(this.residentId);
-      });*/
+      });
     }
   }
 
