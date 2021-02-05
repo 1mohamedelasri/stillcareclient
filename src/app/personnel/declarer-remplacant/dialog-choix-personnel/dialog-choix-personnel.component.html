@@ -1,0 +1,29 @@
+
+
+
+<!-- Default form register -->
+<form #userForm class="text-center">
+
+  <p class="h4 mb-4"> Selectionner un résident</p>
+
+  <h3>Chercher un personnel par nom ou prenom</h3>
+  <p>
+    <mat-form-field>
+      <mat-select [multiple]="false" [formControl]="personnelServerSideCtrl" placeholder="Bank">
+        <mat-option>
+          <ngx-mat-select-search [formControl]="personnelServerSideFilteringCtrl" [searching]="searching"></ngx-mat-select-search>
+        </mat-option>
+        <mat-option *ngFor="let personnel of filteredServerSidePersonnel | async" [value]="personnel">
+          {{personnel.nom}} {{'    ' + personnel.prenom}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+
+  <br/>
+  <!-- Sign up button -->
+  <div class="d-flex flex-row">
+    <button type="submit" class="btn-primary" (click)="Valider(personnelServerSideCtrl.value)"cdkFocusInitial> Choisir</button>
+    <button type="submit" class="btn-secondary" (click)="Annuler()">Annuler</button>
+  </div>
+</form>

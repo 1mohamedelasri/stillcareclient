@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {IPersonnel} from "../../sharedServices/models/Personnel";
-import {FormControl} from "@angular/forms";
-import {ReplaySubject, Subject} from "rxjs";
-import {PersonnelService} from "../../sharedServices/services/personnels.service";
-import {AuthService} from "../../sharedServices/services/auth.service";
-import {ToastrService} from "ngx-toastr";
-import {debounceTime, delay, filter, map, takeUntil, tap} from "rxjs/operators";
+import {IPersonnel} from '../../sharedServices/models/Personnel';
+import {FormControl} from '@angular/forms';
+import {ReplaySubject, Subject} from 'rxjs';
+import {PersonnelService} from '../../sharedServices/services/personnels.service';
+import {AuthService} from '../../sharedServices/services/auth.service';
+import {ToastrService} from 'ngx-toastr';
+import {debounceTime, delay, filter, map, takeUntil, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-reporter',
