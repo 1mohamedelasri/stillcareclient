@@ -113,6 +113,9 @@ import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-pr
 import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
 import {UnitCreateModifyComponent} from './direction/unit-create-modify/unit-create-modify.component';
 import { ReporterComponent } from './personnel/reporter/reporter.component';
+import { PopupRdvComponent } from './personnel/supprimer-creneaux/popup-rdv/popup-rdv.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatListModule} from '@angular/material/list';
 import { DeclarerRemplacantComponent } from './personnel/declarer-remplacant/declarer-remplacant.component';
 
 
@@ -168,7 +171,9 @@ import { DeclarerRemplacantComponent } from './personnel/declarer-remplacant/dec
     LoggerModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    ScrollingModule,
+    MatListModule
   ],
   declarations: [
     AppComponent,
@@ -222,8 +227,7 @@ import { DeclarerRemplacantComponent } from './personnel/declarer-remplacant/dec
     UnitAddPersonnelComponent,
     AgendaPersonnelsComponent,
     SupprimerCreneauxComponent,
-    ReporterComponent,
-    DeclarerRemplacantComponent
+    ReporterComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, NGXLogger, LoggerConfig,  {
     provide: MatDialogRef,
