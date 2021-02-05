@@ -134,7 +134,7 @@ export class ConsulterCreneauxComponent implements OnInit {
       const dialogRef = this.dialog.open(PopupRdvComponent, {
         width: '250px',
         data: rdv
-      }).afterClosed().subscribe(e =>
+      }).beforeClosed().subscribe(e =>
         {
         this.putResidentToCalendar(this.residentId);
         }

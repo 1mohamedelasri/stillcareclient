@@ -54,8 +54,10 @@ export class PopupRdvComponent implements OnInit {
   }
 
   validate(){
-    this.rdvService.ajouterrdv(this.rdv, this.inviterList).then( value1 => {
+    this.rdvService.ajouterrdv(this.rdv, this.inviterList).then( va => {
       this.dialogRef.close();
+    }).catch(e => {
+      console.log(e.error);
     });
   }
 }
