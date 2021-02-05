@@ -13,6 +13,11 @@ import {config} from '../../../environments/config';
 import {Observable} from 'rxjs';
 import {Resident} from '../../common/interfaces/Resident';
 import {AuthService} from '../../sharedServices/services/auth.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Inviter} from '../../sharedServices/models/Inviter';
+import {DialogOverviewComponent} from '../../views/complete-account/dialog-overview/dialog-overview.component';
+import {MatDialog} from '@angular/material/dialog';
+import {PopupRdvComponent} from '../../personnel/supprimer-creneaux/popup-rdv/popup-rdv.component';
 
 declare var require: any;
 loadCldr(
@@ -29,14 +34,22 @@ L10n.load({ fr: EJ2_LOCALE.fr });
   styleUrls: ['./consulter-creneaux.component.scss']
 })
 export class ConsulterCreneauxComponent implements OnInit {
+  constructor(public dialog: MatDialog,
+              private http: HttpClient,
+              private notifyService: NotificationService,
+              private rdvService: RendezvousService,
+              private creneauService: CreneauService,
+              private auth: AuthService) { }
   @ViewChild('scheduleObj')
   public scheduleObj: ScheduleComponent;
   private residents: Observable<Array<Resident>>;
+  value: any = new FormControl();
+
   eventObject: any;
   toRegister: Array<any> = new Array<any>();
   user: any;
   residentId: number;
-  constructor(private http: HttpClient, private notifyService: NotificationService, private rdvService: RendezvousService, private creneauService: CreneauService, private auth: AuthService) { }
+
   ngOnInit(): void {
     this.user = this.auth.getUserObject();
     this.residents = this.http.get<Array<Resident>>(config.endpoint + '/residents/contact/' + this.user.idContact ).pipe();
@@ -118,11 +131,16 @@ export class ConsulterCreneauxComponent implements OnInit {
     if (args.type === 'QuickInfo' && args.data.hasOwnProperty('Subject'))
     {
       const rdv: RendezVous = new RendezVous(value.cr , this.user.idContact, this.residentId);
-      this.rdvService.ajouterrdv(rdv).then( value1 => {
-        this.putResidentToCalendar(this.residentId);
+      const dialogRef = this.dialog.open(PopupRdvComponent, {
+        width: '250px',
+        data: rdv
       });
-
+    /*  this.rdvService.ajouterrdv(rdv).then( value1 => {
+        this.putResidentToCalendar(this.residentId);
+      });*/
     }
   }
+
+
 
 }

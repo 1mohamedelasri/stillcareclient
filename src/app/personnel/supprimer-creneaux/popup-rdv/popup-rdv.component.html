@@ -1,0 +1,35 @@
+<form #userForm [formGroup]="childFrom" class="text-center">
+  <p class="h4 mb-4"> prendre le rendez vous</p>
+  <mat-form-field>
+    <mat-label>Nom invité</mat-label>
+    <input matInput class="form-control"  value ="" formControlName="lastname"  #nom>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Prenom invité</mat-label>
+    <input matInput class="form-control"  value ="" formControlName="firstname" #prenom >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>adresse mail</mat-label>
+    <input matInput class="form-control"  value ="" formControlName="mail" #email >
+  </mat-form-field>
+  <button type="submit" class="btn-primary" (click)="ajouterinviter({nom: nom.value, prenom: prenom.value,mail: email.value})" cdkFocusInitial> ajouter inviter</button>
+
+    <mat-label>List des inviter</mat-label>
+    <mat-nav-list [formControl]="value">
+      <mat-list-item  *ngFor="let inviter of inviterList"  >
+        <div style="display:flex; justify-content: space-between">
+          <span>{{inviter.nom}} {{inviter.prenom}}</span>
+          <span></span>
+          <span class="deleteYear" (click)="delete($event,inviter)">
+          <mat-icon>clear</mat-icon>
+        </span>
+        </div>
+
+      </mat-list-item >
+    </mat-nav-list>
+
+  <div class="d-flex flex-row">
+    <button type="submit" class="btn-primary" cdkFocusInitial> Prendre le Rendez vous</button>
+    <button type="submit" class="btn-secondary"  (click)="Annuler()">Annuler</button>
+  </div>
+</form>
