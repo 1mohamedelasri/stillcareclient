@@ -113,6 +113,7 @@ import {ModifierProfileComponent} from './personnel/modifier-profile/modifier-pr
 import {AjouterPersonnelComponent} from './direction/ajouter-personnel/ajouter-personnel.component';
 import {UnitCreateModifyComponent} from './direction/unit-create-modify/unit-create-modify.component';
 import { ReporterComponent } from './personnel/reporter/reporter.component';
+import { DeclarerRemplacantComponent } from './personnel/declarer-remplacant/declarer-remplacant.component';
 
 
 @NgModule({
@@ -221,7 +222,8 @@ import { ReporterComponent } from './personnel/reporter/reporter.component';
     UnitAddPersonnelComponent,
     AgendaPersonnelsComponent,
     SupprimerCreneauxComponent,
-    ReporterComponent
+    ReporterComponent,
+    DeclarerRemplacantComponent
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService, AuthService, HttpClient, NgProgress, AngularFireAuth, ToastrService, AccountService, NGXLogger, LoggerConfig,  {
     provide: MatDialogRef,
